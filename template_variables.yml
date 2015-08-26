@@ -1,0 +1,107 @@
+#password of the CF admin
+cf_admin_password: 
+#client password of the CF admin
+cf_admin_client_password: 
+#ip of a node with the arcadia darmon
+any_arcadia_node: 
+#apps domain of the CF deployment, can be checked in the deployment yml
+apps_domain: 
+#hostname of the CM host
+cloudera_manager_internal_host: 
+#password for the developer-console client
+developer_console_password: 
+#e-mail address that will be used to send invitations
+email_address: 
+#hostname of the host with the Gearpump webui
+gearpump_webui_server_host: 
+#output of the import_hadoop_conf.sh rool
+import_hadoop_conf: 
+#hostname of the kerberos machine, should be the same as CM machine
+kerberos_host: 
+#ip addresses of the cloudera master nodes with zookeeper and kafka
+master_node_ip_1: 
+master_node_ip_2: 
+master_node_ip_3: 
+#hostname of the host with the HDFS namenode deployed
+namenode_internal_host: 
+#ip address of the nats machine. can be checked with `bosh vms`
+nats_ip: 
+#run domain of the CF deployment, can be checked in the deployment yml
+run_domain: 
+#username for the Amazon SES service
+smtp_pass: 
+#password for the Amazon SES service
+smtp_user: 
+
+#realm used by kerberos
+kerberos_realm: CLOUDERA
+#name of the CDH cluster
+CDH_cluster_name: CDH-cluster
+#username of the CF admin
+cf_admin_username: admin
+#nats topic for the nats-provider broker
+nats_topic_name: service-creation
+#username for the CF nats service
+nats_username: nats
+#username for the CF gorouter service
+router_username: router
+#username that hdfs-broker is using
+hdfs_username: cf
+#username that hdfs-broker is using in Kerberos
+kerberos_username: cf
+#password that hdfs-broker is using in Kerberos
+kerberos_password: cf1
+
+#username that the ATK broker will use
+atk_broker_user: admin
+#password that the ATK broker will use
+atk_broker_user_pass: admin
+#username that the CDH broker will use
+cdh_broker_user: admin
+#password that the CDH broker will use
+cdh_broker_user_pass: admin
+#username for the docker broker (set in deployment.yml)
+docker_broker_user: containers
+#password for the docker broker (set in deployment.yml)
+docker_broker_user_pass: containers
+#username that the Gearpump broker will use
+gearpump_broker_user: user
+#password that the Gearpump broker will use
+gearpump_broker_user_pass: awhile-scary-melting-globe
+#TODO
+gearpump_broker_znode_in_zookeeper: /org/intel/gearpumpbroker/metadata
+#username that the HBASE broker will use
+hbase_broker_user: user
+#password that the HBASE broker will use
+hbase_broker_user_pass: democrats-midst-writing-tender
+#TODO
+hbase_broker_znode_in_zookeeper: /org/intel/hbasebroker/metadata
+#directory in the HDFS tree that the HDFS broker will use
+hdfs_broker_folder_on_hdfs: /org/intel/hdfsbroker
+#username that the HDFS broker will use
+hdfs_broker_user: user
+#password that the HDFS broker will use
+hdfs_broker_user_pass: calmed-jumps-jerk-apologies
+#username that the Kafka broker will use
+kafka_broker_user: admin
+#password that the Kafka broker will use
+kafka_broker_user_pass: admin
+#username that the SMTP broker will use
+smtp_broker_user: admin
+#password that the SMTP broker will use
+smtp_broker_user_pass: admin
+#username that the YARN broker will use
+yarm_broker_user: user
+#password that the YARN broker will use
+yarn_broker_user_pass: little-gold-bubbles-heavenly
+#TODO
+yarn_broker_znode_in_zookeeper: /org/intel/yarnbroker/metadata
+#TODO
+zookeeper_broker_metadata: /org/intel/zookeeperbroker/metadata
+#username that the Zookeeper broker will use
+zookeeper_broker_user: user
+#password that the Zookeeper broker will use
+zookeeper_broker_user_pass: bother-collar-thumb-shut
+#TODO
+zookeeper_broker_userspace: /org/intel/zookeeperbroker/userspace
+
