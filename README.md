@@ -2,6 +2,11 @@
 
 Cloud Foundry platform definition files to be used with https://github.com/trustedanalytics/cloudfoundry-mkappstack.
 
+Install jinja2:
+```
+sudo pip install jinja2
+```
+
 Edit template_variables.yml file.
 You should obtain missing values from the sources listed below.
 
@@ -39,3 +44,11 @@ obtain:
 
 3) Other sources:
 * import_hadoop_conf (follow instructions in [Hadoop Admin Tools](https://github.com/trustedanalytics/hadoop-admin-tools) repository).
+
+
+
+Run script:
+```
+python generate_template.py
+```
+The script will automatically fill information in settings.yml according to data in template_variables.yml.
