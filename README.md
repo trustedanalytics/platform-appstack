@@ -43,7 +43,8 @@ obtain:
 * kerberos_host - the same as cloudera_manager_internal_host
 
 3) Other sources:
-* import_hadoop_conf (follow instructions in [Hadoop Admin Tools](https://github.com/trustedanalytics/hadoop-admin-tools) repository).
+* import_hadoop_conf_`<broker_name>`:  
+Following instructions in [Hadoop Admin Tools](https://github.com/trustedanalytics/hadoop-admin-tools) repository, obtain JSON values for: import_hadoop_conf_hbase, import_hadoop_conf_hdfs, import_hadoop_conf_yarn.
 
 
 
