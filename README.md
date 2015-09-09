@@ -1,6 +1,9 @@
-# platform-appstack
+platform-appstack
+=================
 
 Cloud Foundry platform definition files to be used with https://github.com/trustedanalytics/cloudfoundry-mkappstack.
+
+## Preparation
 
 Install jinja2:
 ```
@@ -46,10 +49,7 @@ obtain:
 * import_hadoop_conf_`<broker_name>`:  
 Following instructions in [Hadoop Admin Tools](https://github.com/trustedanalytics/hadoop-admin-tools) repository, obtain JSON values for: import_hadoop_conf_hbase, import_hadoop_conf_hdfs, import_hadoop_conf_yarn.
 
-
-
-Run script:
-```
-python generate_template.py
-```
-The script will automatically fill information in settings.yml according to data in template_variables.yml.
+## Usage
+1. Generate setting.yml: `python generate_template.py`
+1. Copy settings.yml and appstack.yml to cloudfoundry-mkappstack folder.
+1. Follow further instructions from cloudfoundry-mkappstack to deploy the platform applications and brokers.

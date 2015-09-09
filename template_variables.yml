@@ -14,8 +14,10 @@ developer_console_password:
 email_address: 
 #hostname of the host with the Gearpump webui
 gearpump_webui_server_host: 
-#output of the import_hadoop_conf.sh rool
-import_hadoop_conf: 
+#output of the import_hadoop_conf.sh tool for three machines
+import_hadoop_conf_hbase:
+import_hadoop_conf_hdfs: 
+import_hadoop_conf_yarn: 
 #hostname of the kerberos machine, should be the same as CM machine
 kerberos_host: 
 #ip addresses of the cloudera master nodes with zookeeper and kafka

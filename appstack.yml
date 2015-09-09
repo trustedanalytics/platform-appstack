@@ -1,27 +1,15 @@
 applications:
-- name: atk-broker
-  buildpack: go_buildpack
-  env:
-    BASE_GUID: 480102a3-045d-4289-9684-820342fbcbcc
-    CF_CATALOG_PATH: "./catalog.json"
-    IMAGE_URL: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAMAAAANIilAAAACN1BMVEUAAAD///9WX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3R3YQTsAAAAvHRSTlMAAAECAwQGBwgJCgsMDQ4PEBESExQVFhcYGRocHR4gJCcoKSssLS4vMTM0NTY3ODk6PD9BQkNERUZHSElLTE1OT1BRUlNWV1pbXV5fYmNkZ2hpa2xtcnN0dnd4eXp7fH1+gIGChIWGh4iKjI6QkZKUlZaXmJ2goqSlp6mrrK2vsLGys7S1tre4vL2+v8DBwsPExcbHyMnKzM/R09TV1tfZ29ze3+Dh4uTn6Onq6+zt7/Dx8vP19vf5+vz9/jdVeyQAAAM9SURBVHhe5dThUxRlHMDxX3vrqUQSFmGWFoEXqFZFpVhpBaUVJkqGqUFogSilKCkRFFhUQUlnQKVGQEAeJVjHwXH3/eNy92af2Znbe24dXzV9X+2++Mzs/n67j9xxG/2XsWhavqM1PANLk5+/vUFU4gff2zyLirO3go2aOQDiU5PXAXjOP879DGBwf5EpIjnl3XDMNy4YAYYfc26fjsFev/hOyx4NOPbZGAyt9Iu7IPG6OO2Mw3Ce+MR7gDeVrYpDWNlsePV1+FDZ3QnozxG/uBHGVqincFtZt+0+PTZnoNKx+4BeNauGJIt7tbgCJpxBH7BsUFIZLQBLJTp8HJqd6zB0KXsGmINWHR6ArQ7+CHa6bX8x/KzD0/CgGrX6LM1z2JOLMqvDUTAcXARfpmwHqclNgg4D4hSIEjFFJNjpTG5cj+OwSumLMB8+Vd0L9FhW/iCpwxNQqvBJnDpMywYTXMuMg21AtcKPnh5acFnZCIMZ8ZofgL48cbUsVH16qD1l5QicyISfiQAtpmQq8BtUeGPz/STMvyqZq4SZZZ547ffAaLHG5k7Bu+KFyyPAJ7mi6TxE8jywcSQBi/tF11HgFUnH+V8AU5t11GgGzkg6fmQM6Futs4UXgAvBdLzjH0jUGxp616E5oDdH0vDhJNyo8DIbG18KrS8qr/10AaDVlDR8HBgr8rL3X0PF78+LpOG3gH7P1w3+iGq8dqWk45JF+0/16izwy583/rraU7/F+9z+GoaXe9o3cB2FnngDxB+2wZN1dU+4bfE8fGdqcRN8bIF7vgX4plDZ3FGIrBEtvgT2kvqwGwm4vuPEU6LHc3C3iGyGRFsH4OyjBnhHsmCIyc0OwgmRTvggBcqsHRjZ8ZKROl4aRbqhyQb5EzCeL9lwFKwhbYdE+3ngBQsYPRALSVY8Ai+KSOASdsP2wBqA1yQ7boEuuVlBGOArezdVwCnxgcsg+bglAtsOHSizQek8XAz6wTIAEwXi6oFpmC4UXzgUh8trRbV+DGJl4g9LLRCplFTG7llgl/jF0gxw5dj20pKt7/0KJPeJfyy1cVz9/bLcCpbQAKrOdeIfp9p08qcozA42PiTiE99G/0f8L79Trz+R1ZvwAAAAAElFTkSuQmCC
-    CF_DEP: postgresql93|free,cdh|shared,zookeeper-wssb|shared
-    CF_SRC: "./apps/atk"
-    service_broker_names: atk
-    VERSION: 0.4.1
-  hosts:
-  - atk-broker
 - name: hdfs-broker
+  buildpack: java_buildpack
   env:
     BASE_GUID: bf4e6cf6-49b2-4caf-9979-89afda39d44a
     IMAGE_URL: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAMAAAANIilAAAAB2lBMVEUAAAD///9WX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3T1Zo2zAAAAnXRSTlMAAID+PfUj/Tcm+eao/MLyMbjpoO4t9vRfDif6Hu8X636zVwOZ27QcBnMMFoq3JKrXFOdZXs0hooIC4jWYGwVNO5Adj8/jKvEBnUlWJdbJbxhgEdj7wBDc6F1o3zhphnRxPH/GvKcZrKZMQjpV7QcEDVIPW5FlgRKxMHlLY3jTar6IIAjzfSuN3RNnFVrqZuHZsJZAnoWla7LQ5Ll1Wl6YAgAAAdtJREFUeF7t1tWO2wAQRuFpHWZaZmZmZigzMzMzMzPjedc6UVIlq9pruzdVlXM93+2vkSV/0T+NsziLRaOCdYc2FFHkDZe7NS40cemEnVQEbAZxlcO2zz1woQTKqlfkjLSe2NuiwOezBvDOvhhAEDov1Uuy4mUKNSsXw+uPAqAAbZslLVsnWx36uLUGVm93jJ7p3bVnXjKq28KqRj3ctIO8fNFoMkKfHq4lzyWaLYdxbTwGlaKTj7k8nIMVa9b+AQfYJHoV+knExmjdQjwCx0S3yuMdUu/Or1UIbluAu8h9IIaaDcPuTNzPtBitwcn+DDxBixguH8bScM4BDorxmokUpPDhI8CMCTz6lv4kHiqD9vJxMdFJTp1O4JCdue4BMVWVl3NxfH4Qb6GYrZrhOL6IJySm62ZaxU0eLov5XARV3ID9igU8CyoOc1UsdC2BI1y3gm9gV7GTm1bwLW6rGO5YwXeJqjjGPQv2vkKXigP0WMDDPGxU8SN4bNoO+XkiKu71U2HWdjyl5FkcSxSem7MveuClJHDpK5yvzVjbG5hKzZAtF97lGKUuH/B+PoXlQwxo//hp6aI1t80AuV/Sp3fyK8ZTfI4Fox+a+ubBQN9//CyWZP/tH5bFWfwLMcy6+/kPQ1EAAAAASUVORK5CYII=
     CF_CATALOG_SERVICENAME: hdfs
     CF_CATALOG_SERVICEID: hdfs
     service_broker_names: hdfs
-    VERSION: 0.4.1.post1
+    VERSION: 0.4.4-SNAPSHOT
   hosts:
   - hdfs-broker
-  path: target/hdfs-broker-0.4.1.post1.jar
 - name: kafka-broker
   buildpack: go_buildpack
   env:
@@ -31,13 +19,12 @@ applications:
     SERVICE_PLAN_NAME: shared
     TAGS: kafka,distributed,real-time,messaging
     service_broker_names: kafka
-    artifact_name: wssb
-    VERSION: 0.4.1
+    artifact_srcurl: file:///tmp/PACKAGES/wssb.zip
   hosts:
   - kafka-broker
 - name: metrics-provider
   env:
-    VERSION: 0.4.1
+    VERSION: 0.4.2-SNAPSHOT
     upsi_names: metrics-provider
   hosts:
   - metrics-provider
@@ -45,9 +32,14 @@ applications:
   - sso
   - datacatalog
   - latest-events-service
+- name: hdfs-uploader
+  env:
+    VERSION: 0.4.1-SNAPSHOT
+    upsi_names: hdfs-uploader
+    artifact_name: uploader
 - name: latest-events-service
   env:
-    VERSION: 0.4.1
+    VERSION: 0.4.2-SNAPSHOT
     upsi_names: latest-events-service
   hosts:
   - latest-events-service
@@ -60,7 +52,7 @@ applications:
     OAUTH2_CLIENT_CLIENTID: developer_console
     OAUTH_CLIENT_ID: developer_console
     SPRING_PROFILES_ACTIVE: cloud,redis
-    VERSION: 0.4.1.post1
+    VERSION: 0.4.1
   hosts:
   - console
   services:
@@ -79,18 +71,18 @@ applications:
 - name: hdfs-downloader
   env:
     SPRING_PROFILES_ACTIVE: cloud,hdfs
-    VERSION: 0.4.1.post1
+    VERSION: 0.4.2-SNAPSHOT
     upsi_names: downloader
     artifact_name: downloader
   hosts:
   - hdfs-downloader
   services:
-  - hdfs-instance
+  - hdfs
   - sso
 - name: service-catalog
   env:
     SPRING_PROFILES_ACTIVE: cloud
-    VERSION: 0.4.1
+    VERSION: 0.4.2-SNAPSHOT
     upsi_names: servicecatalog
   hosts:
   - service-catalog
@@ -100,14 +92,14 @@ applications:
   env:
     SERVICE_NAME: atk
     SE_SERVICE_NAME: se
-    VERSION: 0.4.3
+    VERSION: 0.4.4.0
     upsi_names: app-launcher-helper 
   hosts:
   - app-launcher-helper
 - name: metadataparser
   env:
     SPRING_PROFILES_ACTIVE: insecure
-    VERSION: 0.4.0.post1
+    VERSION: 0.4.2-SNAPSHOT
     upsi_names: metadataparser
     artifact_name: metadata-parser
   hosts:
@@ -120,7 +112,7 @@ applications:
 - name: user-management
   env:
     SPRING_PROFILES_ACTIVE: cloud,redis
-    VERSION: 0.4.1.post1
+    VERSION: 0.4.3-SNAPSHOT
     upsi_names: user-management
   hosts:
   - user-management
@@ -131,7 +123,7 @@ applications:
 - name: platform-context
   env:
     SPRING_PROFILES_ACTIVE: cloud,redis
-    VERSION: 0.4.1
+    VERSION: 0.4.2-SNAPSHOT
     upsi_names: platformcontext
   hosts:
   - platform-context
@@ -140,7 +132,7 @@ applications:
 - name: file-server
   env:
     SPRING_PROFILES_ACTIVE: cloud
-    VERSION: 0.4.1
+    VERSION: 0.4.2-SNAPSHOT
     upsi_names: fileserver
   hosts:
   - file-server
@@ -154,8 +146,7 @@ applications:
     SERVICE_PLAN_NAME: shared
     TAGS: simple,shared
     service_broker_names: cdh
-    artifact_name: wssb
-    VERSION: 0.4.1
+    artifact_srcurl: file:///tmp/PACKAGES/wssb.zip
   hosts:
   - cdh-broker
 - name: zookeeper-wssb-broker
@@ -167,8 +158,7 @@ applications:
     SERVICE_PLAN_NAME: shared
     TAGS: zookeeper,distributed,coordination
     service_broker_names: zookeeper-wssb
-    artifact_name: wssb
-    VERSION: 0.4.1
+    artifact_srcurl: file:///tmp/PACKAGES/wssb.zip
   hosts:
   - zookeeper-wssb-broker
 - name: smtp-broker
@@ -179,9 +169,8 @@ applications:
     SERVICE_NAME: smtp
     SERVICE_PLAN_NAME: shared
     TAGS: simple,shared
-    artifact_name: wssb
+    artifact_srcurl: file:///tmp/PACKAGES/wssb.zip
     service_broker_names: smtp
-    VERSION: 0.4.1
   hosts:
   - smtp-broker
 - name: data-catalog
@@ -189,7 +178,7 @@ applications:
   command: python -m data_catalog.app
   env:
     RELEASE: 'true'
-    VERSION: 0.4.1.post1
+    VERSION: 0.4.2.dev0
     upsi_names: datacatalog
   hosts:
   - data-catalog
@@ -202,7 +191,7 @@ applications:
   - data-catalog-cache
 - name: dataset-publisher
   env:
-    VERSION: 0.4.1
+    VERSION: 0.4.2-SNAPSHOT
     upsi_names: datacatalogexport
   hosts:
   - hive
@@ -213,7 +202,7 @@ applications:
   - sso
 - name: router-metrics-provider
   env:
-    VERSION: 0.4.1
+    VERSION: 0.4.2-SNAPSHOT
     upsi_names: router-metrics-provider
   hosts:
   - router-metrics-provider
@@ -225,7 +214,7 @@ applications:
 - name: das
   env:
     SPRING_PROFILES_ACTIVE: cloud
-    VERSION: 0.4.0.post1
+    VERSION: 0.4.1-SNAPSHOT
     upsi_names: dataaquisitionservice
     artifact_name: data-acquisition
   hosts:
@@ -238,19 +227,6 @@ applications:
   - downloader
   - user-management
   - sso
-- name: gearpump-broker
-  buildpack: java_buildpack
-  env:
-    BASE_GUID: afa51fc0-305e-11e5-afad-00155d3cf01b
-    IMAGE_URL: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAMAAAANIilAAAAB2lBMVEUAAAD///9WX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3T1Zo2zAAAAnXRSTlMAAID+PfUj/Tcm+eao/MLyMbjpoO4t9vRfDif6Hu8X636zVwOZ27QcBnMMFoq3JKrXFOdZXs0hooIC4jWYGwVNO5Adj8/jKvEBnUlWJdbJbxhgEdj7wBDc6F1o3zhphnRxPH/GvKcZrKZMQjpV7QcEDVIPW5FlgRKxMHlLY3jTar6IIAjzfSuN3RNnFVrqZuHZsJZAnoWla7LQ5Ll1Wl6YAgAAAdtJREFUeF7t1tWO2wAQRuFpHWZaZmZmZigzMzMzMzPjedc6UVIlq9pruzdVlXM93+2vkSV/0T+NsziLRaOCdYc2FFHkDZe7NS40cemEnVQEbAZxlcO2zz1woQTKqlfkjLSe2NuiwOezBvDOvhhAEDov1Uuy4mUKNSsXw+uPAqAAbZslLVsnWx36uLUGVm93jJ7p3bVnXjKq28KqRj3ctIO8fNFoMkKfHq4lzyWaLYdxbTwGlaKTj7k8nIMVa9b+AQfYJHoV+knExmjdQjwCx0S3yuMdUu/Or1UIbluAu8h9IIaaDcPuTNzPtBitwcn+DDxBixguH8bScM4BDorxmokUpPDhI8CMCTz6lv4kHiqD9vJxMdFJTp1O4JCdue4BMVWVl3NxfH4Qb6GYrZrhOL6IJySm62ZaxU0eLov5XARV3ID9igU8CyoOc1UsdC2BI1y3gm9gV7GTm1bwLW6rGO5YwXeJqjjGPQv2vkKXigP0WMDDPGxU8SN4bNoO+XkiKu71U2HWdjyl5FkcSxSem7MveuClJHDpK5yvzVjbG5hKzZAtF97lGKUuH/B+PoXlQwxo//hp6aI1t80AuV/Sp3fyK8ZTfI4Fox+a+ubBQN9//CyWZP/tH5bFWfwLMcy6+/kPQ1EAAAAASUVORK5CYII=
-    CF_CATALOG_SERVICENAME: gearpump
-    CF_CATALOG_SERVICEID: gearpump
-    TAGS: gearpump
-    service_broker_names: gearpump
-    VERSION: 0.4.0
-  services:
-  - zookeeper-gearpump
-  path: target/gearpump-broker-0.4.0.jar
 - name: hbase-broker
   buildpack: java_buildpack
   env:
@@ -260,19 +236,10 @@ applications:
     CF_CATALOG_SERVICEID: hbase
     TAGS: hbase
     service_broker_names: hbase
-    VERSION: 0.4.1
-  path: target/hbase-broker-0.4.1.jar
+    VERSION: 0.4.4-SNAPSHOT
 - name: zookeeper-broker
-  buildpack: java_buildpack
   env:
-    BASE_GUID: d1195782-f07f-4c3e-a784-fda730d9aedc
-    IMAGE_URL: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAMAAAANIilAAAABJlBMVEX///8AAABWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3RWX3QsLCbWAAAAYXRSTlMAAJDwsKBAcFBgWqqb4MTQ7Oqo0oDxuci3w3G6nbW+1kLu+WPj1Gd0BRGel47A/NxeIgQ1b+VsLwIQSYW/9cX7tnlhmdP++gpBffPts3g9CQMybufZn2UpASNf2PjGik8VB3b+IgAAAPxJREFUeF7t1dVOxEAYhmGm0IWqrLu74e7u7s7c/02w+ek2U0522pSQwrwH0/TgSSZz8g15GoJ4bI9HkA9wdqyf4RyrgiDkkdg7dXfXHkHD8PUJhjgTc+D+GWaYYYYVLZEJyu1wshQ1capaC3NpKa5qyiCMiQCT/TTOhZRCkcSRcmUtHqLDAdSr3miauIWgUXpMvvZfxwzrna5rDP0CFvmvRMeYzFvMMMPj8sSkHU5Nz0gGFYZmg3PzCwAXl5ZXVikXI7aO+0U2Nre2d3at/73YIIz2Dw6jR/h7xyenZ+d0+3xxeSVdW/Dm9u7+weG4Pz7Jzy+vb+8fxLh72Cfnn9F/yW5/kAAAAABJRU5ErkJggg==
-    CF_CATALOG_SERVICENAME: zookeeper
-    CF_CATALOG_SERVICEID: zookeeper
-    TAGS: zookeeper
-    service_broker_names: zookeeper
-    VERSION: 0.4.1.post1
-  path: target/zookeeper-broker-0.4.1.post1.jar
+    VERSION: 0.4.4-SNAPSHOT
 - name: yarn-broker
   buildpack: java_buildpack
   env:
@@ -282,10 +249,7 @@ applications:
     CF_CATALOG_SERVICEID: yarn
     TAGS: yarn
     service_broker_names: yarn
-    VERSION: 0.4.1
-  services:
-  - zookeeper-yarn
-  path: target/yarn-broker-0.4.1.jar
+    VERSION: 0.4.4-SNAPSHOT
 service_instances:
 - name: security-codes-db
   service_plan:
@@ -341,7 +305,7 @@ service_instances:
     service:
       label: zookeeper
       broker: zookeeper
-- name: zookeeper-yarn
+- name: zookeeper-for-yarn
   service_plan:
     name: shared
     service:
@@ -378,6 +342,7 @@ user_provided_service_instances:
 - name: router-metrics-provider
 - name: metadataparser
 - name: downloader
+- name: hdfs-uploader
 - name: latest-events-service
 - name: latestevents
 service_brokers:
@@ -385,7 +350,6 @@ service_brokers:
 - name: hdfs
 - name: zookeeper-wssb
 - name: kafka
-- name: atk
 - name: cdh
 - name: smtp
 - name: gearpump
