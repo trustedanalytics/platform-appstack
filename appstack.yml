@@ -19,7 +19,7 @@ applications:
     SERVICE_PLAN_NAME: shared
     TAGS: kafka,distributed,real-time,messaging
     service_broker_names: kafka
-    artifact_srcurl: file:///tmp/PACKAGES/wssb.zip
+    artifact_name: wssb
   hosts:
   - kafka-broker
 - name: metrics-provider
@@ -146,7 +146,7 @@ applications:
     SERVICE_PLAN_NAME: shared
     TAGS: simple,shared
     service_broker_names: cdh
-    artifact_srcurl: file:///tmp/PACKAGES/wssb.zip
+    artifact_name: wssb
   hosts:
   - cdh-broker
 - name: zookeeper-wssb-broker
@@ -158,7 +158,7 @@ applications:
     SERVICE_PLAN_NAME: shared
     TAGS: zookeeper,distributed,coordination
     service_broker_names: zookeeper-wssb
-    artifact_srcurl: file:///tmp/PACKAGES/wssb.zip
+    artifact_name: wssb
   hosts:
   - zookeeper-wssb-broker
 - name: smtp-broker
@@ -169,7 +169,7 @@ applications:
     SERVICE_NAME: smtp
     SERVICE_PLAN_NAME: shared
     TAGS: simple,shared
-    artifact_srcurl: file:///tmp/PACKAGES/wssb.zip
+    artifact_name: wssb
     service_broker_names: smtp
   hosts:
   - smtp-broker
