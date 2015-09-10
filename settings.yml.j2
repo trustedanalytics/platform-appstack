@@ -140,10 +140,10 @@ user_provided_service_instances:
     url: http://hdfs-uploader.{{ apps_domain }}
 - name: latest-events-service
   credentials:
-    host: https://latest-events-service.{{ apps_domain }}
+    host: http://latest-events-service.{{ apps_domain }}
 - name: latestevents
   credentials:
-    host: https://latest-events-service.{{ apps_domain }}
+    host: http://latest-events-service.{{ apps_domain }}
 service_brokers:
 - name: docker
   broker_url: http://cf-containers-broker.{{ run_domain }}
