@@ -1,0 +1,70 @@
+applications:
+- name: hdfs-broker
+  env:
+    VERSION: 0.4.4-SNAPSHOT
+- name: kafka-broker
+  env:
+    VERSION: 0.4.1
+- name: metrics-provider
+  env:
+    VERSION: 0.4.2-SNAPSHOT
+- name: hdfs-uploader
+  env:
+    VERSION: 0.4.1-SNAPSHOT
+- name: latest-events-service
+  env:
+    VERSION: 0.4.2-SNAPSHOT
+- name: console
+  env:
+    VERSION: 0.4.1
+- name: hdfs-downloader
+  env:
+    VERSION: 0.4.2-SNAPSHOT
+- name: service-catalog
+  env:
+    VERSION: 0.4.2-SNAPSHOT
+- name: app-launcher-helper
+  env:
+    VERSION: 0.4.4.0
+- name: metadataparser
+  env:
+    VERSION: 0.4.2-SNAPSHOT
+- name: user-management
+  env:
+    VERSION: 0.4.3-SNAPSHOT
+- name: platform-context
+  env:
+    VERSION: 0.4.2-SNAPSHOT
+- name: file-server
+  env:
+    VERSION: 0.4.2-SNAPSHOT
+- name: cdh-broker
+  env:
+    VERSION: 0.4.1
+- name: zookeeper-wssb-broker
+  env:
+    VERSION: 0.4.1
+- name: smtp-broker
+  env:
+    VERSION: 0.4.1
+- name: data-catalog
+  env:
+    VERSION: 0.4.2.dev0
+- name: dataset-publisher
+  env:
+    VERSION: 0.4.2-SNAPSHOT
+- name: router-metrics-provider
+  env:
+    VERSION: 0.4.2-SNAPSHOT
+- name: das
+  env:
+    VERSION: 0.4.1-SNAPSHOT
+- name: hbase-broker
+  env:
+    VERSION: 0.4.4-SNAPSHOT
+- name: zookeeper-broker
+  env:
+    VERSION: 0.4.4-SNAPSHOT
+- name: yarn-broker
+  env:
+    VERSION: 0.4.4-SNAPSHOT

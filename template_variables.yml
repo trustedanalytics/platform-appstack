@@ -1,111 +1,161 @@
-#password of the CF admin
+# password of the CF admin
 cf_admin_password: 
-#client password of the CF admin
+
+# client password of the CF admin
 cf_admin_client_password: 
-#ip of a node with the arcadia darmon
+
+# ip of any arcadia worker node
 any_arcadia_node: 
-#apps domain of the CF deployment, can be checked in the deployment yml
+
+# apps domain of the CF deployment, can be checked in the bosh deployment YAML file
 apps_domain: 
-#hostname of the CM host
+
+# hostname of the CM host
 cloudera_manager_internal_host: 
-#password for the developer-console client
+
+# password for the developer-console client
 developer_console_password: 
-#e-mail address that will be used to send invitations
+
+# e-mail address that will be used to send invitations
 email_address: 
-#hostname of the host with the Gearpump webui
-gearpump_webui_server_host: 
-#output of the import_hadoop_conf.sh tool for three machines
+
+# hostname of the host with the Gearpump Web UI
+gearpump_webui_server_host:
+
+# output of the import_hadoop_conf.sh tool (https://github.com/trustedanalytics/hadoop-admin-tools) for three machines;
+# those will be JSON documents, they need to be in single quotes, e.g. '{"some_key": "some_value"}'
 import_hadoop_conf_hbase:
 import_hadoop_conf_hdfs: 
 import_hadoop_conf_yarn: 
+
 #hostname of the kerberos machine, should be the same as CM machine
 kerberos_host: 
-#ip addresses of the cloudera master nodes with zookeeper and kafka
+
+# ip addresses of the Cloudera master nodes running zookeeper and kafka
 master_node_ip_1: 
 master_node_ip_2: 
 master_node_ip_3: 
-#hostname of the host with the HDFS namenode deployed
+
+# hostname of the host serving as the HDFS namenode
 namenode_internal_host: 
-#ip address of the nats machine. can be checked with `bosh vms`
+
+# ip address of the nats machine. can be checked with `bosh vms`
 nats_ip: 
-#run domain of the CF deployment, can be checked in the deployment yml
+
+# run domain of the CF deployment, can be checked in the bosh deployment YAML file
 run_domain: 
-#username for the Amazon SES service
+
+# SMTPAuth username (i.e. for Amazon SES service)
 smtp_pass: 
-#password for the Amazon SES service
+
+# SMTPAuth password (i.e. for Amazon SES service)
 smtp_user: 
 
-#realm used by kerberos
+# kerberos realm
 kerberos_realm: CLOUDERA
-#name of the CDH cluster
+
+# name of the Cloudera CDH cluster
 CDH_cluster_name: CDH-cluster
-#username of the CF admin
+
+# username of the CloudFoundry admin
 cf_admin_username: admin
-#nats topic for messages about service creation
+
+# nats topic for messages about service creation
 nats_service_creation_topic: platform.service-creation
-#nats topic for messages from Data Catalog
+
+# nats topic for messages from Data Catalog
 nats_data_catalog_topic: platform.data-catalog
+
 #username for the CF nats service
 nats_username: nats
-#username for the CF gorouter service
+
+# username for the CloudFoundry gorouter service
 router_username: router
-#username that hdfs-broker is using
+
+# username that hdfs-broker is using
 hdfs_username: cf
-#username that hdfs-broker is using in Kerberos
+
+# username that hdfs-broker is using in Kerberos
 kerberos_username: cf
-#password that hdfs-broker is using in Kerberos
+
+# password that hdfs-broker is using in Kerberos
 kerberos_password: cf1
 
-#username that the ATK broker will use
+# username that the ATK broker will use
 atk_broker_user: admin
-#password that the ATK broker will use
+
+# password that the ATK broker will use
 atk_broker_user_pass: admin
-#username that the CDH broker will use
+
+# username that the CDH broker will use
 cdh_broker_user: admin
-#password that the CDH broker will use
+
+# password that the CDH broker will use
 cdh_broker_user_pass: admin
-#username for the docker broker (set in deployment.yml)
+
+# username for the docker broker (set in bosh docker deployment YAML file)
 docker_broker_user: containers
-#password for the docker broker (set in deployment.yml)
+
+# password for the docker broker (set in bosh docker deployment YAML file)
 docker_broker_user_pass: containers
-#username that the Gearpump broker will use
+
+# username that the Gearpump broker will use
 gearpump_broker_user: user
-#password that the Gearpump broker will use
+
+# password that the Gearpump broker will use
 gearpump_broker_user_pass: awhile-scary-melting-globe
-#TODO
+
+# TODO
 gearpump_broker_znode_in_zookeeper: /org/intel/gearpumpbroker/metadata
-#username that the HBASE broker will use
+
+# username that the HBASE broker will use
 hbase_broker_user: user
-#password that the HBASE broker will use
+
+# password that the HBASE broker will use
 hbase_broker_user_pass: democrats-midst-writing-tender
-#TODO
+
+# TODO
 hbase_broker_znode_in_zookeeper: /org/intel/hbasebroker/metadata
-#directory in the HDFS tree that the HDFS broker will use
+
+# directory in the HDFS tree that the HDFS broker will use
 hdfs_broker_folder_on_hdfs: /org/intel/hdfsbroker
-#username that the HDFS broker will use
+
+# username that the HDFS broker will use
 hdfs_broker_user: user
-#password that the HDFS broker will use
+
+# password that the HDFS broker will use
 hdfs_broker_user_pass: calmed-jumps-jerk-apologies
-#username that the Kafka broker will use
+
+# username that the Kafka broker will use
 kafka_broker_user: admin
-#password that the Kafka broker will use
+
+# password that the Kafka broker will use
 kafka_broker_user_pass: admin
-#username that the SMTP broker will use
+
+# username that the SMTP broker will use
 smtp_broker_user: admin
-#password that the SMTP broker will use
+
+# password that the SMTP broker will use
 smtp_broker_user_pass: admin
-#username that the YARN broker will use
+
+# username that the YARN broker will use
 yarm_broker_user: user
-#password that the YARN broker will use
+
+# password that the YARN broker will use
 yarn_broker_user_pass: little-gold-bubbles-heavenly
-#TODO
+
+# TODO
 yarn_broker_znode_in_zookeeper: /org/intel/yarnbroker/metadata
-#TODO
+
+# TODO
 zookeeper_broker_metadata: /org/intel/zookeeperbroker/metadata
-#username that the Zookeeper broker will use
+
+# username that the Zookeeper broker will use
 zookeeper_broker_user: user
-#password that the Zookeeper broker will use
+
+# password that the Zookeeper broker will use
 zookeeper_broker_user_pass: bother-collar-thumb-shut
-#TODO
+
+# TODO
 zookeeper_broker_userspace: /org/intel/zookeeperbroker/userspace
 

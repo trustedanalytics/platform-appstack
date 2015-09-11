@@ -9,10 +9,17 @@ applications:
   memory: 128M
   env:
     CREDENTIALS: '{"uri": "{{ master_node_ip_1 }}:9092,{{ master_node_ip_2 }}:9092,{{ master_node_ip_3 }}:9092"}'
+- name: metrics-provider
+- name: latest-events-service
+- name: console
+- name: service-catalog
 - name: app-launcher-helper
   env:
     API_URL: http://api.{{ run_domain }}
     TOKEN_KEY_URL: http://uaa.{{ run_domain }}/token_key
+- name: user-management
+- name: platform-context
+- name: file-server
 - name: cdh-broker
   memory: 128M
   env:
@@ -25,6 +32,10 @@ applications:
   memory: 128M
   env:
     CREDENTIALS: '{"port_ssl": "465", "username": "{{ smtp_user }}", "password": "{{ smtp_pass }}", "port": "25", "hostname": "email-smtp.us-west-2.amazonaws.com"}'
+- name: data-catalog
+- name: dataset-publisher
+- name: router-metrics-provider
+- name: das
 - name: hbase-broker
   env:
     USER_PASSWORD: {{ hbase_broker_user_pass }}
