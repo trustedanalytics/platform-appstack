@@ -141,9 +141,6 @@ user_provided_service_instances:
 - name: latest-events-service
   credentials:
     host: http://latest-events-service.{{ apps_domain }}
-- name: latestevents
-  credentials:
-    host: http://latest-events-service.{{ apps_domain }}
 service_brokers:
 - name: docker
   broker_url: http://cf-containers-broker.{{ run_domain }}

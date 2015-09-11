@@ -2,7 +2,6 @@ applications:
 - name: hdfs-broker
   env:
     service_broker_names: hdfs
-    VERSION: 0.4.4-SNAPSHOT
 - name: kafka-broker
   buildpack: go_buildpack
   env:
@@ -17,51 +16,40 @@ applications:
   - kafka-broker
 - name: metrics-provider
   env:
-    VERSION: 0.4.2-SNAPSHOT
     upsi_names: metrics-provider
 - name: hdfs-uploader
   env:
-    VERSION: 0.4.1-SNAPSHOT
     upsi_names: hdfs-uploader
     artifact_name: uploader
 - name: latest-events-service
   env:
-    VERSION: 0.4.2-SNAPSHOT
     upsi_names: latest-events-service
 - name: console
   env:
-    VERSION: 0.4.1
 - name: hdfs-downloader
   env:
-    VERSION: 0.4.2-SNAPSHOT
     upsi_names: downloader
     artifact_name: downloader
 - name: service-catalog
   env:
-    VERSION: 0.4.2-SNAPSHOT
     upsi_names: servicecatalog
 - name: app-launcher-helper
   env:
     SERVICE_NAME: atk
     SE_SERVICE_NAME: se
-    VERSION: 0.4.4.0
     upsi_names: app-launcher-helper
 - name: metadataparser
   env:
-    VERSION: 0.4.2-SNAPSHOT
     upsi_names: metadataparser
     artifact_name: metadata-parser
 - name: user-management
   env:
-    VERSION: 0.4.3-SNAPSHOT
     upsi_names: user-management
 - name: platform-context
   env:
-    VERSION: 0.4.2-SNAPSHOT
     upsi_names: platformcontext
 - name: file-server
   env:
-    VERSION: 0.4.2-SNAPSHOT
     upsi_names: fileserver
 - name: cdh-broker
   env:
@@ -101,32 +89,24 @@ applications:
 - name: data-catalog
   env:
     RELEASE: 'true'
-    VERSION: 0.4.2.dev0
     upsi_names: datacatalog
 - name: dataset-publisher
   env:
-    VERSION: 0.4.2-SNAPSHOT
     upsi_names: datacatalogexport
 - name: router-metrics-provider
   env:
-    VERSION: 0.4.2-SNAPSHOT
     upsi_names: router-metrics-provider
 - name: das
   env:
-    VERSION: 0.4.1-SNAPSHOT
     upsi_names: dataaquisitionservice
     artifact_name: data-acquisition
 - name: hbase-broker
   env:
     service_broker_names: hbase
-    VERSION: 0.4.4-SNAPSHOT
 - name: zookeeper-broker
-  env:
-    VERSION: 0.4.4-SNAPSHOT
 - name: yarn-broker
   env:
     service_broker_names: yarn
-    VERSION: 0.4.4-SNAPSHOT
 service_instances:
 - name: security-codes-db
   service_plan:
@@ -221,7 +201,6 @@ user_provided_service_instances:
 - name: downloader
 - name: hdfs-uploader
 - name: latest-events-service
-- name: latestevents
 service_brokers:
 - name: docker
 - name: hdfs
