@@ -26,6 +26,27 @@ applications:
     upsi_names: latest-events-service
 - name: console
   env:
+    NPM_CONFIG_PRODUCTION: true
+    OAUTH2_CLIENT_CLIENTID: developer_console
+    OAUTH_CLIENT_ID: developer_console
+    SPRING_PROFILES_ACTIVE: cloud,redis
+    VERSION: 0.4.3
+  hosts:
+  - console
+  services:
+  - user-management
+  - datacatalog
+  - servicecatalog
+  - dataaquisitionservice
+  - metrics-provider
+  - router-metrics-provider
+  - platformcontext
+  - app-launcher-helper
+  - sso
+  - fileserver
+  - datacatalogexport
+  - latest-events-service
+  - hdfs-uploader
 - name: hdfs-downloader
   env:
     upsi_names: downloader
