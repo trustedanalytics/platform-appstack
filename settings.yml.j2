@@ -2,8 +2,6 @@ applications:
 - name: hdfs-broker
   env:
     USER_PASSWORD: {{ hdfs_broker_user_pass }}
-    KRB_KDC_HOST: {{ kerberos_host }}
-    KRB_REALM: {{ kerberos_realm }}
     BROKER_PATH: {{ hdfs_broker_folder_on_hdfs }}
     HADOOP_PROVIDED_PARAMS: '{{ import_hadoop_conf_hdfs }}'
     SPRING_PROFILES_ACTIVE: cloud,secure
@@ -141,6 +139,12 @@ user_provided_service_instances:
 - name: latest-events-service
   credentials:
     host: http://latest-events-service.{{ apps_domain }}
+- name: kerberos-service
+  credentials:
+    kdc: {{ kerberos_host }}
+    kpassword: {{ kerberos_password }}
+    krealm: {{ kerberos_realm }}
+    kuser: {{ kerberos_username }}
 service_brokers:
 - name: docker
   broker_url: http://cf-containers-broker.{{ run_domain }}
@@ -149,7 +153,7 @@ service_brokers:
 - name: hdfs
   broker_url: https://hdfs-broker.{{ apps_domain }}
   auth_username: {{ hdfs_broker_user }}
-  auth_password: {{ hdfs_broker_user_pass }}
+  auth_password: {{ hdfs_broker_user_pass }}  
 - name: zookeeper-wssb
   broker_url: http://zookeeper-wssb-broker.{{ apps_domain }}
   auth_username: {{ zookeeper_broker_user }}
