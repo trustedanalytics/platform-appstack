@@ -223,6 +223,7 @@ user_provided_service_instances:
 - name: hdfs-uploader
 - name: latest-events-service
 - name: kerberos-service
+- name: external-tools
 service_brokers:
 - name: docker
 - name: hdfs

@@ -145,6 +145,16 @@ user_provided_service_instances:
     kpassword: {{ kerberos_password }}
     krealm: {{ kerberos_realm }}
     kuser: {{ kerberos_username }}
+### TO REMOVE after DPNG-2306 ###############
+- name: external-tools
+  credentials:
+    hue:
+      available: "false"
+      url: placeholder
+    arcadia:
+      available: "false"
+      url: placeholder
+#############################################
 service_brokers:
 - name: docker
   broker_url: http://cf-containers-broker.{{ run_domain }}
