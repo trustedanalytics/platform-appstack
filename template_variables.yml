@@ -41,8 +41,10 @@ kerberos_realm: CLOUDERA
 CDH_cluster_name: CDH-cluster
 #username of the CF admin
 cf_admin_username: admin
-#nats topic for the nats-provider broker
-nats_topic_name: service-creation
+#nats topic for messages about service creation
+nats_service_creation_topic: platform.service-creation
+#nats topic for messages from Data Catalog
+nats_data_catalog_topic: platform.data-catalog
 #username for the CF nats service
 nats_username: nats
 #username for the CF gorouter service

@@ -30,7 +30,7 @@ applications:
     USER_PASSWORD: {{ hbase_broker_user_pass }}
     KRB_KDC_HOST: {{ kerberos_host }}
     KRB_REALM: {{ kerberos_realm }}
-    ZK_BRK_STORE: {{ hbase_broker_znode_in_zookeeper }}
+    ZK_BRK_SPACE: {{ hbase_broker_znode_in_zookeeper }}
     HADOOP_PROVIDED_PARAMS: '{{ import_hadoop_conf_hbase }}'
 - name: zookeeper-broker
   env:
@@ -79,7 +79,8 @@ user_provided_service_instances:
 - name: nats-provider
   credentials:
     url: nats://{{ nats_username }}:{{ cf_admin_client_password }}@{{ nats_ip }}:4222
-    service-creation-subject: {{ nats_topic_name }}
+    service-creation-subject: {{ nats_service_creation_topic }}
+    data-catalog-subject: {{ nats_data_catalog_topic }}
 - name: gorouter-provider
   credentials:
     username: {{ router_username }}
