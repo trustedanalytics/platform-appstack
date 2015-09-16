@@ -184,10 +184,10 @@ service_brokers:
   broker_url: http://smtp-broker.{{ apps_domain }}
   auth_username: {{ smtp_broker_user }}
   auth_password: {{ smtp_broker_user_pass }}
-- name: gearpump
-  broker_url: http://gearpump-broker.{{ apps_domain }}
-  auth_username: {{ gearpump_broker_user }}
-  auth_password: {{ gearpump_broker_user_pass }}
+#- name: gearpump
+#  broker_url: http://gearpump-broker.{{ apps_domain }}
+#  auth_username: {{ gearpump_broker_user }}
+#  auth_password: {{ gearpump_broker_user_pass }}
 - name: hbase
   broker_url: http://hbase-broker.{{ apps_domain }}
   auth_username: {{ hbase_broker_user }}

@@ -231,7 +231,7 @@ service_brokers:
 - name: kafka
 - name: cdh
 - name: smtp
-- name: gearpump
+#- name: gearpump
 - name: hbase
 - name: zookeeper
 - name: yarn
