@@ -45,6 +45,9 @@ applications:
 - name: service-catalog
   env:
     upsi_names: servicecatalog
+- name: service-exposer
+  env:
+    upsi_names: service-exposer
 - name: app-launcher-helper
   env:
     upsi_names: app-launcher-helper
@@ -126,6 +129,12 @@ service_instances:
     service:
       label: redis28
       broker: docker
+- name: redis28-for-service-exposer
+  service_plan:
+    name: free
+    service:
+      label: redis28
+      broker: docker
 - name: hdfs-instance
   service_plan:
     name: shared
@@ -195,9 +204,11 @@ service_instances:
 user_provided_service_instances:
 - name: sso
 - name: nats-provider
+- name: consul-provider
 - name: gorouter-provider
 - name: datacatalog
 - name: servicecatalog
+- name: service-exposer
 - name: dataaquisitionservice
 - name: metrics-provider
 - name: app-launcher-helper

@@ -72,6 +72,18 @@ nats_username: nats
 # username for the CloudFoundry gorouter service
 router_username: router
 
+# consul host for service-exposer
+consul_host: consul-master-0
+
+# consul port used in service-exposer
+consul_port: 8080
+
+# consul username is hardcoded
+consul_username: consuluser
+
+# consul password available in platform-ansible/gorup_vars/all/vars.yml
+consul_password:
+
 # username that hdfs-broker is using
 hdfs_username: cf
 
