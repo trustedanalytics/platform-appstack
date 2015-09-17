@@ -1,43 +1,43 @@
 applications:
 - name: hdfs-broker
   env:
-    VERSION: 0.4.4-SNAPSHOT
+    VERSION: 0.5.1
 - name: kafka-broker
   env:
     VERSION: 0.4.1
 - name: metrics-provider
   env:
-    VERSION: 0.4.2-SNAPSHOT
+    VERSION: 0.4.5 
 - name: hdfs-uploader
   env:
-    VERSION: 0.4.1-SNAPSHOT
+    VERSION: 0.4.2 
 - name: latest-events-service
   env:
-    VERSION: 0.4.2-SNAPSHOT
+    VERSION: 0.4.2
 - name: console
   env:
-    VERSION: 0.4.1
+    VERSION: 0.4.3
 - name: hdfs-downloader
   env:
-    VERSION: 0.4.2-SNAPSHOT
+    VERSION: 0.4.2
 - name: service-catalog
   env:
-    VERSION: 0.4.2-SNAPSHOT
+    VERSION: 0.4.2
 - name: app-launcher-helper
   env:
-    VERSION: 0.4.4.0
+    VERSION: 0.4.4
 - name: metadataparser
   env:
-    VERSION: 0.4.2-SNAPSHOT
+    VERSION: 0.4.3
 - name: user-management
   env:
-    VERSION: 0.4.3-SNAPSHOT
+    VERSION: 0.4.5
 - name: platform-context
   env:
-    VERSION: 0.4.2-SNAPSHOT
+    VERSION: 0.4.2
 - name: file-server
   env:
-    VERSION: 0.4.2-SNAPSHOT
+    VERSION: 0.4.2
 - name: cdh-broker
   env:
     VERSION: 0.4.1
@@ -49,22 +49,22 @@ applications:
     VERSION: 0.4.1
 - name: data-catalog
   env:
-    VERSION: 0.4.2.dev0
+    VERSION: 0.4.3
 - name: dataset-publisher
   env:
-    VERSION: 0.4.2-SNAPSHOT
+    VERSION: 0.4.2
 - name: router-metrics-provider
   env:
-    VERSION: 0.4.2-SNAPSHOT
+    VERSION: 0.4.2
 - name: das
   env:
-    VERSION: 0.4.1-SNAPSHOT
+    VERSION: 0.4.2
 - name: hbase-broker
   env:
-    VERSION: 0.4.4-SNAPSHOT
+    VERSION: 0.5.3
 - name: zookeeper-broker
   env:
-    VERSION: 0.4.4-SNAPSHOT
+    VERSION: 0.5.1
 - name: yarn-broker
   env:
-    VERSION: 0.4.4-SNAPSHOT
+    VERSION: 0.5.1
