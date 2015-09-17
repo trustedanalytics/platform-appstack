@@ -5,9 +5,9 @@ Cloud Foundry platform definition files to be used with https://github.com/trust
 
 ## Preparation
 
-Install jinja2:
+Install necessary Python libraries:
 ```
-sudo pip install jinja2
+sudo pip install jinja2 pyyaml
 ```
 
 Edit template_variables.yml file.
