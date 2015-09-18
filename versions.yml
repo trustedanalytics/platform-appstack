@@ -1,4 +1,10 @@
 applications:
+- name: atk-broker
+  env:
+    VERSION: 0.4.0.post8165
+- name: gateway-broker
+  env:
+    VERSION: 0.4.3
 - name: hdfs-broker
   env:
     VERSION: 0.5.1
@@ -25,7 +31,7 @@ applications:
     VERSION: 0.4.2
 - name: app-launcher-helper
   env:
-    VERSION: 0.4.4
+    VERSION: 0.4.5
 - name: metadataparser
   env:
     VERSION: 0.4.3

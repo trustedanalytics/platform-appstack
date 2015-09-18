@@ -1,4 +1,14 @@
 applications:
+- name: atk-broker
+  env:
+    CF_API: http://api.{{ apps_domain }}
+    CF_USER: {{ cf_admin_username }}
+    CF_PASS: {{ cf_admin_password }}
+- name: gateway-broker
+  env:
+    CF_API: http://api.{{ apps_domain }}
+    CF_USER: {{ cf_admin_username }}
+    CF_PASS: {{ cf_admin_password }}
 - name: hdfs-broker
   env:
     USER_PASSWORD: {{ hdfs_broker_user_pass }}
@@ -168,10 +178,18 @@ user_provided_service_instances:
       url: placeholder
 #############################################
 service_brokers:
+- name: atk
+  broker_url: http://atk-broker.{{ run_domain }}
+  auth_username: {{ atk_broker_user }}
+  auth_password: {{ atk_broker_user_pass }}
 - name: docker
   broker_url: http://cf-containers-broker.{{ run_domain }}
   auth_username: {{ docker_broker_user }}
   auth_password: {{ docker_broker_user_pass }}
+- name: gateway
+  broker_url: http://gateway-broker.{{ run_domain }}
+  auth_username: {{ gateway_broker_user }}
+  auth_password: {{ gateway_broker_user_pass }}
 - name: hdfs
   broker_url: https://hdfs-broker.{{ apps_domain }}
   auth_username: {{ hdfs_broker_user }}
