@@ -125,6 +125,8 @@ applications:
   env:
     service_broker_names: hbase
 - name: zookeeper-broker
+  env:
+    service_broker_names: zookeeper
 - name: yarn-broker
   env:
     service_broker_names: yarn
