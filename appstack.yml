@@ -201,6 +201,36 @@ service_instances:
     service:
       label: mongodb26
       broker: docker
+- name: yarn
+  service_plan:
+    name: free
+    service:
+      label: yarn
+      broker: yarn
+- name: cdh
+  service_plan:
+    name: free
+    service:
+      label: cdh
+      broker: cdh
+- name: atk
+  service_plan:
+    name: free
+    service:
+      label: atk
+      broker: atk
+- name: gateway
+  service_plan:
+    name: free
+    service:
+      label: gateway
+      broker: gateway
+- name: hbase
+  service_plan:
+    name: free
+    service:
+      label: hbase 
+      broker: hbase
 user_provided_service_instances:
 - name: sso
 - name: nats-provider
