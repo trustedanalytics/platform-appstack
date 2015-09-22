@@ -5,11 +5,13 @@ applications:
     CF_API: http://api.{{ apps_domain }}
     CF_USER: {{ cf_admin_username }}
     CF_PASS: {{ cf_admin_password }}
+    IMAGE_URL: {{ generic_broker_icon }}
 - name: gateway-broker
   env:
     CF_API: http://api.{{ apps_domain }}
     CF_USER: {{ cf_admin_username }}
     CF_PASS: {{ cf_admin_password }}
+    IMAGE_URL: {{ generic_broker_icon }}
 - name: hdfs-broker
   env:
     USER_PASSWORD: {{ hdfs_broker_user_pass }}
@@ -20,6 +22,7 @@ applications:
   memory: 128M
   env:
     CREDENTIALS: '{"uri": "{{ master_node_ip_1 }}:9092,{{ master_node_ip_2 }}:9092,{{ master_node_ip_3 }}:9092"}'
+    IMAGE_URL: {{ generic_broker_icon }}
 - name: metrics-provider
 - name: latest-events-service
 - name: console
