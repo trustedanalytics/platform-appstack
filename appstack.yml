@@ -230,6 +230,18 @@ service_instances:
     service:
       label: hbase 
       broker: hbase
+- name: rstudio-example
+  service_plan:
+    name: free
+    service:
+      label: rstudio
+      broker: docker
+- name: ipython-example
+  service_plan:
+    name: free
+    service:
+      label: ipython
+      broker: docker
 user_provided_service_instances:
 - name: sso
 - name: nats-provider
