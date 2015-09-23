@@ -140,6 +140,84 @@ service_instances:
     service:
       label: hdfs
       broker: hdfs
+- name: postgresql93-example
+  service_plan:
+    name: free
+    service:
+      label: postgresql93
+      broker: docker
+- name: mysql56-example
+  service_plan:
+    name: free
+    service:
+      label: mysql56
+      broker: docker
+- name: couchdb16-example
+  service_plan:
+    name: free
+    service:
+      label: couchdb16
+      broker: docker
+- name: neo4j21-example
+  service_plan:
+    name: free
+    service:
+      label: neo4j21
+      broker: docker
+- name: arangodb22-example
+  service_plan:
+    name: free
+    service:
+      label: arangodb22
+      broker: docker
+- name: rabbitmq33-example
+  service_plan:
+    name: free
+    service:
+      label: rabbitmq33
+      broker: docker
+- name: memcached14-example
+  service_plan:
+    name: free
+    service:
+      label: memcached14
+      broker: docker
+- name: logstash14-example
+  service_plan:
+    name: free
+    service:
+      label: logstash14
+      broker: docker
+- name: nats-example
+  service_plan:
+    name: free
+    service:
+      label: nats
+      broker: docker
+- name: etcd-example
+  service_plan:
+    name: free
+    service:
+      label: etcd
+      broker: docker
+- name: consul-example
+  service_plan:
+    name: free
+    service:
+      label: consul
+      broker: docker
+- name: mosquitto14-example
+  service_plan:
+    name: free
+    service:
+      label: mosquitto14
+      broker: docker
+- name: rethinkdb-example
+  service_plan:
+    name: free
+    service:
+      label: rethinkdb
+      broker: docker
 - name: zookeeper
   service_plan:
     name: shared
