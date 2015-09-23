@@ -6,6 +6,12 @@ applications:
     CF_USER: {{ cf_admin_username }}
     CF_PASS: {{ cf_admin_password }}
     IMAGE_URL: {{ generic_broker_icon }}
+- name: se-broker
+  env:
+    CF_API: http://api.{{ apps_domain }}
+    CF_USER: {{ cf_admin_username }}
+    CF_PASS: {{ cf_admin_password }}
+    IMAGE_URL: {{ generic_broker_icon }}
 - name: gateway-broker
   env:
     CF_API: http://api.{{ apps_domain }}
@@ -191,9 +197,13 @@ user_provided_service_instances:
 #############################################
 service_brokers:
 - name: atk
-  broker_url: http://atk-broker.{{ run_domain }}
+  broker_url: http://atk-broker.{{ apps_domain }}
   auth_username: {{ atk_broker_user }}
   auth_password: {{ atk_broker_user_pass }}
+- name: se
+  broker_url: http://se-broker.{{ apps_domain }}
+  auth_username: {{ se_broker_user }}
+  auth_password: {{ se_broker_user_pass }}
 - name: docker
   broker_url: http://cf-containers-broker.{{ run_domain }}
   auth_username: {{ docker_broker_user }}
@@ -214,10 +224,6 @@ service_brokers:
   broker_url: http://kafka-broker.{{ apps_domain }}
   auth_username: {{ kafka_broker_user }}
   auth_password: {{ kafka_broker_user_pass }}
-- name: atk
-  broker_url: http://atk-broker.{{ apps_domain }}
-  auth_username: {{ atk_broker_user }}
-  auth_password: {{ atk_broker_user_pass }}
 - name: cdh
   broker_url: http://cdh-broker.{{ apps_domain }}
   auth_username: {{ cdh_broker_user }}

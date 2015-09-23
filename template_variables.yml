@@ -102,6 +102,12 @@ atk_broker_user: admin
 # password that the ATK broker will use
 atk_broker_user_pass: admin
 
+# username that the Scoring Engine broker will use
+se_broker_user: admin
+
+# password that the Scoring Engine broker will use
+se_broker_user_pass: admin
+
 # username that the CDH broker will use
 cdh_broker_user: admin
 
