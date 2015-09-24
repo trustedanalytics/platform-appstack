@@ -7,7 +7,6 @@ applications:
     CF_SRC: ./apps/atk
 - name: se-broker
   env:
-    workaround_value: DPNG-2310
     service_broker_names: se
 - name: gateway-broker
   env:
