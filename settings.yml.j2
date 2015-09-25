@@ -117,10 +117,6 @@ user_provided_service_instances:
   credentials:
     username: {{ router_username }}
     password: {{ cf_admin_client_password }}
-- name: consul-provider
-  credentials:
-    host: http://{{ consul_host }}:{{ consul_port }}
-    username: {{ consul_username }}:{{ consul_password }}
 - name: service-exposer
   credentials:
     host: http://service-exposer.{{ apps_domain }}

@@ -203,12 +203,6 @@ service_instances:
     service:
       label: etcd
       broker: docker
-- name: consul-example
-  service_plan:
-    name: free
-    service:
-      label: consul
-      broker: docker
 - name: mosquitto14-example
   service_plan:
     name: free
@@ -332,7 +326,6 @@ service_instances:
 user_provided_service_instances:
 - name: sso
 - name: nats-provider
-- name: consul-provider
 - name: gorouter-provider
 - name: datacatalog
 - name: servicecatalog
