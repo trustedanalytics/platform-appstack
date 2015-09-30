@@ -1,7 +1,7 @@
 applications:
 - name: atk-broker
   env:
-    VERSION: 0.4.0.post8165
+    VERSION: 0.4.1.post8706
 - name: se-broker
   env:
     VERSION: 1.2.post7047
@@ -25,7 +25,7 @@ applications:
     VERSION: 0.4.2
 - name: console
   env:
-    VERSION: 0.4.10
+    VERSION: 0.4.22
 - name: hdfs-downloader
   env:
     VERSION: 0.4.2
@@ -40,7 +40,7 @@ applications:
     VERSION: 0.4.3
 - name: user-management
   env:
-    VERSION: 0.4.8
+    VERSION: 0.4.12
 - name: platform-context
   env:
     VERSION: 0.4.2
@@ -58,7 +58,7 @@ applications:
     VERSION: 0.4.1
 - name: data-catalog
   env:
-    VERSION: 0.4.3
+    VERSION: 0.4.5
 - name: dataset-publisher
   env:
     VERSION: 0.4.2
@@ -70,13 +70,13 @@ applications:
     VERSION: 0.4.2
 - name: service-exposer
   env:
-    VERSION: 0.0.5
+    VERSION: 0.1.2
 - name: hbase-broker
   env:
     VERSION: 0.5.3
 - name: zookeeper-broker
   env:
-    VERSION: 0.5.1
+    VERSION: 0.5.3
 - name: yarn-broker
   env:
     VERSION: 0.5.1
