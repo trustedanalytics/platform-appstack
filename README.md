@@ -7,6 +7,7 @@ Cloud Foundry platform definition files to be used with https://github.com/trust
 
 Install necessary Python libraries:
 ```
+sudo apt-get install python-pip
 sudo pip install jinja2 pyyaml
 ```
 
