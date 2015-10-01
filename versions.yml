@@ -7,7 +7,7 @@ applications:
     VERSION: 1.2.post7047
 - name: gateway-broker
   env:
-    VERSION: 0.4.3
+    VERSION: 0.4.2
 - name: hdfs-broker
   env:
     VERSION: 0.5.3
