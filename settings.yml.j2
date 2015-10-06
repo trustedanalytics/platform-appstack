@@ -185,11 +185,13 @@ user_provided_service_instances:
 - name: external-tools
   credentials:
     hue:
-      available: "false"
+      available: "{{ external_tool_hue }}"
       url: placeholder
     arcadia:
-      available: "false"
+      available: "{{ external_tool_arcadia }}"
       url: placeholder
+    rstudio:
+      available: "{{ external_tool_rstudio }}"
 #############################################
 service_brokers:
 - name: atk
