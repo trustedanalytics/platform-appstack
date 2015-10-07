@@ -138,12 +138,12 @@ user_provided_service_instances:
 - name: user-management
   credentials:
     host: http://user-management.{{ apps_domain }}
-- name: hue
-  credentials:
-    hueUrl: http://hue.{{ apps_domain }}/metastore/table
-- name: arcadia
-  credentials:
-    arcadiaUrl: http://arcadia.{{ apps_domain }}/arc/apps/data
+#- name: hue
+#  credentials:
+#    hueUrl: http://hue.{{ apps_domain }}/metastore/table
+#- name: arcadia
+#  credentials:
+#    arcadiaUrl: http://arcadia.{{ apps_domain }}/arc/apps/data
 - name: datacatalogexport
   credentials:
     host: http://hive.{{ apps_domain }}

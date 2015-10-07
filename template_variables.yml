@@ -5,7 +5,7 @@ cf_admin_password:
 cf_admin_client_password: 
 
 # ip of any arcadia worker node
-any_arcadia_node: 
+#any_arcadia_node: 
 
 # apps domain of the CF deployment, can be checked in the bosh deployment YAML file
 apps_domain: 
