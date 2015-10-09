@@ -10,25 +10,25 @@ applications:
     VERSION: 0.4.2
 - name: hdfs-broker
   env:
-    VERSION: 0.5.3
+    VERSION: 0.5.6
 - name: kafka-broker
   env:
     VERSION: 0.4.1
 - name: metrics-provider
   env:
-    VERSION: 0.4.5 
+    VERSION: 0.4.5
 - name: hdfs-uploader
   env:
-    VERSION: 0.4.2 
+    VERSION: 0.4.3
 - name: latest-events-service
   env:
     VERSION: 0.4.2
 - name: console
   env:
-    VERSION: 0.4.22
+    VERSION: 0.4.32
 - name: hdfs-downloader
   env:
-    VERSION: 0.4.2
+    VERSION: 0.4.3
 - name: service-catalog
   env:
     VERSION: 0.4.3
@@ -37,13 +37,13 @@ applications:
     VERSION: 0.4.5
 - name: metadataparser
   env:
-    VERSION: 0.4.3
+    VERSION: 0.4.4
 - name: user-management
   env:
     VERSION: 0.4.12
 - name: platform-context
   env:
-    VERSION: 0.4.2
+    VERSION: 0.4.3
 - name: file-server
   env:
     VERSION: 0.4.2
@@ -58,7 +58,7 @@ applications:
     VERSION: 0.4.1
 - name: data-catalog
   env:
-    VERSION: 0.4.5
+    VERSION: 0.4.6
 - name: dataset-publisher
   env:
     VERSION: 0.4.2
@@ -73,10 +73,10 @@ applications:
     VERSION: 0.1.2
 - name: hbase-broker
   env:
-    VERSION: 0.5.3
+    VERSION: 0.5.5
 - name: zookeeper-broker
   env:
     VERSION: 0.5.3
 - name: yarn-broker
   env:
-    VERSION: 0.5.1
+    VERSION: 0.5.3
