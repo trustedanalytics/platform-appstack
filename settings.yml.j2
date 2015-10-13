@@ -52,7 +52,7 @@ applications:
 - name: smtp-broker
   memory: 128M
   env:
-    CREDENTIALS: '{"port_ssl": "465", "username": "{{ smtp_user }}", "password": "{{ smtp_pass }}", "port": "25", "hostname": "email-smtp.us-west-2.amazonaws.com"}'
+    CREDENTIALS: '{"username": "{{ smtp_user }}", "password": "{{ smtp_pass }}", "port": "465", "host": "email-smtp.us-west-2.amazonaws.com", "protocol": "smtps"}'
 - name: data-catalog
 - name: dataset-publisher
 - name: router-metrics-provider
