@@ -40,7 +40,7 @@ applications:
     VERSION: 0.4.4
 - name: user-management
   env:
-    VERSION: 0.4.12
+    VERSION: 0.5.7
 - name: platform-context
   env:
     VERSION: 0.4.3
