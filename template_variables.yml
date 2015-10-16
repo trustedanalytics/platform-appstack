@@ -48,11 +48,23 @@ nats_ip:
 # run domain of the CF deployment, can be checked in the bosh deployment YAML file
 run_domain: 
 
-# SMTPAuth username (i.e. for Amazon SES service)
-smtp_pass: 
+# SMTPAuth password (e.g. for Amazon SES service).
+# To disable authentication set value to 'null' (single or double quotation are necessary).
+# For non empty value, it should be inside single and double quotation marks: '"example_password"'.
+smtp_pass:
 
-# SMTPAuth password (i.e. for Amazon SES service)
-smtp_user: 
+# SMTPAuth username (e.g. for Amazon SES service).
+# Rules for setting the field are the same as for smtp_pass.
+smtp_user:
+
+# SMTPAuth port (e.g. 465)
+smtp_port:
+
+# SMTPAuth host (e.g. email-smtp.us-west-2.amazonaws.com)
+smtp_host:
+
+# SMTPAuth protocol (smtp or smtps)
+smtp_protocol:
 
 # kerberos realm
 kerberos_realm: CLOUDERA
