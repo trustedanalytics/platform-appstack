@@ -44,7 +44,7 @@ applications:
 - name: cdh-broker
   memory: 128M
   env:
-    CREDENTIALS: '{"hdfs_root": "hdfs://{{ namenode_internal_host }}/user/atkuser", "zk_host": "{{ master_node_ip_1 }}", "zk_port": "2181", "spark_max_memory": "2163212288", "resource_manager" : "http://{{ namenode_internal_host }}:8088", "yarn_config": "http://{{ cloudera_manager_internal_host }}:7180/api/v9/clusters/{{ CDH_cluster_name }}/services/YARN/clientConfig", "hdfs_config": "http://{{ cloudera_manager_internal_host }}:7180/api/v9/clusters/{{ CDH_cluster_name }}/services/HDFS/clientConfig", "hbase_config": "http://{{ cloudera_manager_internal_host }}:7180/api/v9/clusters/{{ CDH_cluster_name }}/services/HBASE/clientConfig"}'
+    CREDENTIALS: '{"hdfs_root": "hdfs://{{ namenode_internal_host_for_cdh_broker }}/user/atkuser", "zk_host": "{{ master_node_ip_1 }}", "zk_port": "2181", "spark_max_memory": "2163212288", "resource_manager" : "http://{{ namenode_internal_host }}:8088", "yarn_config": "http://{{ cloudera_manager_internal_host }}:7180/api/v9/clusters/{{ CDH_cluster_name }}/services/YARN/clientConfig", "hdfs_config": "http://{{ cloudera_manager_internal_host }}:7180/api/v9/clusters/{{ CDH_cluster_name }}/services/HDFS/clientConfig", "hbase_config": "http://{{ cloudera_manager_internal_host }}:7180/api/v9/clusters/{{ CDH_cluster_name }}/services/HBASE/clientConfig"}'
 - name: zookeeper-wssb-broker
   memory: 128M
   env:
