@@ -60,6 +60,9 @@ applications:
 - name: user-management
   env:
     upsi_names: user-management
+- name: platform-operations
+  env:
+    upsi_names: platform-operations
 - name: platform-context
   env:
     upsi_names: platformcontext
@@ -275,6 +278,12 @@ service_instances:
     service:
       label: mongodb26
       broker: docker
+- name: operations-store
+  service_plan:
+    name: free
+    service:
+      label: mongodb26
+      broker: docker
 - name: yarn
   service_plan:
     name: free
@@ -334,6 +343,7 @@ user_provided_service_instances:
 - name: metrics-provider
 - name: app-launcher-helper
 - name: user-management
+- name: platform-operations
 #- name: hue
 #- name: arcadia
 - name: datacatalogexport
