@@ -39,6 +39,7 @@ applications:
     API_URL: http://api.{{ run_domain }}
     TOKEN_KEY_URL: http://uaa.{{ run_domain }}/token_key
 - name: user-management
+- name: platform-operations
 - name: platform-context
 - name: file-server
 - name: cdh-broker
@@ -138,6 +139,9 @@ user_provided_service_instances:
 - name: user-management
   credentials:
     host: http://user-management.{{ apps_domain }}
+- name: platform-operations
+  credentials:
+    host: http://platform-operations.{{ apps_domain }}
 #- name: hue
 #  credentials:
 #    hueUrl: http://hue.{{ apps_domain }}/metastore/table

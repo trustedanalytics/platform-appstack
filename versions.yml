@@ -41,6 +41,9 @@ applications:
 - name: user-management
   env:
     VERSION: 0.5.7
+- name: platform-operations
+  env:
+    VERSION: 0.0.1
 - name: platform-context
   env:
     VERSION: 0.4.3
