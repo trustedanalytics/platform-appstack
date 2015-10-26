@@ -41,7 +41,6 @@ applications:
 - name: user-management
 - name: platform-operations
 - name: platform-context
-- name: file-server
 - name: cdh-broker
   memory: 128M
   env:
@@ -161,9 +160,6 @@ user_provided_service_instances:
 - name: platformcontext
   credentials:
     host: http://platform-context.{{ apps_domain }}
-- name: fileserver
-  credentials:
-    host: http://file-server.{{ apps_domain }}
 - name: router-metrics-provider
   credentials:
     host: http://router-metrics-provider.{{ apps_domain }}

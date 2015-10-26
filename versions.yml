@@ -47,9 +47,6 @@ applications:
 - name: platform-context
   env:
     VERSION: 0.4.3
-- name: file-server
-  env:
-    VERSION: 0.4.2
 - name: cdh-broker
   env:
     VERSION: 0.4.1
