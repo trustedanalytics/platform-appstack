@@ -88,6 +88,7 @@ applications:
     HDFS_USER: {{ hdfs_username }}
     KERBEROS_USER: {{ kerberos_username }}
     KERBEROS_PASS: {{ kerberos_password }}
+    JAVA_OPTS: "{{ java_http_proxy }}"
 - name: hdfs-uploader
   env:
     HDFS_USER: {{ hdfs_username }}

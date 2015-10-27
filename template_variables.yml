@@ -66,6 +66,15 @@ smtp_host:
 # SMTPAuth protocol (smtp or smtps)
 smtp_protocol: smtps
 
+# HTTP proxy in form of JVM parameters
+# If HTTP(s) proxy will not be use you MUST leave this value in form of empty string ("")
+# IMPORTANT: it is essential to set http.nonProxyHosts variable to domain 
+# which applications and services reside in. More information on proxy syntax can be 
+# found at: http://docs.oracle.com/javase/6/docs/technotes/guides/net/proxies.html
+# example:
+# java_http_proxy: "-Dhttp.proxyHost=proxy.example.com -Dhttp.proxyPort=8080 -Dhttps.proxyHost=proxy.example.com -Dhttps.proxyPort=8080 -Dhttp.nonProxyHosts=localhost|127.*|[::1]|*.apps.example.com"
+java_http_proxy: ""
+
 # kerberos realm
 kerberos_realm: CLOUDERA
 
