@@ -64,7 +64,7 @@ smtp_port:
 smtp_host:
 
 # SMTPAuth protocol (smtp or smtps)
-smtp_protocol:
+smtp_protocol: smtps
 
 # kerberos realm
 kerberos_realm: CLOUDERA
