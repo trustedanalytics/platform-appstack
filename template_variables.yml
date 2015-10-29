@@ -31,10 +31,10 @@ import_hadoop_conf_yarn:
 #hostname of the kerberos machine, should be the same as CM machine
 kerberos_host: 
 
-# ip addresses of the Cloudera master nodes running zookeeper and kafka
-master_node_ip_1: 
-master_node_ip_2: 
-master_node_ip_3: 
+# hostnames of the Cloudera master nodes running zookeeper and kafka
+master_node_host_1: 
+master_node_host_2: 
+master_node_host_3: 
 
 # hostname of the host serving as the HDFS namenode used in cdh broker (e.g. namespace1)
 namenode_internal_host_for_cdh_broker:

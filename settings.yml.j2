@@ -27,7 +27,7 @@ applications:
 - name: kafka-broker
   memory: 128M
   env:
-    CREDENTIALS: '{"uri": "{{ master_node_ip_1 }}:9092,{{ master_node_ip_2 }}:9092,{{ master_node_ip_3 }}:9092"}'
+    CREDENTIALS: '{"uri": "{{ master_node_host_1 }}:9092,{{ master_node_host_2 }}:9092,{{ master_node_host_3 }}:9092"}'
     IMAGE_URL: {{ generic_broker_icon }}
     VERSION: {{ wssb_version }}
 - name: metrics-provider
@@ -45,12 +45,12 @@ applications:
 - name: cdh-broker
   memory: 128M
   env:
-    CREDENTIALS: '{"hdfs_root": "hdfs://{{ namenode_internal_host_for_cdh_broker }}/user/atkuser", "zk_host": "{{ master_node_ip_1 }}", "zk_port": "2181", "spark_max_memory": "2163212288", "resource_manager" : "http://{{ namenode_internal_host }}:8088", "yarn_config": "http://{{ cloudera_manager_internal_host }}:7180/api/v9/clusters/{{ CDH_cluster_name }}/services/YARN/clientConfig", "hdfs_config": "http://{{ cloudera_manager_internal_host }}:7180/api/v9/clusters/{{ CDH_cluster_name }}/services/HDFS/clientConfig", "hbase_config": "http://{{ cloudera_manager_internal_host }}:7180/api/v9/clusters/{{ CDH_cluster_name }}/services/HBASE/clientConfig"}'
+    CREDENTIALS: '{"hdfs_root": "hdfs://{{ namenode_internal_host_for_cdh_broker }}/user/atkuser", "zk_host": "{{ master_node_host_1 }}", "zk_port": "2181", "spark_max_memory": "2163212288", "resource_manager" : "http://{{ namenode_internal_host }}:8088", "yarn_config": "http://{{ cloudera_manager_internal_host }}:7180/api/v9/clusters/{{ CDH_cluster_name }}/services/YARN/clientConfig", "hdfs_config": "http://{{ cloudera_manager_internal_host }}:7180/api/v9/clusters/{{ CDH_cluster_name }}/services/HDFS/clientConfig", "hbase_config": "http://{{ cloudera_manager_internal_host }}:7180/api/v9/clusters/{{ CDH_cluster_name }}/services/HBASE/clientConfig"}'
     VERSION: {{ wssb_version }}
 - name: zookeeper-wssb-broker
   memory: 128M
   env:
-    CREDENTIALS: '{"uri": "{{ master_node_ip_1 }}:2181,{{ master_node_ip_2 }}:2181,{{ master_node_ip_3 }}:2181"}'
+    CREDENTIALS: '{"uri": "{{ master_node_host_1 }}:2181,{{ master_node_host_2 }}:2181,{{ master_node_host_3 }}:2181"}'
     VERSION: {{ wssb_version }}
 - name: smtp-broker
   memory: 128M
@@ -73,7 +73,7 @@ applications:
     USER_PASSWORD: {{ zookeeper_broker_user_pass }}
     KRB_KDC_HOST: {{ kerberos_host }}
     KRB_REALM: {{ kerberos_realm }}
-    ZK_CLUSTER_URL: {{ master_node_ip_1 }}:2181,{{ master_node_ip_2 }}:2181,{{ master_node_ip_3 }}:2181
+    ZK_CLUSTER_URL: {{ master_node_host_1 }}:2181,{{ master_node_host_2 }}:2181,{{ master_node_host_3 }}:2181
     ZK_BRK_ROOT: {{ zookeeper_broker_metadata }}
     ZK_BRK_STORE: {{ zookeeper_broker_userspace }}
 - name: yarn-broker
