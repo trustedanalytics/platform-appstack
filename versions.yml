@@ -25,7 +25,7 @@ applications:
     VERSION: 0.4.2
 - name: console
   env:
-    VERSION: 0.4.32
+    VERSION: 0.4.51
 - name: hdfs-downloader
   env:
     VERSION: 0.4.3
@@ -40,7 +40,7 @@ applications:
     VERSION: 0.4.4
 - name: user-management
   env:
-    VERSION: 0.5.7
+    VERSION: 0.5.11
 - name: platform-operations
   env:
     VERSION: 0.0.1
