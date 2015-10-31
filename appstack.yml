@@ -5,9 +5,9 @@ applications:
     service_broker_names: atk
     CF_DEP: postgresql93|free,cdh|shared,zookeeper-wssb|shared
     CF_SRC: ./apps/atk
-- name: se-broker
-  env:
-    service_broker_names: se
+#- name: se-broker
+#  env:
+#    service_broker_names: se
 - name: gateway-broker
   env:
     service_broker_names: gateway
@@ -299,12 +299,12 @@ service_instances:
     service:
       label: atk
       broker: atk
-- name: se
-  service_plan:
-    name: free
-    service:
-      label: se
-      broker: se
+#- name: se
+#  service_plan:
+#    name: free
+#    service:
+#      label: se
+#      broker: se
 - name: gateway
   service_plan:
     name: free
@@ -355,7 +355,7 @@ user_provided_service_instances:
 - name: external-tools
 service_brokers:
 - name: atk
-- name: se 
+#- name: se 
 - name: docker
 - name: gateway
 - name: hdfs

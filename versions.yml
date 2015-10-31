@@ -2,9 +2,9 @@ applications:
 - name: atk-broker
   env:
     VERSION: 0.4.1.post8706
-- name: se-broker
-  env:
-    VERSION: 1.2.post7047
+#- name: se-broker
+#  env:
+#    VERSION: 1.2.post7047
 - name: gateway-broker
   env:
     VERSION: 0.4.2
