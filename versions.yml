@@ -31,7 +31,7 @@ applications:
     VERSION: 0.4.3
 - name: service-catalog
   env:
-    VERSION: 0.4.3
+    VERSION: 0.4.5
 - name: app-launcher-helper
   env:
     VERSION: 0.4.5
