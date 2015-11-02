@@ -74,6 +74,10 @@ obtain:
 3) Other sources:
 * import_hadoop_conf_`<broker_name>`:  
 Following instructions in [Hadoop Admin Tools](https://github.com/trustedanalytics/hadoop-admin-tools) repository, obtain JSON values for: import_hadoop_conf_hbase, import_hadoop_conf_hdfs, import_hadoop_conf_yarn.
+* atk_client_name:
+The default value for this field is `atk-client` and may be left unchanged.
+* atk_client pass:
+It was generated during step [Add UAA clients](https://github.com/trustedanalytics/platform-wiki/wiki/Platform-Deployment-Procedure:-bosh-deployment#add-uaa-clients) and you should remember it or have it written down.
 
 ## Usage
 1. Generate settings.yml: `python generate_template.py`

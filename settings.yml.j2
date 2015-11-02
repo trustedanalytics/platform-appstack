@@ -6,6 +6,7 @@ applications:
     CF_USER: {{ cf_admin_username }}
     CF_PASS: {{ cf_admin_password }}
     IMAGE_URL: {{ generic_broker_icon }}
+    INSTANCE_ENVS: '{"CC_URI": "api.{{ run_domain }}","UAA_CLIENT_NAME": "{{ atk_client_name }}","UAA_CLIENT_PASSWORD": "{{ atk_client_pass }}","UAA_URI": "uaa.{{ run_domain }}"}'
 #- name: se-broker
 #  env:
 #    CF_API: http://api.{{ apps_domain }}
