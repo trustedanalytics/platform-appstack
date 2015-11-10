@@ -211,5 +211,7 @@ zookeeper_broker_userspace: /org/intel/zookeeperbroker/userspace
 external_tool_arcadia: "false"
 external_tool_hue: "false"
 external_tool_rstudio: "true"
+external_tool_gearpump: "false"
+external_tool_h2o: "false"
 #############################################
 
