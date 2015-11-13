@@ -114,6 +114,12 @@ generic_broker_icon: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAMAA
 # Latest version of wssb
 wssb_version: 0.4.1
 
+# username for basic auth in Application Broker
+application_broker_user: admin
+
+# password that Application Broker will use for basic auth handling
+application_broker_pass: admin
+
 # username that the ATK broker will use
 atk_broker_user: admin
 

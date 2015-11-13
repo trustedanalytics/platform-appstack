@@ -1,4 +1,7 @@
 applications:
+- name: application-broker
+  env:
+    workaround_value: DPNG-2310
 # atk has some of its configuration here because it is not standard
 - name: atk-broker
   env:
@@ -270,6 +273,12 @@ service_instances:
       label: smtp
       broker: smtp
 - name: latest-events-store
+  service_plan:
+    name: free
+    service:
+      label: mongodb26
+      broker: docker
+- name: application-broker-mongodb
   service_plan:
     name: free
     service:

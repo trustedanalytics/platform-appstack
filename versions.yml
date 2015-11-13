@@ -1,4 +1,7 @@
 applications:
+- name: application-broker
+  env:
+    VERSION: 0.5.11
 - name: atk-broker
   env:
     VERSION: 0.4.1.post8706
