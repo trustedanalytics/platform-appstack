@@ -162,6 +162,8 @@ user_provided_service_instances:
     hiveUrl: jdbc:hive2://{{ namenode_internal_host }}:10000/
     # for systems with Arcadia
     # hiveUrl: jdbc:hive2://{{ any_arcadia_node }}:31050/auth=noSasl
+    # for systems with Kerberos
+    # jdbc:hive2://{{ namenode_internal_host }}:10000/default;principal=hive/{{ namenode_internal_host }}@CLOUDERA;auth=kerberos
     hiveUser: hdfs
 - name: platformcontext
   credentials:
