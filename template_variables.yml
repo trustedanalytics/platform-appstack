@@ -36,8 +36,8 @@ master_node_host_1:
 master_node_host_2: 
 master_node_host_3: 
 
-# hostname of the host serving as the HDFS namenode used in cdh broker (e.g. namespace1)
-namenode_internal_host_for_cdh_broker:
+# HDFS nameservice name used in cdh broker (e.g. nameservice1)
+hdfs_nameservice_for_cdh_broker:
 
 # hostname of the host serving as the HDFS namenode
 namenode_internal_host: 
