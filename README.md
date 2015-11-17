@@ -11,31 +11,6 @@ sudo apt-get install python-pip
 sudo pip install jinja2 pyyaml
 ```
 
-If you want to have platform deployed without Kerberos:
-* Edit settings.yml.j2
-* Change following lines:
-```
-    kdc: {{ kerberos_host }}
-    kpassword: {{ kerberos_password }}
-    krealm: {{ kerberos_realm }}
-```
-
-to:
-
-```
-    kdc: ""
-    kpassword: ""
-    krealm: ""
-```
-and:
-```
-    SPRING_PROFILES_ACTIVE: cloud,secure
-```
-to:
-```
-    SPRING_PROFILES_ACTIVE: cloud,insecure
-```
-
 Edit template_variables.yml file.
 You should obtain missing values from the sources listed below.
 
