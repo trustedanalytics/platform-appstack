@@ -32,7 +32,7 @@ applications:
     USER_PASSWORD: {{ hdfs_broker_user_pass }}
     BROKER_PATH: {{ hdfs_broker_folder_on_hdfs }}
     HADOOP_PROVIDED_PARAMS: '{{ import_hadoop_conf_hdfs }}'
-    SPRING_PROFILES_ACTIVE: cloud,secure
+    SPRING_PROFILES_ACTIVE: cloud,{{ 'secure' if kerberos_host != '' else 'insecure' }}
 - name: kafka-broker
   memory: 128M
   env:
@@ -74,14 +74,14 @@ applications:
   env:
     USER_PASSWORD: {{ hbase_broker_user_pass }}
     KRB_KDC_HOST: {{ kerberos_host }}
-    KRB_REALM: {{ kerberos_realm }}
+    KRB_REALM: {{ kerberos_realm if kerberos_host != '' }}
     ZK_BRK_SPACE: {{ hbase_broker_znode_in_zookeeper }}
     HADOOP_PROVIDED_PARAMS: '{{ import_hadoop_conf_hbase }}'
 - name: zookeeper-broker
   env:
     USER_PASSWORD: {{ zookeeper_broker_user_pass }}
     KRB_KDC_HOST: {{ kerberos_host }}
-    KRB_REALM: {{ kerberos_realm }}
+    KRB_REALM: {{ kerberos_realm if kerberos_host != '' }}
     ZK_CLUSTER_URL: {{ master_node_host_1 }}:2181,{{ master_node_host_2 }}:2181,{{ master_node_host_3 }}:2181
     ZK_BRK_ROOT: {{ zookeeper_broker_metadata }}
     ZK_BRK_STORE: {{ zookeeper_broker_userspace }}
@@ -89,25 +89,25 @@ applications:
   env:
     USER_PASSWORD: {{ yarn_broker_user_pass }}
     KRB_KDC_HOST: {{ kerberos_host }}
-    KRB_REALM: {{ kerberos_realm }}
+    KRB_REALM: {{ kerberos_realm if kerberos_host != '' }}
     HADOOP_PROVIDED_PARAMS: '{{ import_hadoop_conf_yarn }}'
     YARNBRK_SPACE: {{ yarn_broker_znode_in_zookeeper }}
 - name: hdfs-downloader
   env:
     HDFS_USER: {{ hdfs_username }}
-    KERBEROS_USER: {{ kerberos_username }}
-    KERBEROS_PASS: {{ kerberos_password }}
+    KERBEROS_USER: {{ kerberos_username if kerberos_host != '' }}
+    KERBEROS_PASS: {{ kerberos_password if kerberos_host != '' }}
     JAVA_OPTS: "{{ java_http_proxy }}"
 - name: hdfs-uploader
   env:
     HDFS_USER: {{ hdfs_username }}
-    KERBEROS_USER: {{ kerberos_username }}
-    KERBEROS_PASS: {{ kerberos_password }}
+    KERBEROS_USER: {{ kerberos_username if kerberos_host != '' }}
+    KERBEROS_PASS: {{ kerberos_password if kerberos_host != '' }}
 - name: metadataparser
   env:
     HDFS_USER: {{ hdfs_username }}
-    KERBEROS_USER: {{ kerberos_username }}
-    KERBEROS_PASS: {{ kerberos_password }}
+    KERBEROS_USER: {{ kerberos_username if kerberos_host != '' }}
+    KERBEROS_PASS: {{ kerberos_password if kerberos_host != '' }}
 user_provided_service_instances:
 - name: sso
   credentials:
@@ -193,10 +193,10 @@ user_provided_service_instances:
     host: http://latest-events-service.{{ apps_domain }}
 - name: kerberos-service
   credentials:
-    kdc: {{ kerberos_host }}
-    kpassword: {{ kerberos_password }}
-    krealm: {{ kerberos_realm }}
-    kuser: {{ kerberos_username }}
+    kdc: "{{ kerberos_host }}"
+    kpassword: "{{ kerberos_password if kerberos_host != '' }}"
+    krealm: "{{ kerberos_realm if kerberos_host != '' }}"
+    kuser: "{{ kerberos_username }}"
 ### TO REMOVE after DPNG-2306 ###############
 - name: external-tools
   credentials:

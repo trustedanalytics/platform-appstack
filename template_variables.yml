@@ -1,16 +1,16 @@
-# password of the CF admin
+# password of the Cloud Foundry admin
 cf_admin_password: 
 
-# client password of the CF admin
+# client password of the Cloud Foundry UAA admin
 cf_admin_client_password: 
 
-# ip of any arcadia worker node
+# ip of any Arcadia worker node
 #any_arcadia_node: 
 
-# apps domain of the CF deployment, can be checked in the bosh deployment YAML file
+# apps domain of the Cloud Foundry deployment, can be checked in the bosh deployment YAML file
 apps_domain: 
 
-# hostname of the CM host
+# hostname of the CDH Manager host
 cloudera_manager_internal_host: 
 
 # password for the developer-console client
@@ -28,15 +28,16 @@ import_hadoop_conf_hbase:
 import_hadoop_conf_hdfs: 
 import_hadoop_conf_yarn: 
 
-#hostname of the kerberos machine, should be the same as CM machine
-kerberos_host: 
+# *** set only for Kerberos-enabled deployment ***
+# hostname of the Kerberos Key Distribution Center, should be the same as CDH Manager machine
+kerberos_host: ''
 
-# hostnames of the Cloudera master nodes running zookeeper and kafka
+# hostnames of the CDH master nodes running zookeeper and kafka
 master_node_host_1: 
 master_node_host_2: 
 master_node_host_3: 
 
-# HDFS nameservice name used in cdh broker (e.g. nameservice1)
+# HDFS nameservice name used in cdh-broker (e.g. nameservice1)
 hdfs_nameservice_for_cdh_broker:
 
 # hostname of the host serving as the HDFS namenode
@@ -45,7 +46,7 @@ namenode_internal_host:
 # ip address of the nats machine. can be checked with `bosh vms`
 nats_ip: 
 
-# run domain of the CF deployment, can be checked in the bosh deployment YAML file
+# run domain of the Cloud Foundry deployment, can be checked in the bosh deployment YAML file
 run_domain: 
 
 # password for ATK client
@@ -70,21 +71,21 @@ smtp_host:
 smtp_protocol: smtps
 
 # HTTP proxy in form of JVM parameters
-# If HTTP(s) proxy will not be use you MUST leave this value in form of empty string ("")
+# If HTTP(s) proxy will not be use you MUST leave this value in form of empty string ('')
 # IMPORTANT: it is essential to set http.nonProxyHosts variable to domain 
 # which applications and services reside in. More information on proxy syntax can be 
 # found at: http://docs.oracle.com/javase/6/docs/technotes/guides/net/proxies.html
 # example:
-# java_http_proxy: "-Dhttp.proxyHost=proxy.example.com -Dhttp.proxyPort=8080 -Dhttps.proxyHost=proxy.example.com -Dhttps.proxyPort=8080 -Dhttp.nonProxyHosts=localhost|127.*|[::1]|*.apps.example.com"
-java_http_proxy: ""
+# java_http_proxy: '-Dhttp.proxyHost=proxy.example.com -Dhttp.proxyPort=8080 -Dhttps.proxyHost=proxy.example.com -Dhttps.proxyPort=8080 -Dhttp.nonProxyHosts=localhost|127.*|[::1]|*.apps.example.com'
+java_http_proxy: ''
 
-# kerberos realm
-kerberos_realm: CLOUDERA
+# Kerberos realm name (the default deployment value is 'CLOUDERA')
+kerberos_realm: 'CLOUDERA'
 
 # name of the Cloudera CDH cluster
 CDH_cluster_name: CDH-cluster
 
-# username of the CloudFoundry admin
+# username of the Cloud Foundry admin
 cf_admin_username: admin
 
 # nats topic for messages about service creation
