@@ -1,1 +1,14 @@
 settings.yml
+extracted_values.yml
+.tox
+.idea
+.cache
+.coverage
+*.pyc
+*.pem
+*.dat
+coverage.xml
+pylint_report.txt
+tests/.cache
+tests/__pycache__
+

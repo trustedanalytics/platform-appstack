@@ -1,3 +1,5 @@
+########################## VARIABLES FILLED AUTOMATICALLY BY THE SCRIPT ############################
+
 # password of the Cloud Foundry admin
 cf_admin_password: 
 
@@ -6,6 +8,9 @@ cf_admin_client_password:
 
 # ip of any Arcadia worker node
 #any_arcadia_node: 
+
+# hostname of Hue worker node
+hue_node:
 
 # apps domain of the Cloud Foundry deployment, can be checked in the bosh deployment YAML file
 apps_domain: 
@@ -35,10 +40,7 @@ kerberos_host: ''
 # hostnames of the CDH master nodes running zookeeper and kafka
 master_node_host_1: 
 master_node_host_2: 
-master_node_host_3: 
-
-# HDFS nameservice name used in cdh-broker (e.g. nameservice1)
-hdfs_nameservice_for_cdh_broker:
+master_node_host_3:
 
 # hostname of the host serving as the HDFS namenode
 namenode_internal_host: 
@@ -48,9 +50,6 @@ nats_ip:
 
 # run domain of the Cloud Foundry deployment, can be checked in the bosh deployment YAML file
 run_domain: 
-
-# password for ATK client
-atk_client_pass: ''
 
 # SMTPAuth password (e.g. for Amazon SES service).
 # To disable authentication set value to 'null' (single or double quotation are necessary).
@@ -66,6 +65,10 @@ smtp_port:
 
 # SMTPAuth host (e.g. email-smtp.us-west-2.amazonaws.com)
 smtp_host:
+
+
+
+############################## VARIABLES FOR MANUAL CHANGE ##################################
 
 # SMTPAuth protocol (smtp or smtps)
 smtp_protocol: smtps
@@ -87,6 +90,9 @@ CDH_cluster_name: CDH-cluster
 
 # username of the Cloud Foundry admin
 cf_admin_username: admin
+
+# HDFS nameservice name used in cdh-broker (e.g. nameservice1)
+hdfs_nameservice_for_cdh_broker: nameservice1
 
 # nats topic for messages about service creation
 nats_service_creation_topic: platform.service-creation
@@ -120,6 +126,9 @@ application_broker_user: admin
 
 # password that Application Broker will use for basic auth handling
 application_broker_pass: admin
+
+# password for ATK client
+atk_client_pass: ''
 
 # username that the ATK broker will use
 atk_broker_user: admin
