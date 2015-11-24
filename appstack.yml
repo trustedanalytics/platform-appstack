@@ -5,9 +5,9 @@ applications:
     service_broker_names: atk
     CF_DEP: postgresql93|free,cdh|shared,zookeeper-wssb|shared
     CF_SRC: ./apps/atk
-- name: se-broker
-  env:
-    service_broker_names: se
+#- name: se-broker
+#  env:
+#    service_broker_names: se
 - name: gateway-broker
   env:
     service_broker_names: gateway
