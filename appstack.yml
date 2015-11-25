@@ -299,12 +299,12 @@ service_instances:
     service:
       label: atk
       broker: atk
-- name: se
-  service_plan:
-    name: free
-    service:
-      label: se
-      broker: se
+#- name: se
+#  service_plan:
+#    name: free
+#    service:
+#      label: se
+#      broker: se
 - name: gateway
   service_plan:
     name: free
@@ -355,7 +355,7 @@ user_provided_service_instances:
 - name: external-tools
 service_brokers:
 - name: atk
-- name: se 
+#- name: se 
 - name: docker
 - name: gateway
 - name: hdfs
