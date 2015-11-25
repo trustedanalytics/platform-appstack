@@ -11,11 +11,10 @@ applications:
 #- name: se-broker
 #  env:
 #    service_broker_names: se
-- name: gateway-broker
+- name: gateway
   env:
-    service_broker_names: gateway
-    CF_DEP: kafka|shared
-    CF_SRC: ./apps/gateway
+    register_in: application-broker
+    description: Provides proxy functionality
 - name: hdfs-broker
   env:
     service_broker_names: hdfs
@@ -224,6 +223,12 @@ service_instances:
     service:
       label: zookeeper-wssb
       broker: zookeeper-wssb
+- name: gateway-kafka
+  service_plan:
+    name: shared
+    service:
+      label: kafka
+      broker: kafka
 - name: kafka
   service_plan:
     name: shared
@@ -314,12 +319,6 @@ service_instances:
 #    service:
 #      label: se
 #      broker: se
-- name: gateway
-  service_plan:
-    name: free
-    service:
-      label: gateway
-      broker: gateway
 - name: hbase
   service_plan:
     name: free
@@ -366,7 +365,6 @@ service_brokers:
 - name: atk
 #- name: se 
 - name: docker
-- name: gateway
 - name: hdfs
 - name: zookeeper-wssb
 - name: kafka

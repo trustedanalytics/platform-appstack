@@ -148,12 +148,6 @@ docker_broker_user: containers
 # password for the docker broker (set in bosh docker deployment YAML file)
 docker_broker_user_pass: containers
 
-# username that the Gateway broker will use
-gateway_broker_user: admin
-
-# password that the Gateway broker will use
-gateway_broker_user_pass: admin
-
 # username that the Gearpump broker will use
 gearpump_broker_user: user
 
