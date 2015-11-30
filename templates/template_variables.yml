@@ -130,12 +130,6 @@ application_broker_pass: admin
 # password for ATK client
 atk_client_pass: ''
 
-# username that the ATK broker will use
-atk_broker_user: admin
-
-# password that the ATK broker will use
-atk_broker_user_pass: admin
-
 # ATK client name
 atk_client_name: 'atk-client'
 

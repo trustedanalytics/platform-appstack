@@ -2,12 +2,10 @@ applications:
 - name: application-broker
   env:
     workaround_value: DPNG-2310
-# atk has some of its configuration here because it is not standard
-- name: atk-broker
+- name: atk
   env:
-    service_broker_names: atk
-    CF_DEP: postgresql93|free,hdfs|shared,hbase|shared,yarn|shared,mysql56|free,zookeeper|shared
-    CF_SRC: ./apps/atk
+    register_in: application-broker
+    description: TAP Analytics Toolkit
 #- name: se-broker
 #  env:
 #    service_broker_names: se
@@ -130,6 +128,42 @@ applications:
   env:
     service_broker_names: yarn
 service_instances:
+- name: postgres-for-atk
+  service_plan:
+    name: free
+    service:
+      label: postgresql93
+      broker: docker
+- name: hdfs-for-atk
+  service_plan:
+    name: shared
+    service:
+      label: hdfs
+      broker: hdfs
+- name: hbase-for-atk
+  service_plan:
+    name: shared
+    service:
+      label: hbase 
+      broker: hbase
+- name: yarn-for-atk
+  service_plan:
+    name: shared
+    service:
+      label: yarn
+      broker: yarn
+- name: mysql-for-atk
+  service_plan:
+    name: free
+    service:
+      label: mysql56
+      broker: docker
+- name: zookeeper-for-atk
+  service_plan:
+    name: shared
+    service:
+      label: zookeeper
+      broker: zookeeper
 - name: security-codes-db
   service_plan:
     name: free
@@ -148,18 +182,6 @@ service_instances:
     service:
       label: hdfs
       broker: hdfs
-- name: postgresql93-example
-  service_plan:
-    name: free
-    service:
-      label: postgresql93
-      broker: docker
-- name: mysql56-example
-  service_plan:
-    name: free
-    service:
-      label: mysql56
-      broker: docker
 - name: couchdb16-example
   service_plan:
     name: free
@@ -298,36 +320,18 @@ service_instances:
     service:
       label: mongodb26
       broker: docker
-- name: yarn
-  service_plan:
-    name: free
-    service:
-      label: yarn
-      broker: yarn
 - name: cdh
   service_plan:
     name: free
     service:
       label: cdh
       broker: cdh
-- name: atk
-  service_plan:
-    name: free
-    service:
-      label: atk
-      broker: atk
 #- name: se
 #  service_plan:
 #    name: free
 #    service:
 #      label: se
 #      broker: se
-- name: hbase
-  service_plan:
-    name: free
-    service:
-      label: hbase 
-      broker: hbase
 - name: rstudio-example
   service_plan:
     name: free
@@ -366,7 +370,6 @@ user_provided_service_instances:
 - name: kerberos-service
 - name: external-tools
 service_brokers:
-- name: atk
 #- name: se 
 - name: docker
 - name: hdfs

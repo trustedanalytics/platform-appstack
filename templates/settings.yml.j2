@@ -8,13 +8,12 @@ applications:
     TOKEN_URL: http://uaa.{{ run_domain }}/oauth/token
     AUTH_USER: {{ application_broker_user }}
     AUTH_PASS: {{ application_broker_pass }}
-- name: atk-broker
+- name: atk
   env:
-    CF_API: http://api.{{ apps_domain }}
-    CF_USER: {{ cf_admin_username }}
-    CF_PASS: {{ cf_admin_password }}
-    IMAGE_URL: {{ generic_broker_icon }}
-    INSTANCE_ENVS: '{"CC_URI": "api.{{ run_domain }}","UAA_CLIENT_NAME": "{{ atk_client_name }}","UAA_CLIENT_PASSWORD": "{{ atk_client_pass }}","UAA_URI": "uaa.{{ run_domain }}"}'
+    CC_URI: api.{{ run_domain }}
+    UAA_CLIENT_NAME: {{ atk_client_name }}
+    UAA_CLIENT_PASSWORD: {{ atk_client_pass }}
+    UAA_URI: uaa.{{ run_domain }}
 #- name: se-broker
 #  env:
 #    CF_API: http://api.{{ apps_domain }}
@@ -219,10 +218,6 @@ user_provided_service_instances:
       available: "{{ external_tool_gearpump }}"
 #############################################
 service_brokers:
-- name: atk
-  broker_url: http://atk-broker.{{ apps_domain }}
-  auth_username: {{ atk_broker_user }}
-  auth_password: {{ atk_broker_user_pass }}
 #- name: se
 #  broker_url: http://se-broker.{{ apps_domain }}
 #  auth_username: {{ se_broker_user }}
