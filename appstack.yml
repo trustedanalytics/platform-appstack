@@ -65,6 +65,9 @@ applications:
 - name: platform-operations
   env:
     upsi_names: platform-operations
+- name: model-catalog
+  env:
+    upsi_names: model-catalog
 - name: platform-context
   env:
     upsi_names: platformcontext
@@ -349,6 +352,7 @@ user_provided_service_instances:
 - name: app-launcher-helper
 - name: user-management
 - name: platform-operations
+- name: model-catalog
 #- name: hue
 #- name: arcadia
 - name: datacatalogexport

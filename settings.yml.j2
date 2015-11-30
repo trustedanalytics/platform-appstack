@@ -1,3 +1,4 @@
+hiveurl_without_kerberos: "jdbc:hive2://{{ namenode_internal_host }}:10000/"
 apps_domain: {{ apps_domain }}
 applications:
 - name: application-broker
@@ -44,6 +45,7 @@ applications:
     TOKEN_KEY_URL: http://uaa.{{ run_domain }}/token_key
 - name: user-management
 - name: platform-operations
+- name: model-catalog
 - name: platform-context
 - name: cdh-broker
   memory: 128M
@@ -150,6 +152,9 @@ user_provided_service_instances:
 - name: platform-operations
   credentials:
     host: http://platform-operations.{{ apps_domain }}
+- name: model-catalog
+  credentials:
+    host: http://model-catalog.{{ apps_domain }}
 #- name: hue
 #  credentials:
 #    hueUrl: http://hue.{{ apps_domain }}/metastore/table
@@ -162,11 +167,16 @@ user_provided_service_instances:
 - name: hive
   credentials:
     # for systems without Arcadia
-    hiveUrl: jdbc:hive2://{{ namenode_internal_host }}:10000/
+    {% if kerberos_host != '' %}
+    hiveUrl = jdbc:hive2://{{ namenode_internal_host }}:10000/default;principal=hive/{{ namenode_internal_host }}@CLOUDERA;auth=kerberos
+    {% else %}
+    hiveUrl = jdbc:hive2://{{ namenode_internal_host }}:10000/
+    {% endif %}
+
     # for systems with Arcadia
     # hiveUrl: jdbc:hive2://{{ any_arcadia_node }}:31050/auth=noSasl
     # for systems with Kerberos
-    # jdbc:hive2://{{ namenode_internal_host }}:10000/default;principal=hive/{{ namenode_internal_host }}@CLOUDERA;auth=kerberos
+    # hiveUrl: jdbc:hive2://{{ namenode_internal_host }}:10000/default;principal=hive/{{ namenode_internal_host }}@CLOUDERA;auth=kerberos
     hiveUser: hdfs
 - name: platformcontext
   credentials:
