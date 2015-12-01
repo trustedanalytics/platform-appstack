@@ -14,12 +14,7 @@ applications:
     UAA_CLIENT_NAME: {{ atk_client_name }}
     UAA_CLIENT_PASSWORD: {{ atk_client_pass }}
     UAA_URI: uaa.{{ run_domain }}
-#- name: se-broker
-#  env:
-#    CF_API: http://api.{{ apps_domain }}
-#    CF_USER: {{ cf_admin_username }}
-#    CF_PASS: {{ cf_admin_password }}
-#    IMAGE_URL: {{ generic_broker_icon }}
+- name: scoring-engine
 - name: hdfs-broker
   env:
     USER_PASSWORD: {{ hdfs_broker_user_pass }}
@@ -219,10 +214,6 @@ user_provided_service_instances:
       available: "{{ external_tool_gearpump }}"
 #############################################
 service_brokers:
-#- name: se
-#  broker_url: http://se-broker.{{ apps_domain }}
-#  auth_username: {{ se_broker_user }}
-#  auth_password: {{ se_broker_user_pass }}
 - name: docker
   broker_url: http://cf-containers-broker.{{ run_domain }}
   auth_username: {{ docker_broker_user }}
