@@ -167,9 +167,9 @@ user_provided_service_instances:
   credentials:
     # for systems without Arcadia
     {% if kerberos_host != '' %}
-    hiveUrl = jdbc:hive2://{{ namenode_internal_host }}:10000/default;principal=hive/{{ namenode_internal_host }}@CLOUDERA;auth=kerberos
+    hiveUrl: jdbc:hive2://{{ namenode_internal_host }}:10000/default;principal=hive/{{ namenode_internal_host }}@CLOUDERA;auth=kerberos
     {% else %}
-    hiveUrl = jdbc:hive2://{{ namenode_internal_host }}:10000/
+    hiveUrl: jdbc:hive2://{{ namenode_internal_host }}:10000/
     {% endif %}
 
     # for systems with Arcadia
