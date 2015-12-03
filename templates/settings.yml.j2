@@ -205,7 +205,7 @@ user_provided_service_instances:
   credentials:
     hue:
       available: "{{ external_tool_hue }}"
-      url: placeholder
+      url: "https://hue.{{ apps_domain }}/metastore/table"
       internal_host: "{{ hue_node }}:8888"
     arcadia:
       available: "{{ external_tool_arcadia }}"
