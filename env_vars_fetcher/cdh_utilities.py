@@ -45,8 +45,12 @@ class CdhConfExtractor(object):
     def close_connection_to_cdh(self):
         self.ssh_connection.close()
 
-    def ssh_call_command(self, command):
-        ssh_in, ssh_out, ssh_err = self.ssh_connection.exec_command(command)
+    def ssh_call_command(self, command, subcommands=None):
+        ssh_in, ssh_out, ssh_err = self.ssh_connection.exec_command(command, get_pty=True)
+        if subcommands != None:
+            for subcommand in subcommands:
+                ssh_in.write(subcommand + '\n')
+                ssh_in.flush()
         return ssh_out.read() if ssh_out is not None else ssh_err.read()
 
     def extract_cdh_manager_host(self):
@@ -108,6 +112,19 @@ class CdhConfExtractor(object):
         subprocess.check_call(command.split())
         return self._parse_client_config_zip()
 
+    def generate_keytab(self, principal_name):
+        self.create_ssh_connection_to_cdh()
+        sftp = self.ssh_connection.open_sftp()
+        sftp.put('utils/generate_keytab_script.sh', '/tmp/generate_keytab_script.sh')
+        self.ssh_call_command('scp /tmp/generate_keytab_script.sh {0}:/tmp/'.format(self._cdh_manager_ip))
+        self.ssh_call_command('ssh -t {0} "chmod 700 /tmp/generate_keytab_script.sh"'.format(self._cdh_manager_ip))
+        keytab_hash = self.ssh_call_command('ssh -t {0} "/tmp/generate_keytab_script.sh {1}"'
+                                            .format(self._cdh_manager_ip, principal_name))
+        self.close_connection_to_cdh()
+        lines = keytab_hash.splitlines()
+        del lines[-2:]
+        return ''.join(lines)
+
     def get_all_deployments_conf(self, cdh_manager_username='admin', cdh_manager_password='admin'):
         result = {}
         deployments_settings = json.loads(requests.get('http://' + self._local_bind_address + ':'
@@ -117,6 +134,7 @@ class CdhConfExtractor(object):
 
         if self._is_kerberos.lower() == 'true':
             result['kerberos_host'] = result['cloudera_manager_internal_host']
+            result['hdfs_keytab_value'] = self.generate_keytab('hdfs')
 
         master_nodes = self.extract_master_nodes_info(deployments_settings)
         for i, node in enumerate(master_nodes):
