@@ -136,7 +136,7 @@ class CdhConfExtractor(object):
             result['kerberos_host'] = result['cloudera_manager_internal_host']
             result['hdfs_keytab_value'] = self.generate_keytab('hdfs')
         else:
-            result['hdfs_keytab_value'] = 'null'
+            result['hdfs_keytab_value'] = "''"
 
         master_nodes = self.extract_master_nodes_info(deployments_settings)
         for i, node in enumerate(master_nodes):
