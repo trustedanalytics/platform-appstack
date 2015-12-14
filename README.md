@@ -4,10 +4,13 @@ platform-appstack
 Cloud Foundry platform definition files to be used with https://github.com/trustedanalytics/cloudfoundry-mkappstack.
 
 ## Preparation
-
-Go to the project directory and install necessary Python libraries:
+Prepare your Python installation:
 ```
-sudo apt-get install python-pip
+sudo apt-get install python-dev python-pip
+```
+
+Install necessary Python libraries:
+```
 sudo pip install -r requirements.txt
 ```
 
@@ -47,3 +50,4 @@ Else you can run your tests using:
 ```
 tox
 ```
+
