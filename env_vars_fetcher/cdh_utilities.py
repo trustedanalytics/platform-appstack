@@ -116,14 +116,13 @@ class CdhConfExtractor(object):
         self.create_ssh_connection_to_cdh()
         sftp = self.ssh_connection.open_sftp()
         sftp.put('utils/generate_keytab_script.sh', '/tmp/generate_keytab_script.sh')
-        self.ssh_call_command('scp /tmp/generate_keytab_script.sh {0}:/tmp/'.format(self._cdh_manager_ip))
-        self.ssh_call_command('ssh -t {0} "chmod 700 /tmp/generate_keytab_script.sh"'.format(self._cdh_manager_ip))
-        keytab_hash = self.ssh_call_command('ssh -t {0} "/tmp/generate_keytab_script.sh {1}"'
+        self.ssh_call_command('scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no /tmp/generate_keytab_script.sh {0}:/tmp/'.format(self._cdh_manager_ip))
+        self.ssh_call_command('ssh -t {0} -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no "chmod 700 /tmp/generate_keytab_script.sh"'.format(self._cdh_manager_ip))
+        keytab_hash = self.ssh_call_command('ssh -t {0} -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no "/tmp/generate_keytab_script.sh {1}"'
                                             .format(self._cdh_manager_ip, principal_name))
         self.close_connection_to_cdh()
         lines = keytab_hash.splitlines()
-        del lines[-2:]
-        return ''.join(lines)
+        return ''.join(lines[2:-2])
 
     def get_all_deployments_conf(self, cdh_manager_username='admin', cdh_manager_password='admin'):
         result = {}
