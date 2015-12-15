@@ -66,12 +66,12 @@ smtp_port:
 # SMTPAuth host (e.g. email-smtp.us-west-2.amazonaws.com)
 smtp_host:
 
+# SMTPAuth protocol (smtp or smtps),
+# fill this value if your smtp protocol is other than standard (25, 465, 587, 2525)
+smtp_protocol:
 
 
 ############################## VARIABLES FOR MANUAL CHANGE ##################################
-
-# SMTPAuth protocol (smtp or smtps)
-smtp_protocol: smtps
 
 # HTTP proxy in form of JVM parameters
 # If HTTP(s) proxy will not be use you MUST leave this value in form of empty string ('')

@@ -10,7 +10,8 @@ from bastion_utilities import CFConfExtractor
 def fill_template_variables(template, values):
     if isinstance(template, dict) and isinstance(values, dict):
         for key, value in values.iteritems():
-            template[key] = value
+            if not template.get(key):
+                template[key] = value
     return template
 
 if __name__ == '__main__':

@@ -1,9 +1,9 @@
 ---
 # determines is script running on openstack environment
-is_openstack_env: "true"
+is_openstack_env: "false"
 
 # determines is kerberos used on environment
-is_kerberos: "true"
+is_kerberos: "false"
 
 machines:
  # access information for cdh-launcher

@@ -65,6 +65,7 @@ class CFConfExtractor(object):
         result['smtp_user'] = '"{0}"'.format(cf_tiny_yml['meta']['login_smtp']['user'])
         result['smtp_port'] = cf_tiny_yml['meta']['login_smtp']['port']
         result['smtp_host'] = cf_tiny_yml['meta']['login_smtp']['host']
+        result['smtp_protocol'] = self._determine_smtp_protocol(result['smtp_port'])
         return result
 
     def get_environment_settings(self):
@@ -74,3 +75,10 @@ class CFConfExtractor(object):
         with open(filename, 'r') as stream:
             return yaml.load(stream)
 
+    def _determine_smtp_protocol(self, port):
+        if port in (465,):
+            return 'smtps'
+        elif port in (25, 587, 2525):
+            return 'smtp'
+        else:
+            return None
