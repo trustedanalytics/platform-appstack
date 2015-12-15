@@ -130,8 +130,8 @@ application_broker_user: admin
 # password that Application Broker will use for basic auth handling
 application_broker_pass: admin
 
-# password for ATK client
-atk_client_pass: ''
+# UAA client password for atk. Use quoted empty string to leave it unset.
+atk_client_pass: "''"
 
 # ATK client name
 atk_client_name: 'atk-client'
