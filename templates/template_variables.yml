@@ -73,6 +73,9 @@ smtp_protocol:
 
 ############################## VARIABLES FOR MANUAL CHANGE ##################################
 
+# Maximum timeout for pushing app to cloud foundry in seconds, (0-180)
+timeout: 180
+
 # HTTP proxy in form of JVM parameters
 # If HTTP(s) proxy will not be use you MUST leave this value in form of empty string ('')
 # IMPORTANT: it is essential to set http.nonProxyHosts variable to domain 
