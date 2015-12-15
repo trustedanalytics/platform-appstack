@@ -11,10 +11,12 @@ import zipfile
 import shutil
 import os
 import xml.etree.ElementTree
+import logger
 
 class CdhConfExtractor(object):
 
     def __init__(self, config_filename=None):
+        self._logger = logger.get_info_logger(__name__)
         self.config_filename = config_filename if config_filename else 'fetcher_config.yml'
         config = self._load_config_yaml(self.config_filename)
         self._hostname = config['machines']['cdh-launcher']['hostname']
@@ -29,23 +31,47 @@ class CdhConfExtractor(object):
 
     def __enter__(self):
         extractor = self
-        extractor.create_tunnel_to_cdh_manager()
-        extractor.start_cdh_manager_tunneling()
-        return extractor
+        try:
+            self._logger.info('Creating tunnel to CDH-Manager.')
+            extractor.create_tunnel_to_cdh_manager()
+            extractor.start_cdh_manager_tunneling()
+            self._logger.info('Tunnel to CDH-Manager has been created.')
+            return extractor
+        except Exception as exc:
+            self._logger.error('Cannot creating tunnel to CDH-Manager machine.')
+            raise exc
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        self.stop_cdh_manager_tunneling()
+        try:
+            self.stop_cdh_manager_tunneling()
+            self._logger.info('Tunelling to CDH-Manager stopped.')
+        except Exception as exc:
+            self._logger.error('Cannot close tunnel to CDH-Manager machine.')
+            raise exc
 
     # Cdh launcher methods
     def create_ssh_connection_to_cdh(self):
-        self.ssh_connection = paramiko.SSHClient()
-        self.ssh_connection.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        self.ssh_connection.connect(self._hostname, username=self._username, key_filename=self._key, password=self._key_password)
+        try:
+            self._logger.info('Creating connection to CDH-launcher.')
+            self.ssh_connection = paramiko.SSHClient()
+            self.ssh_connection.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+            self.ssh_connection.connect(self._hostname, username=self._username, key_filename=self._key, password=self._key_password)
+            self._logger.info('Connection to CDH-launcher established.')
+        except Exception as exc:
+            self._logger.error('Cannot creating connection to CDH-launcher machine. Check your settings '
+                               'in fetcher_config.yml file.')
+            raise exc
 
     def close_connection_to_cdh(self):
-        self.ssh_connection.close()
+        try:
+            self.ssh_connection.close()
+            self._logger.info('Connection to CDH-launcher closed.')
+        except Exception as exc:
+            self._logger.error('Cannot close connection to the CDH-launcher machine.')
+            raise exc
 
     def ssh_call_command(self, command, subcommands=None):
+        self._logger.info('Calling remote command: "{0}" with subcommands "{1}"'.format(command, subcommands))
         ssh_in, ssh_out, ssh_err = self.ssh_connection.exec_command(command, get_pty=True)
         if subcommands != None:
             for subcommand in subcommands:
@@ -54,6 +80,7 @@ class CdhConfExtractor(object):
         return ssh_out.read() if ssh_out is not None else ssh_err.read()
 
     def extract_cdh_manager_host(self):
+        self._logger.info('Extracting CDH-Manager address.')
         if self._cdh_manager_ip is None:
             self.create_ssh_connection_to_cdh()
             if self._is_openstack.lower() == 'true':
@@ -62,6 +89,7 @@ class CdhConfExtractor(object):
                 ansible_ini = self.ssh_call_command('cat ansible-cdh/inventory/cdh')
             self._cdh_manager_ip = self._get_host_ip('cdh-manager', ansible_ini)
             self.close_connection_to_cdh()
+        self._logger.info('CDH-Manager adress extracted: {}'.format(self._cdh_manager_ip))
         return self._cdh_manager_ip
 
     # Cdh manager methods
@@ -81,13 +109,13 @@ class CdhConfExtractor(object):
         try:
             self.cdh_manager_tunnel.start()
         except Exception as e:
-            print('Cannot start tunnel: ' + e.message)
+            self._logger.error('Cannot start tunnel: ' + e.message)
 
     def stop_cdh_manager_tunneling(self):
         try:
             self.cdh_manager_tunnel.stop()
         except Exception as e:
-            print('Cannot stop tunnel: ' + e.message)
+            self._logger.error('Cannot stop tunnel: ' + e.message)
 
     def extract_cdh_manager_details(self, settings):
         for host in settings['hosts']:
@@ -108,11 +136,14 @@ class CdhConfExtractor(object):
         return self._find_item_by_attr_value(host_id, 'hostId', settings['hosts'])['hostname']
 
     def get_client_config_for_service(self, service_name):
+        self._logger.info('Downloading configuration zip for {}'.format(service_name))
         command = 'wget http://{0}:{1}/api/v10/clusters/CDH-cluster/services/{2}/clientConfig'.format(self._local_bind_address, self._local_bind_port, service_name)
         subprocess.check_call(command.split())
+        self._logger.info('Configuration zip for {} has been downloaded'.format(service_name))
         return self._parse_client_config_zip()
 
     def generate_keytab(self, principal_name):
+        self._logger.info('Generating keytab for {} principal.'.format(principal_name))
         self.create_ssh_connection_to_cdh()
         sftp = self.ssh_connection.open_sftp()
         sftp.put('utils/generate_keytab_script.sh', '/tmp/generate_keytab_script.sh')
@@ -122,6 +153,7 @@ class CdhConfExtractor(object):
                                             .format(self._cdh_manager_ip, principal_name))
         self.close_connection_to_cdh()
         lines = keytab_hash.splitlines()
+        self._logger.info('Keytab for {} principal has been generated.'.format(principal_name))
         return ''.join(lines[2:-2])
 
     def get_all_deployments_conf(self, cdh_manager_username='admin', cdh_manager_password='admin'):
