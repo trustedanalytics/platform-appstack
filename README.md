@@ -16,6 +16,9 @@ Install necessary Python libraries:
 sudo -E pip install -r requirements.txt
 ```
 
+Be sure that you have added ```127.0.1.1``` address in ```/etc/hosts``` file with specified name, for example:
+```127.0.1.1 bastion```
+
 ## Usage
 ### Env vars fetcher script configuration
 1. Fill the fetcher_config.yml file before running script.
