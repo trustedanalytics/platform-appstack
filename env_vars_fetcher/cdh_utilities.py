@@ -10,8 +10,8 @@ import subprocess
 import zipfile
 import shutil
 import os
-import xml.etree.ElementTree
 import logger
+import base64
 
 class CdhConfExtractor(object):
 
@@ -136,11 +136,8 @@ class CdhConfExtractor(object):
         return self._find_item_by_attr_value(host_id, 'hostId', settings['hosts'])['hostname']
 
     def get_client_config_for_service(self, service_name):
-        self._logger.info('Downloading configuration zip for {}'.format(service_name))
-        command = 'wget http://{0}:{1}/api/v10/clusters/CDH-cluster/services/{2}/clientConfig'.format(self._local_bind_address, self._local_bind_port, service_name)
-        subprocess.check_call(command.split())
-        self._logger.info('Configuration zip for {} has been downloaded'.format(service_name))
-        return self._parse_client_config_zip()
+        result = requests.get('http://{0}:{1}/api/v10/clusters/CDH-cluster/services/{2}/clientConfig'.format(self._local_bind_address, self._local_bind_port, service_name))
+        return base64.standard_b64encode(result.content);
 
     def generate_keytab(self, principal_name):
         self._logger.info('Generating keytab for {} principal.'.format(principal_name))
@@ -191,26 +188,6 @@ class CdhConfExtractor(object):
             if host in line:
                 host_info.append(line.strip())
         return host_info[host_info.index('[' + host + ']') + 1].split(' ')[1].split('=')[1]
-
-    def _xml_to_json_converter(self, xml_file):
-        result_json = {}
-        xml_obj = xml.etree.ElementTree.parse(xml_file).getroot()
-        for property in xml_obj.findall('property'):
-            result_json[str(property.findall('name')[0].text).replace('$', '\$')] = str(property.findall('value')[0].text).replace('$', '\$')
-
-        return result_json
-
-    def _parse_client_config_zip(self):
-        hadoop_zip = zipfile.ZipFile('clientConfig')
-        hadoop_zip.extractall('hadoop-admin')
-        os.remove('clientConfig')
-        hadoop_conf_directory = [item for item in os.listdir('hadoop-admin') if os.path.isdir('hadoop-admin/{0}'.format(item))][0]
-        xml_files = [item for item in os.listdir('hadoop-admin/{0}'.format(hadoop_conf_directory)) if item.endswith('.xml')]
-        result_json = {}
-        for xml in xml_files:
-            result_json.update(self._xml_to_json_converter('hadoop-admin/{0}/{1}'.format(hadoop_conf_directory, xml)).items())
-        shutil.rmtree('hadoop-admin')
-        return json.dumps({"HADOOP_CONFIG_KEY": result_json}).replace('\\\\', '\\')
 
     def _load_config_yaml(self, filename):
         with open(filename, 'r') as stream:

@@ -1,5 +1,4 @@
 from collections import namedtuple
-import xml.etree.ElementTree as ET
 from env_vars_fetcher.cdh_utilities import CdhConfExtractor
 import mock
 import yaml
@@ -76,26 +75,3 @@ class TestSSHConnectionToCdh:
         assert mock_policy.call_count == 1
         ssh_client_mock.connect.assert_called_with(self.cdhUtilities._hostname, key_filename=self.cdhUtilities._key_filename,
                                                    password=self.cdhUtilities._key_password, username=self.cdhUtilities._username)
-
-    @mock.patch('xml.etree.ElementTree.parse', create=True)
-    def test_convert_xml_to_json(self, xml_etree_mock):
-        """ Checks is xml converting to json properly with escaped $ properly """
-        xml_string = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><configuration>" \
-                     "<property><name>a</name><value>a1</value></property>" \
-                     "<property><name>b</name><value>b1</value></property>" \
-                     "<property><name>$.a</name><value>cdh-master</value></property>" \
-                     "</configuration>"
-        expected_json = {
-            'a': 'a1',
-            'b': 'b1',
-            '\$.a': 'cdh-master'
-        }
-
-        XmlMock = namedtuple('XmlMock', 'getroot')
-        xml_mock = XmlMock(
-            getroot=mock.Mock(return_value=ET.fromstring(xml_string))
-        )
-        xml_etree_mock.return_value = xml_mock
-        result_json = self.cdhUtilities._xml_to_json_converter('xmlfile')
-
-        assert expected_json == result_json
