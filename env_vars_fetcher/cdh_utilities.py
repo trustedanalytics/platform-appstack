@@ -151,7 +151,16 @@ class CdhConfExtractor(object):
         self.close_connection_to_cdh()
         lines = keytab_hash.splitlines()
         self._logger.info('Keytab for {} principal has been generated.'.format(principal_name))
-        return ''.join(lines[2:-2])
+        return '"{}"'.format(''.join(lines[2:-2]))
+
+    def generate_base64_for_file(self, file_path, hostname):
+        self._logger.info('Generating base64 for {} file.'.format(file_path))
+        self.create_ssh_connection_to_cdh()
+        base64_file_hash = self.ssh_call_command('ssh -t {0} -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no "base64 {1}"'.format(hostname, file_path))
+        self.close_connection_to_cdh()
+        lines = base64_file_hash.splitlines()
+        self._logger.info('Base64 hash for {0} file on {1} machine has been generated.'.format(file_path, hostname))
+        return '"{}"'.format(''.join(lines[2:-2]))
 
     def get_all_deployments_conf(self, cdh_manager_username='admin', cdh_manager_password='admin'):
         result = {}
@@ -163,8 +172,12 @@ class CdhConfExtractor(object):
         if self._is_kerberos.lower() == 'true':
             result['kerberos_host'] = result['cloudera_manager_internal_host']
             result['hdfs_keytab_value'] = self.generate_keytab('hdfs')
+            result['vcap_keytab_value'] = self.generate_keytab('vcap')
+            result['krb5_base64'] = self.generate_base64_for_file('/etc/krb5.conf', self._cdh_manager_ip)
         else:
-            result['hdfs_keytab_value'] = "''"
+            result['hdfs_keytab_value'] = '""'
+            result['vcap_keytab_value'] = '""'
+            result['krb5_base64'] = '""'
 
         master_nodes = self.extract_master_nodes_info(deployments_settings)
         for i, node in enumerate(master_nodes):
