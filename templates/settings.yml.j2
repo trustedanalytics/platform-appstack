@@ -17,7 +17,7 @@ applications:
     UAA_URI: uaa.{{ run_domain }}
     VCAP_KEYTAB: {{ vcap_keytab_value }}
     KRB5_BASE64: {{ krb5_base64 }}
-- name: scoring-engine
+#- name: scoring-engine
 - name: hdfs-broker
   env:
     USER_PASSWORD: {{ hdfs_broker_user_pass }}
