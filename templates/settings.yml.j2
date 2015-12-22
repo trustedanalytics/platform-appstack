@@ -14,6 +14,19 @@ applications:
     TOKEN_URL: http://uaa.{{ run_domain }}/oauth/token
     AUTH_USER: {{ application_broker_user }}
     AUTH_PASS: {{ application_broker_pass }}
+- name: gearpump-dashboard
+  env:
+    username: username
+    password: password
+    GEARPUMP_MASTERS: localhost
+- name: gearpump-broker
+  env:
+    SPRING_PROFILES_ACTIVE: cloud
+    USER_PASSWORD: {{ gearpump_broker_user_pass }}
+    IMAGE_URL: {{ generic_broker_icon }}
+    GEARPUMP_UI_ORG: {{ core_org_name }}
+    GEARPUMP_UI_SPACE: {{ core_space_name }}
+    GEARPUMP_UI_NAME: {{ gearpump_ui_name }}
 - name: scoring-engine
 - name: hdfs-broker
   env:
@@ -265,10 +278,10 @@ service_brokers:
   broker_url: http://smtp-broker.{{ apps_domain }}
   auth_username: {{ smtp_broker_user }}
   auth_password: {{ smtp_broker_user_pass }}
-#- name: gearpump
-#  broker_url: http://gearpump-broker.{{ apps_domain }}
-#  auth_username: {{ gearpump_broker_user }}
-#  auth_password: {{ gearpump_broker_user_pass }}
+- name: gearpump
+  broker_url: http://gearpump-broker.{{ apps_domain }}
+  auth_username: {{ gearpump_broker_user }}
+  auth_password: {{ gearpump_broker_user_pass }}
 - name: hbase
   broker_url: http://hbase-broker.{{ apps_domain }}
   auth_username: {{ hbase_broker_user }}

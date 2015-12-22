@@ -2,6 +2,18 @@ applications:
 - name: application-broker
   env:
     workaround_value: DPNG-2310
+- name: gearpump-dashboard
+  env:
+    register_in: application-broker
+    push_argument: --no-start
+    description: Dashboard for GearPump
+    display_name: Dashboard for GearPump
+    image_url: data:image/png;base64,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
+- name: gearpump-broker
+  env:
+    TAGS: gearpump
+    BASE_GUID: 1ebaebc7-e344-4cb9-ad18-e29901386e04
+    service_broker_names: gearpump
 - name: scoring-engine
   env:
     register_in: application-broker
@@ -347,6 +359,30 @@ service_instances:
     service:
       label: ipython
       broker: docker
+- name: zookeeper-gearpump
+  service_plan:
+    name: shared
+    service:
+      label: zookeeper
+      broker: zookeeper
+- name: hdfs-gearpump
+  service_plan:
+    name: shared
+    service:
+      label: hdfs
+      broker: hdfs
+- name: yarn-gearpump
+  service_plan:
+    name: shared
+    service:
+      label: yarn
+      broker: yarn
+- name: gearpump-example
+  service_plan:
+    name: shared
+    service:
+      label: gearpump
+      broker: gearpump
 - name: zookeeper-instance-bare
   service_plan:
     name: bare
@@ -391,7 +427,7 @@ service_brokers:
 - name: kafka
 - name: cdh
 - name: smtp
-#- name: gearpump
+- name: gearpump
 - name: hbase
 - name: zookeeper
 - name: yarn

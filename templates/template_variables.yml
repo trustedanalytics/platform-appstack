@@ -24,9 +24,6 @@ developer_console_password:
 # e-mail address that will be used to send invitations
 email_address: 
 
-# hostname of the host with the Gearpump Web UI
-gearpump_webui_server_host:
-
 # output of the import_hadoop_conf.sh tool (https://github.com/trustedanalytics/hadoop-admin-tools) for three machines;
 # those will be JSON documents, they need to be in single quotes, e.g. '{"some_key": "some_value"}'
 import_hadoop_conf_hbase:
@@ -156,6 +153,16 @@ gearpump_broker_user: user
 
 # password that the Gearpump broker will use
 gearpump_broker_user_pass: awhile-scary-melting-globe
+
+# organization and space, where core TAP applications will be pushed
+core_org_name: seedorg
+core_space_name: seedspace
+
+# gearpump credentials and settings
+gearpump_broker_user_pass: randompassword
+
+#gearpump's dashboard name
+gearpump_ui_name: "gearpump-dashboard"
 
 # TODO
 gearpump_broker_znode_in_zookeeper: /org/intel/gearpumpbroker/metadata
