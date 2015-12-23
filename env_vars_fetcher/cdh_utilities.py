@@ -2,6 +2,8 @@ try:
     from sshtunnel import SSHTunnelForwarder
 except ImportError:
     from sshtunnel.sshtunnel import SSHTunnelForwarder
+from cm_api.api_client import ApiResource, ApiException
+from cm_api.endpoints.services import ApiService, ApiServiceSetupInfo
 import paramiko
 import json
 import yaml
@@ -27,7 +29,9 @@ class CdhConfExtractor(object):
         self._key_password = config['machines']['cdh-launcher']['key_password']
         self._is_openstack = config['is_openstack_env']
         self._is_kerberos = config['is_kerberos']
-        self._cdh_manager_ip = config['machines']['cdh-manager-ip']
+        self._cdh_manager_ip = config['machines']['cdh-manager']['ip']
+        self._cdh_manager_user = config['machines']['cdh-manager']['username']
+        self._cdh_manager_password = config['machines']['cdh-manager']['password']
 
     def __enter__(self):
         extractor = self
@@ -174,10 +178,14 @@ class CdhConfExtractor(object):
             result['hdfs_keytab_value'] = self.generate_keytab('hdfs')
             result['vcap_keytab_value'] = self.generate_keytab('vcap')
             result['krb5_base64'] = self.generate_base64_for_file('/etc/krb5.conf', self._cdh_manager_ip)
+            result['sentry_keytab_value'] = self.generate_keytab('hive/sys')
+            result['auth_gateway_profile'] = 'cloud,zookeeper-auth-gateway,hdfs-auth-gateway,sentry-auth-gateway'
         else:
-            result['hdfs_keytab_value'] = '""'
+            result['hdfs_keytab_value'] = "''"
             result['vcap_keytab_value'] = '""'
             result['krb5_base64'] = '""'
+            result['sentry_keytab_value'] = "''"
+            result['auth_gateway_profile'] = 'cloud,zookeeper-auth-gateway,hdfs-auth-gateway'
 
         master_nodes = self.extract_master_nodes_info(deployments_settings)
         for i, node in enumerate(master_nodes):
@@ -187,6 +195,12 @@ class CdhConfExtractor(object):
         result['import_hadoop_conf_hdfs'] = self.get_client_config_for_service('HDFS')
         result['import_hadoop_conf_hbase'] = self.get_client_config_for_service('HBASE')
         result['import_hadoop_conf_yarn'] = self.get_client_config_for_service('YARN')
+        
+        cdh_host = self.extract_cdh_manager_host()
+        helper = CdhApiHelper(ApiResource(cdh_host, username=self._cdh_manager_user, password=self._cdh_manager_password, version=9))
+        sentry_service = helper.get_sentry_service_from_cdh()
+        result['sentry_port'] = helper.get_sentry_port(sentry_service)
+        result['sentry_address'] = helper.get_sentry_host(sentry_service)
 
         return result
 
@@ -206,3 +220,22 @@ class CdhConfExtractor(object):
         with open(filename, 'r') as stream:
             return yaml.load(stream)
 
+class CdhApiHelper(object):
+
+    def __init__(self, cdhApi):
+        self.cdhApi = cdhApi
+
+    def get_sentry_service_from_cdh(self):
+        cluster = self.cdhApi.get_all_clusters()[0]
+        return next(service for service in cluster.get_all_services() if service.type == 'SENTRY')
+
+    def get_sentry_host(self, sentry):
+        sentry_id = sentry.get_all_roles()[0].hostRef.hostId
+        return self.cdhApi.get_host(sentry_id).hostname
+
+    def get_sentry_port(self, sentry):
+        sentry_config = sentry.get_all_roles()[0].get_config('full')
+        for config_entry in sentry_config:
+            if "port" in config_entry:
+                port = sentry_config[config_entry].value or sentry_config[config_entry].default
+        return port

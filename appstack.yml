@@ -133,6 +133,7 @@ applications:
 - name: yarn-broker
   env:
     service_broker_names: yarn
+- name: auth-gateway
 service_instances:
 - name: postgres-for-atk
   service_plan:
@@ -344,6 +345,18 @@ service_instances:
     service:
       label: ipython
       broker: docker
+- name: zookeeper-instance-bare
+  service_plan:
+    name: bare
+    service:
+      label: zookeeper
+      broker: zookeeper          
+- name: hdfs-instance-bare
+  service_plan:
+    name: shared
+    service:
+      label: hdfs
+      broker: hdfs
 user_provided_service_instances:
 - name: sso
 - name: nats-provider

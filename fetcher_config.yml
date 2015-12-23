@@ -34,6 +34,9 @@ machines:
    # optional (used default values)
    path_to_cf_tiny_yml:
    path_to_docker_vpc_yml:
- # optional if configuration files on cdh-launcher exist
- cdh-manager-ip:
 
+ cdh-manager:
+   username:
+   password:
+   # optional if configuration files on cdh-launcher exist
+   ip: 

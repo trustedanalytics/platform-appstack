@@ -175,12 +175,21 @@ hdfs_broker_user: user
 # password that the HDFS broker will use
 hdfs_broker_user_pass: calmed-jumps-jerk-apologies
 
+# hdfs super user name - used by hdfs-auth-gateway in auth-gateway
+hdfs_super_user: hdfs
+
 # username that the Kafka broker will use
 kafka_broker_user: admin
 
 # password that the Kafka broker will use
 kafka_broker_user_pass: admin
 
+# service principal name defined for Sentry service
+sentry_principal: sentry
+
+# principal name on whose behalf Sentry provider connects to Sentry service
+sentry_superuser: hive/sys
+        
 # username that the SMTP broker will use
 smtp_broker_user: admin
 

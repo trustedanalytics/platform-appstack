@@ -20,7 +20,11 @@ class TestSSHConnectionToCdh:
                     'key_filename': 'key.pem',
                     'key_password': None
                 },
-                'cdh-manager-ip': ''
+                'cdh-manager': {
+                    'ip': '',
+                    'username': 'test',
+                    'password': 'test'
+                }
             }
         }
 
