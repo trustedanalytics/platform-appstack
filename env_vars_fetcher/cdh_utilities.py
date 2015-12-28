@@ -174,6 +174,10 @@ class CdhConfExtractor(object):
         result['cloudera_manager_internal_host'] = self.extract_cdh_manager_details(deployments_settings)['hostname']
 
         if self._is_kerberos.lower() == 'true':
+            helper = CdhApiHelper(ApiResource(self._local_bind_address, username=self._cdh_manager_user, password=self._cdh_manager_password, version=9))
+            sentry_service = helper.get_sentry_service_from_cdh()
+            result['sentry_port'] = helper.get_sentry_port(sentry_service)
+            result['sentry_address'] = helper.get_sentry_host(sentry_service)
             result['kerberos_host'] = result['cloudera_manager_internal_host']
             result['hdfs_keytab_value'] = self.generate_keytab('hdfs')
             result['vcap_keytab_value'] = self.generate_keytab('vcap')
@@ -195,12 +199,6 @@ class CdhConfExtractor(object):
         result['import_hadoop_conf_hdfs'] = self.get_client_config_for_service('HDFS')
         result['import_hadoop_conf_hbase'] = self.get_client_config_for_service('HBASE')
         result['import_hadoop_conf_yarn'] = self.get_client_config_for_service('YARN')
-        
-        cdh_host = self.extract_cdh_manager_host()
-        helper = CdhApiHelper(ApiResource(cdh_host, username=self._cdh_manager_user, password=self._cdh_manager_password, version=9))
-        sentry_service = helper.get_sentry_service_from_cdh()
-        result['sentry_port'] = helper.get_sentry_port(sentry_service)
-        result['sentry_address'] = helper.get_sentry_host(sentry_service)
 
         return result
 
