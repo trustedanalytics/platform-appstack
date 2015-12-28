@@ -30,7 +30,7 @@ class CdhConfExtractor(object):
         self._is_openstack = config['is_openstack_env']
         self._is_kerberos = config['is_kerberos']
         self._cdh_manager_ip = config['machines']['cdh-manager']['ip']
-        self._cdh_manager_user = config['machines']['cdh-manager']['username']
+        self._cdh_manager_user = config['machines']['cdh-manager']['user']
         self._cdh_manager_password = config['machines']['cdh-manager']['password']
 
     def __enter__(self):

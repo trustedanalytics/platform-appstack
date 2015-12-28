@@ -22,7 +22,7 @@ class TestSSHConnectionToCdh:
                 },
                 'cdh-manager': {
                     'ip': '',
-                    'username': 'test',
+                    'user': 'test',
                     'password': 'test'
                 }
             }
