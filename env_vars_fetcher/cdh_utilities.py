@@ -185,10 +185,12 @@ class CdhConfExtractor(object):
             result['sentry_keytab_value'] = self.generate_keytab('hive/sys')
             result['auth_gateway_profile'] = 'cloud,zookeeper-auth-gateway,hdfs-auth-gateway,sentry-auth-gateway'
         else:
+            result['sentry_port'] = "''"
+            result['sentry_address'] = "''"
+            result['sentry_keytab_value'] = "''"
             result['hdfs_keytab_value'] = "''"
             result['vcap_keytab_value'] = '""'
             result['krb5_base64'] = '""'
-            result['sentry_keytab_value'] = "''"
             result['auth_gateway_profile'] = 'cloud,zookeeper-auth-gateway,hdfs-auth-gateway'
 
         master_nodes = self.extract_master_nodes_info(deployments_settings)
