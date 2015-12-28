@@ -94,6 +94,9 @@ CDH_cluster_name: CDH-cluster
 # username of the Cloud Foundry admin
 cf_admin_username: admin
 
+# version of CF CLI compatiple with the platform
+cf_cli_version: 6.12.4
+
 # HDFS nameservice name used in cdh-broker (e.g. nameservice1)
 hdfs_nameservice_for_cdh_broker: nameservice1
 

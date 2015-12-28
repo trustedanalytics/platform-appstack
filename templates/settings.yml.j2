@@ -44,6 +44,8 @@ applications:
 - name: platform-operations
 - name: model-catalog
 - name: platform-context
+  env:
+    CF_CLI_VERSION: {{ cf_cli_version }}
 - name: cdh-broker
   memory: 128M
   env:
