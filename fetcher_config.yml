@@ -36,7 +36,7 @@ machines:
    path_to_docker_vpc_yml:
 
  cdh-manager:
-   username:
-   password:
+   user: admin
+   password: admin
    # optional if configuration files on cdh-launcher exist
    ip: 
