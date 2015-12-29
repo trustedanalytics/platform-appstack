@@ -174,24 +174,26 @@ class CdhConfExtractor(object):
         result['cloudera_manager_internal_host'] = self.extract_cdh_manager_details(deployments_settings)['hostname']
 
         if self._is_kerberos.lower() == 'true':
-            helper = CdhApiHelper(ApiResource(self._local_bind_address, username=self._cdh_manager_user, password=self._cdh_manager_password, version=9))
-            sentry_service = helper.get_sentry_service_from_cdh()
-            result['sentry_port'] = helper.get_sentry_port(sentry_service)
-            result['sentry_address'] = helper.get_sentry_host(sentry_service)
             result['kerberos_host'] = result['cloudera_manager_internal_host']
             result['hdfs_keytab_value'] = self.generate_keytab('hdfs')
             result['vcap_keytab_value'] = self.generate_keytab('vcap')
             result['krb5_base64'] = self.generate_base64_for_file('/etc/krb5.conf', self._cdh_manager_ip)
-            result['sentry_keytab_value'] = self.generate_keytab('hive/sys')
-            result['auth_gateway_profile'] = 'cloud,zookeeper-auth-gateway,hdfs-auth-gateway,sentry-auth-gateway'
+
+            # Auth-gateway section
+            # helper = CdhApiHelper(ApiResource(self._local_bind_address, username=self._cdh_manager_user, password=self._cdh_manager_password, version=9))
+            # sentry_service = helper.get_sentry_service_from_cdh()
+            # result['sentry_port'] = helper.get_sentry_port(sentry_service)
+            # result['sentry_address'] = helper.get_sentry_host(sentry_service)
+            # result['sentry_keytab_value'] = self.generate_keytab('hive/sys')
+            # result['auth_gateway_profile'] = 'cloud,zookeeper-auth-gateway,hdfs-auth-gateway,sentry-auth-gateway'
         else:
-            result['sentry_port'] = "''"
-            result['sentry_address'] = "''"
+            # result['sentry_port'] = "''"
+            # result['sentry_address'] = "''"
             result['sentry_keytab_value'] = "''"
             result['hdfs_keytab_value'] = "''"
             result['vcap_keytab_value'] = '""'
             result['krb5_base64'] = '""'
-            result['auth_gateway_profile'] = 'cloud,zookeeper-auth-gateway,hdfs-auth-gateway'
+            # result['auth_gateway_profile'] = 'cloud,zookeeper-auth-gateway,hdfs-auth-gateway'
 
         master_nodes = self.extract_master_nodes_info(deployments_settings)
         for i, node in enumerate(master_nodes):

@@ -135,7 +135,7 @@ applications:
 - name: yarn-broker
   env:
     service_broker_names: yarn
-- name: auth-gateway
+#- name: auth-gateway
 service_instances:
 - name: postgres-for-atk
   service_plan:
