@@ -9,14 +9,6 @@ applications:
     TOKEN_URL: http://uaa.{{ run_domain }}/oauth/token
     AUTH_USER: {{ application_broker_user }}
     AUTH_PASS: {{ application_broker_pass }}
-- name: atk
-  env:
-    CC_URI: api.{{ run_domain }}
-    UAA_CLIENT_NAME: {{ atk_client_name }}
-    UAA_CLIENT_PASSWORD: {{ atk_client_pass }}
-    UAA_URI: uaa.{{ run_domain }}
-    KEYTAB_VCAP: {{ vcap_keytab_value }}
-    KRB5_BASE64: {{ krb5_base64 }}
 - name: scoring-engine
 - name: hdfs-broker
   env:
@@ -114,6 +106,14 @@ applications:
 #    SENTRY_PRINCIPAL: {{ sentry_principal }}
 #    SENTRY_SUPERUSER: {{ sentry_superuser }}
 #    SPRING_PROFILES_ACTIVE: {{auth_gateway_profile}}
+- name: atk
+  env:
+    CC_URI: api.{{ run_domain }}
+    UAA_CLIENT_NAME: {{ atk_client_name }}
+    UAA_CLIENT_PASSWORD: {{ atk_client_pass }}
+    UAA_URI: uaa.{{ run_domain }}
+    KEYTAB_VCAP: {{ vcap_keytab_value }}
+    KRB5_BASE64: {{ krb5_base64 }}
 user_provided_service_instances:
 - name: sso
   credentials:
