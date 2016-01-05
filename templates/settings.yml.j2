@@ -183,7 +183,7 @@ user_provided_service_instances:
     {% endif %}
 
     # for systems with Arcadia
-    # hiveUrl: jdbc:hive2://{{ any_arcadia_node }}:31050/auth=noSasl
+    # hiveUrl: jdbc:hive2://{{ any_arcadia_node }}:31050/;auth=noSasl
     # for systems with Kerberos
     # hiveUrl: jdbc:hive2://{{ namenode_internal_host }}:10000/default;principal=hive/{{ namenode_internal_host }}@CLOUDERA;auth=kerberos
     hiveUser: hdfs
