@@ -4,7 +4,7 @@ applications:
 - name: application-broker
   env:
     CF_API: http://api.{{ apps_domain }}
-    CLIENT_ID: developer_console
+    CLIENT_ID: tap_console
     CLIENT_SECRET: {{ developer_console_password }}
     TOKEN_URL: http://uaa.{{ run_domain }}/oauth/token
     AUTH_USER: {{ application_broker_user }}
@@ -120,7 +120,7 @@ user_provided_service_instances:
     apiEndpoint: http://api.{{ run_domain }}
     authorizationUri: http://login.{{ run_domain }}/oauth/authorize
     checkTokenUri: http://uaa.{{ run_domain }}/check_token
-    clientId: developer_console
+    clientId: tap_console
     clientSecret: {{ developer_console_password }}
     logoutUri: http://login.{{ run_domain }}/logout.do
     tokenKey: http://uaa.{{ run_domain }}/token_key
