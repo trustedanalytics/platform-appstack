@@ -40,20 +40,7 @@ tox -r
 ```
 
 ### After running the Env vars fetcher script
-1. Copy settings.yml and appstack.yml to cloudfoundry-mkappstack folder.
-1. Please, check the names format of zipped artifacts in artifacts directory.
-
-If they contain versions and are in the following format:
-`<appname>-<version>.zip`
-(for example: app-launcher-helper-0.4.5.zip) 
-* Copy versions.yml file to cloudfoundry-mkappstack folder.
-* Verify if versions in versions.yml are the same as versions in zipped artifacts file names. 
-* If you encounter differences, update versions in versions.yml file so they are the same as in the zipped artifact file names.
-
-If they do not contain version and are in the following format:
-`<appname>.zip` 
-(for example: app-launcher-helper.zip) 
-* No additional actions are required. Please proceed with further instructions.
+Copy settings.yml and appstack.yml to cloudfoundry-mkappstack folder.
 
 Follow further instructions from [Platform Application Layer Deployment](https://github.com/trustedanalytics/platform-wiki/wiki/Platform-application-layer-deployment) to deploy the platform applications and brokers
 
