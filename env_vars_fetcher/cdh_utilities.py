@@ -186,6 +186,7 @@ class CdhConfExtractor(object):
             # result['sentry_address'] = helper.get_sentry_host(sentry_service)
             # result['sentry_keytab_value'] = self.generate_keytab('hive/sys')
             # result['auth_gateway_profile'] = 'cloud,zookeeper-auth-gateway,hdfs-auth-gateway,sentry-auth-gateway'
+            result['kerberos_cacert'] = self.generate_base64_for_file('/var/krb5kdc/cacert.pem', self._cdh_manager_ip)
         else:
             # result['sentry_port'] = "''"
             # result['sentry_address'] = "''"
@@ -194,6 +195,7 @@ class CdhConfExtractor(object):
             result['vcap_keytab_value'] = '""'
             result['krb5_base64'] = '""'
             # result['auth_gateway_profile'] = 'cloud,zookeeper-auth-gateway,hdfs-auth-gateway'
+            result['kerberos_cacert'] = '""'
 
         master_nodes = self.extract_master_nodes_info(deployments_settings)
         for i, node in enumerate(master_nodes):

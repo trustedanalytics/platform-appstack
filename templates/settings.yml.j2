@@ -212,6 +212,7 @@ user_provided_service_instances:
     kpassword: "{{ kerberos_password if kerberos_host != '' }}"
     krealm: "{{ kerberos_realm if kerberos_host != '' }}"
     kuser: "{{ kerberos_username }}"
+    kcacert: {{ kerberos_cacert }}
 ### TO REMOVE after DPNG-2306 ###############
 - name: external-tools
   credentials:
