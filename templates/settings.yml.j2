@@ -1,5 +1,10 @@
 apps_domain: {{ apps_domain }}
 timeout: {{ timeout }}
+{% if kerberos_host != '' %}
+buildpacks:
+- name: tap-java-buildpack
+  VERSION: 3.4-1
+{% endif %}
 applications:
 - name: application-broker
   env:
