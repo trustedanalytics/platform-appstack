@@ -14,6 +14,7 @@ applications:
   env:
     USER_PASSWORD: {{ hdfs_broker_user_pass }}
     BROKER_PATH: {{ hdfs_broker_folder_on_hdfs }}
+    BROKER_USERSPACE_PATH: {{ hdfs_broker_folder_on_hdfs }}/userspace/%{instance}
     HADOOP_PROVIDED_ZIP: '{{ import_hadoop_conf_hdfs }}'
     SPRING_PROFILES_ACTIVE: cloud,{{ 'secure' if kerberos_host != '' else 'insecure' }}
     HDFS_KEYTAB: {{ hdfs_keytab_value }}
