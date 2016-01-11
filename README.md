@@ -15,9 +15,9 @@ Install necessary Python libraries:
 ```
 sudo -E pip install -r requirements.txt
 ```
-
-Be sure that you have added ```127.0.0.1``` address in ```/etc/hosts``` file with specified name, for example:
-```127.0.0.1 bastion```
+Be sure that you have configured ```/etc/hosts``` properly. For this purpose run command ```hostname```.
+As a result of this operation you will see hostname of your machine. Now open ```/etc/hosts``` file and find there one line:
+```127.0.0.1 <your_hostname>```. If you cannot find it, you should add it there.
 
 ## Usage
 ### Env vars fetcher script configuration
