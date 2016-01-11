@@ -102,16 +102,21 @@ applications:
     HDFS_USER: {{ hdfs_username }}
     KERBEROS_USER: "{{ kerberos_username if kerberos_host != '' }}"
     KERBEROS_PASS: "{{ kerberos_password if kerberos_host != '' }}"
-#- name: auth-gateway
-#  env:
-#    HDFS_SUPERUSER: {{ hdfs_super_user }}
-#    HDFS_KEYTAB: {{ hdfs_keytab_value }}
-#    SENTRY_KEYTAB: {{ sentry_keytab_value }}
-#    SENTRY_ADDRESS: {{ sentry_address }}
-#    SENTRY_PORT: {{ sentry_port }}
-#    SENTRY_PRINCIPAL: {{ sentry_principal }}
-#    SENTRY_SUPERUSER: {{ sentry_superuser }}
-#    SPRING_PROFILES_ACTIVE: {{auth_gateway_profile}}
+- name: auth-gateway
+  env:
+    HDFS_SUPERUSER: {{ hdfs_super_user }}
+    HDFS_KEYTAB: {{ hdfs_keytab_value }}
+    HGM_PRINCIPAL: {{ hgm_principal }}
+    HGM_PRINCIPAL_KEYTAB: {{ hgm_keytab_value }}
+    HGM_URL: {{ hgm_adress }}
+    HGM_USERNAME: {{ hgm_username }}
+    HGM_PASSWORD: {{ hgm_password }}
+    SENTRY_KEYTAB: {{ sentry_keytab_value }}
+    SENTRY_ADDRESS: {{ sentry_address }}
+    SENTRY_PORT: {{ sentry_port }}
+    SENTRY_PRINCIPAL: {{ sentry_principal }}
+    SENTRY_SUPERUSER: {{ sentry_superuser }}
+    SPRING_PROFILES_ACTIVE: {{ auth_gateway_profile }}
 - name: atk
   env:
     CC_URI: api.{{ run_domain }}
