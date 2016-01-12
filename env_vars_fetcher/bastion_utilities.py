@@ -58,7 +58,7 @@ class CFConfExtractor(object):
         if self._path_to_cf_tiny_yml is not None and self._path_to_docker_vpc_yml is not None:
             docker_vpc_yml = yaml.load(self.ssh_call_command('cat {0}'.format(self._path_to_docker_vpc_yml)))
             cf_tiny_yml = yaml.load(self.ssh_call_command('cat {0}'.format(self._path_to_cf_tiny_yml)))
-        elif self._is_openstack.lower() == 'true':
+        elif self._is_openstack:
             docker_vpc_yml = yaml.load(self.ssh_call_command('cat ~/workspace/deployments/docker-services-boshworkspace/deployments/docker-openstack.yml'))
             cf_tiny_yml = yaml.load(self.ssh_call_command('cat ~/workspace/deployments/cf-boshworkspace/deployments/cf-openstack-tiny.yml'))
         else:

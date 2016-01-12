@@ -1,9 +1,9 @@
 ---
 # determines is script running on openstack environment
-is_openstack_env: "false"
+is_openstack_env: False
 
 # determines is kerberos used on environment
-is_kerberos: "false"
+is_kerberos: False
 
 machines:
  # access information for cdh-launcher
@@ -38,5 +38,7 @@ machines:
  cdh-manager:
    user: admin
    password: admin
+   # 'True' if cdh-manager machine is not accessible from machine on which script is running, else 'False'
+   sshtunnel_required: True
    # optional if configuration files on cdh-launcher exist
    ip: 

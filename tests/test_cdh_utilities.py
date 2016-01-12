@@ -10,8 +10,8 @@ class TestSSHConnectionToCdh:
     def setup_class(cls):
         cls.default_config_name = 'fetcher_config.yml'
         cls.json_config = {
-            'is_openstack_env': 'true',
-            'is_kerberos': 'true',
+            'is_openstack_env': True,
+            'is_kerberos': True,
             'machines': {
                 'cdh-launcher': {
                     'hostname': '10.10.10.10',
@@ -23,7 +23,8 @@ class TestSSHConnectionToCdh:
                 'cdh-manager': {
                     'ip': '',
                     'user': 'test',
-                    'password': 'test'
+                    'password': 'test',
+                    'sshtunnel_required': True
                 }
             }
         }
@@ -69,8 +70,9 @@ class TestSSHConnectionToCdh:
         mock_policy.return_value = mock.Mock()
 
         # execute
-        self.cdhUtilities.create_ssh_connection_to_cdh()
-        self.cdhUtilities.close_connection_to_cdh()
+        self.cdhUtilities.create_ssh_connection(self.cdhUtilities._hostname, self.cdhUtilities._username,
+                                                                  self.cdhUtilities._key_filename, self.cdhUtilities._key_password)
+        self.cdhUtilities.close_ssh_connection()
 
         # attest
         assert ssh_client_mock.set_missing_host_key_policy.call_count == 1

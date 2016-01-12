@@ -31,15 +31,21 @@ class CdhConfExtractor(object):
         self._is_kerberos = config['is_kerberos']
         self._cdh_manager_ip = config['machines']['cdh-manager']['ip']
         self._cdh_manager_user = config['machines']['cdh-manager']['user']
+        self._cdh_manager_sshtunnel_required = config['machines']['cdh-manager']['sshtunnel_required']
         self._cdh_manager_password = config['machines']['cdh-manager']['password']
 
     def __enter__(self):
         extractor = self
         try:
-            self._logger.info('Creating tunnel to CDH-Manager.')
-            extractor.create_tunnel_to_cdh_manager()
-            extractor.start_cdh_manager_tunneling()
-            self._logger.info('Tunnel to CDH-Manager has been created.')
+            if self._cdh_manager_sshtunnel_required:
+                self._logger.info('Creating tunnel to CDH-Manager.')
+                extractor.create_tunnel_to_cdh_manager()
+                extractor.start_cdh_manager_tunneling()
+                self._logger.info('Tunnel to CDH-Manager has been created.')
+            else:
+                self._logger.info('Connection to CDH-Manager host without ssh tunnel.')
+                self._local_bind_address = self.extract_cdh_manager_host()
+                self._local_bind_port = 7180
             return extractor
         except Exception as exc:
             self._logger.error('Cannot creating tunnel to CDH-Manager machine.')
@@ -47,31 +53,32 @@ class CdhConfExtractor(object):
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         try:
-            self.stop_cdh_manager_tunneling()
-            self._logger.info('Tunelling to CDH-Manager stopped.')
+            if self._cdh_manager_sshtunnel_required:
+                self.stop_cdh_manager_tunneling()
+                self._logger.info('Tunelling to CDH-Manager stopped.')
         except Exception as exc:
             self._logger.error('Cannot close tunnel to CDH-Manager machine.')
             raise exc
 
     # Cdh launcher methods
-    def create_ssh_connection_to_cdh(self):
+    def create_ssh_connection(self, hostname, username, key_filename, key_password):
         try:
-            self._logger.info('Creating connection to CDH-launcher.')
+            self._logger.info('Creating connection to remote host {0}.'.format(hostname))
             self.ssh_connection = paramiko.SSHClient()
             self.ssh_connection.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-            self.ssh_connection.connect(self._hostname, username=self._username, key_filename=self._key, password=self._key_password)
-            self._logger.info('Connection to CDH-launcher established.')
+            self.ssh_connection.connect(hostname, username=username, key_filename=key_filename, password=key_password)
+            self._logger.info('Connection to host {0} established.'.format(hostname))
         except Exception as exc:
-            self._logger.error('Cannot creating connection to CDH-launcher machine. Check your settings '
-                               'in fetcher_config.yml file.')
+            self._logger.error('Cannot creating connection to host {0} machine. Check your settings '
+                               'in fetcher_config.yml file.'.format(hostname))
             raise exc
 
-    def close_connection_to_cdh(self):
+    def close_ssh_connection(self):
         try:
             self.ssh_connection.close()
-            self._logger.info('Connection to CDH-launcher closed.')
+            self._logger.info('Connection to remote host closed.')
         except Exception as exc:
-            self._logger.error('Cannot close connection to the CDH-launcher machine.')
+            self._logger.error('Cannot close connection to the remote host.')
             raise exc
 
     def ssh_call_command(self, command, subcommands=None):
@@ -86,13 +93,13 @@ class CdhConfExtractor(object):
     def extract_cdh_manager_host(self):
         self._logger.info('Extracting CDH-Manager address.')
         if self._cdh_manager_ip is None:
-            self.create_ssh_connection_to_cdh()
-            if self._is_openstack.lower() == 'true':
+            self.create_ssh_connection(self._hostname, self._username, self._key_filename, self._key_password)
+            if self._is_openstack:
                 ansible_ini = self.ssh_call_command('cat ansible-cdh/platform-ansible/inventory/cdh')
             else:
                 ansible_ini = self.ssh_call_command('cat ansible-cdh/inventory/cdh')
             self._cdh_manager_ip = self._get_host_ip('cdh-manager', ansible_ini)
-            self.close_connection_to_cdh()
+            self.close_ssh_connection()
         self._logger.info('CDH-Manager adress extracted: {}'.format(self._cdh_manager_ip))
         return self._cdh_manager_ip
 
@@ -145,36 +152,36 @@ class CdhConfExtractor(object):
 
     def generate_keytab(self, principal_name):
         self._logger.info('Generating keytab for {} principal.'.format(principal_name))
-        self.create_ssh_connection_to_cdh()
+        self.create_ssh_connection(self._hostname, self._username, self._key_filename, self._key_password)
         sftp = self.ssh_connection.open_sftp()
         sftp.put('utils/generate_keytab_script.sh', '/tmp/generate_keytab_script.sh')
         self.ssh_call_command('scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no /tmp/generate_keytab_script.sh {0}:/tmp/'.format(self._cdh_manager_ip))
         self.ssh_call_command('ssh -t {0} -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no "chmod 700 /tmp/generate_keytab_script.sh"'.format(self._cdh_manager_ip))
         keytab_hash = self.ssh_call_command('ssh -t {0} -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no "/tmp/generate_keytab_script.sh {1}"'
                                             .format(self._cdh_manager_ip, principal_name))
-        self.close_connection_to_cdh()
+        self.close_ssh_connection()
         lines = keytab_hash.splitlines()
         self._logger.info('Keytab for {} principal has been generated.'.format(principal_name))
         return '"{}"'.format(''.join(lines[2:-2]))
 
     def generate_base64_for_file(self, file_path, hostname):
         self._logger.info('Generating base64 for {} file.'.format(file_path))
-        self.create_ssh_connection_to_cdh()
+        self.create_ssh_connection(self._hostname, self._username, self._key_filename, self._key_password)
         base64_file_hash = self.ssh_call_command('ssh -t {0} -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no "base64 {1}"'.format(hostname, file_path))
-        self.close_connection_to_cdh()
+        self.close_ssh_connection()
         lines = base64_file_hash.splitlines()
         self._logger.info('Base64 hash for {0} file on {1} machine has been generated.'.format(file_path, hostname))
         return '"{}"'.format(''.join(lines[2:-2]))
 
-    def get_all_deployments_conf(self, cdh_manager_username='admin', cdh_manager_password='admin'):
+    def get_all_deployments_conf(self):
         result = {}
         deployments_settings = json.loads(requests.get('http://' + self._local_bind_address + ':'
                                                        + str(self._local_bind_port) + '/api/v10/cm/deployment',
-                                                    auth=(cdh_manager_username, cdh_manager_password)).content)
+                                                    auth=(self._cdh_manager_user, self._cdh_manager_password)).content)
         result['cloudera_manager_internal_host'] = self.extract_cdh_manager_details(deployments_settings)['hostname']
 
         helper = CdhApiHelper(ApiResource(self._local_bind_address, username=self._cdh_manager_user, password=self._cdh_manager_password, version=9))
-        if self._is_kerberos.lower() == 'true':
+        if self._is_kerberos:
             result['kerberos_host'] = result['cloudera_manager_internal_host']
             result['hdfs_keytab_value'] = self.generate_keytab('hdfs/sys')
             result['auth_gateway_keytab_value'] = self.generate_keytab('authgateway/sys')
