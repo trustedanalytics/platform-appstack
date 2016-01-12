@@ -7,7 +7,7 @@ cf_admin_password:
 cf_admin_client_password: 
 
 # ip of any Arcadia worker node
-#any_arcadia_node: 
+#any_arcadia_node:
 
 # hostname of Hue worker node
 hue_node:

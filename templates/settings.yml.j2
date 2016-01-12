@@ -245,7 +245,8 @@ user_provided_service_instances:
       internal_host: "{{ hue_node }}:8888"
     arcadia:
       available: "{{ external_tool_arcadia }}"
-      url: placeholder
+      url: "https://arcadia.{{ apps_domain }}/arc/apps/"
+      internal_host: "{{ any_arcadia_node }}:443"
     rstudio:
       available: "{{ external_tool_rstudio }}"
     h2o:
