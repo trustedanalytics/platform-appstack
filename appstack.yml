@@ -199,7 +199,7 @@ service_instances:
       broker: docker
 - name: hdfs-instance
   service_plan:
-    name: shared
+    name: template
     service:
       label: hdfs
       broker: hdfs
