@@ -258,7 +258,7 @@ class CdhApiHelper(object):
         return entry
 
     def get_entry_from_group(self, service, name, group):
-        sentry_config = service.get_role_config_group('HADOOPGROUPSMAPPING-HADOOPGROUPSMAPPING_RESTSERVER-BASE').get_config('full')
+        sentry_config = service.get_role_config_group(group).get_config('full')
         for config_entry in sentry_config:
             if name in config_entry:
                 entry = sentry_config[config_entry].value or sentry_config[config_entry].default
