@@ -179,7 +179,7 @@ hdfs_broker_user: user
 hdfs_broker_user_pass: calmed-jumps-jerk-apologies
 
 # hdfs super user name - used by hdfs-auth-gateway in auth-gateway
-hdfs_super_user: hdfs
+hdfs_super_user: authgateway/sys
 
 # hgm super user name - used by group-mapping-auth-gateway in auth-gateway
 hgm_principal: hgm/sys

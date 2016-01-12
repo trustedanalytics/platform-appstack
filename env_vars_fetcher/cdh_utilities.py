@@ -173,15 +173,16 @@ class CdhConfExtractor(object):
                                                     auth=(cdh_manager_username, cdh_manager_password)).content)
         result['cloudera_manager_internal_host'] = self.extract_cdh_manager_details(deployments_settings)['hostname']
 
+        helper = CdhApiHelper(ApiResource(self._local_bind_address, username=self._cdh_manager_user, password=self._cdh_manager_password, version=9))
         if self._is_kerberos.lower() == 'true':
             result['kerberos_host'] = result['cloudera_manager_internal_host']
-            result['hdfs_keytab_value'] = self.generate_keytab('authgateway/sys')
+            result['hdfs_keytab_value'] = self.generate_keytab('hdfs/sys')
+            result['auth_gateway_keytab_value'] = self.generate_keytab('authgateway/sys')
             result['hgm_keytab_value'] = self.generate_keytab('hgm/sys')
             result['vcap_keytab_value'] = self.generate_keytab('vcap')
             result['krb5_base64'] = self.generate_base64_for_file('/etc/krb5.conf', self._cdh_manager_ip)
             result['kerberos_cacert'] = self.generate_base64_for_file('/var/krb5kdc/cacert.pem', self._cdh_manager_ip)
 
-            helper = CdhApiHelper(ApiResource(self._local_bind_address, username=self._cdh_manager_user, password=self._cdh_manager_password, version=9))
             sentry_service = helper.get_service_from_cdh('SENTRY')
             result['sentry_port'] = helper.get_entry(sentry_service, 'port')
             result['sentry_address'] = helper.get_host(sentry_service)
@@ -197,6 +198,7 @@ class CdhConfExtractor(object):
             result['sentry_address'] = "''"
             result['sentry_keytab_value'] = "''"
             result['hdfs_keytab_value'] = "''"
+            result['auth_gateway_keytab_value'] = "''"
             result['vcap_keytab_value'] = '""'
             result['hgm_keytab_value'] = '""'
             result['krb5_base64'] = '""'
