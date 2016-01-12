@@ -251,7 +251,10 @@ class CdhApiHelper(object):
 
     def get_service_from_cdh(self, name):
         cluster = self.cdhApi.get_all_clusters()[0]
-        return next(service for service in cluster.get_all_services() if service.type == name)
+        try:
+            return next(service for service in cluster.get_all_services() if service.type == name)
+        except StopIteration:
+            raise NoCdhServiceError('No {} in CDH services.'.format(name))
 
     def get_host(self, service):
         id = service.get_all_roles()[0].hostRef.hostId
@@ -270,3 +273,7 @@ class CdhApiHelper(object):
             if name in config_entry:
                 entry = sentry_config[config_entry].value or sentry_config[config_entry].default
         return entry
+
+class NoCdhServiceError(Exception):
+    pass
+
