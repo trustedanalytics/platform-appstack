@@ -6,8 +6,8 @@ cf_admin_password:
 # client password of the Cloud Foundry UAA admin
 cf_admin_client_password: 
 
-# ip of any Arcadia worker node
-any_arcadia_node:
+# hostname of any Arcadia worker node, provide this value if other than cdh-worker-0
+arcadia_node:
 
 # hostname of Hue worker node
 hue_node:

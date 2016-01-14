@@ -208,9 +208,8 @@ user_provided_service_instances:
       {% endif %}
     {% else %}
     # for systems with Arcadia
-    hiveUrl: jdbc:hive2://{{ any_arcadia_node }}:31050/;auth=noSasl
+    hiveUrl: jdbc:hive2://{{ arcadia_node }}:31050/;auth=noSasl
     {% endif %}
-
     hiveUser: hdfs
 - name: platformcontext
   credentials:

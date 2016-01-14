@@ -133,12 +133,12 @@ class CdhConfExtractor(object):
             if 'cdh-manager' in host['hostname']:
                 return host
 
-    def extract_master_nodes_info(self, settings):
-        master_nodes = []
+    def extract_nodes_info(self, name, settings):
+        nodes = []
         for host in settings['hosts']:
-            if 'cdh-master' in host['hostname']:
-                master_nodes.append(host)
-        return master_nodes
+            if name in host['hostname']:
+                nodes.append(host)
+        return nodes
 
     def extract_service_namenode(self, service_name, role_name, settings):
         hdfs_service = self._find_item_by_attr_value(service_name, 'name', settings['clusters'][0]['services'])
@@ -148,7 +148,7 @@ class CdhConfExtractor(object):
 
     def get_client_config_for_service(self, service_name):
         result = requests.get('http://{0}:{1}/api/v10/clusters/CDH-cluster/services/{2}/clientConfig'.format(self._local_bind_address, self._local_bind_port, service_name))
-        return base64.standard_b64encode(result.content);
+        return base64.standard_b64encode(result.content)
 
     def generate_keytab(self, principal_name):
         self._logger.info('Generating keytab for {} principal.'.format(principal_name))
@@ -217,12 +217,12 @@ class CdhConfExtractor(object):
             result['hgm_password'] = helper.get_entry_from_group(hgm_service, 'basic_auth_pass', 'HADOOPGROUPSMAPPING-HADOOPGROUPSMAPPING_RESTSERVER-BASE')
             result['hgm_username'] = helper.get_entry_from_group(hgm_service, 'basic_auth_user', 'HADOOPGROUPSMAPPING-HADOOPGROUPSMAPPING_RESTSERVER-BASE')
 
-        master_nodes = self.extract_master_nodes_info(deployments_settings)
+        master_nodes = self.extract_nodes_info('cdh-master', deployments_settings)
         for i, node in enumerate(master_nodes):
             result['master_node_host_' + str(i+1)] = node['hostname']
         result['namenode_internal_host'] = self.extract_service_namenode('HDFS', 'HDFS-NAMENODE', deployments_settings)
         result['hue_node'] = self.extract_service_namenode('HUE', 'HUE-HUE_SERVER', deployments_settings)
-        result['any_arcadia_node'] = self.extract_service_namenode('HIVE', 'HIVE-GATEWAY-1', deployments_settings)
+        result['arcadia_node'] = self.extract_nodes_info('cdh-worker-0', deployments_settings)[0]['hostname']
         result['import_hadoop_conf_hdfs'] = self.get_client_config_for_service('HDFS')
         result['import_hadoop_conf_hbase'] = self.get_client_config_for_service('HBASE')
         result['import_hadoop_conf_yarn'] = self.get_client_config_for_service('YARN')
