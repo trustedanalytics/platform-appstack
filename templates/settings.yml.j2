@@ -175,7 +175,7 @@ user_provided_service_instances:
 - name: datacatalogexport
   credentials:
     host: http://hive.{{ apps_domain }}
-- name: hive
+- name: thrift-server
   credentials:
     # for systems without Arcadia
     {% if external_tool_arcadia == 'false' %}

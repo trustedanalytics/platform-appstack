@@ -426,7 +426,7 @@ user_provided_service_instances:
 #- name: hue
 #- name: arcadia
 - name: datacatalogexport
-- name: hive
+- name: thrift-server
 - name: platformcontext
 - name: router-metrics-provider
 - name: metadataparser
