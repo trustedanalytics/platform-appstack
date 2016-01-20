@@ -202,13 +202,17 @@ user_provided_service_instances:
     # for systems without Arcadia
     {% if external_tool_arcadia == 'false' %}
       {% if kerberos_host != '' %}
-    hiveUrl: jdbc:hive2://{{ namenode_internal_host }}:10000/default;principal=hive/{{ namenode_internal_host }}@CLOUDERA;auth=kerberos
+    hiveUrl: jdbc:hive2://{{ namenode_internal_host }}:10000/default;principal=hive/{{ namenode_internal_host }}@{{ kerberos_realm }};auth=kerberos
       {% else %}
     hiveUrl: jdbc:hive2://{{ namenode_internal_host }}:10000/
       {% endif %}
     {% else %}
     # for systems with Arcadia
+      {% if kerberos_host != '' %}
+    hiveUrl: jdbc:hive2://{{ arcadia_node }}:31050/;principal=arcadia-user/{{ arcadia_node }}@{{ kerberos_realm }};auth=kerberos
+      {% else %}
     hiveUrl: jdbc:hive2://{{ arcadia_node }}:31050/;auth=noSasl
+      {% endif %}
     {% endif %}
     hiveUser: hdfs
 - name: platformcontext
