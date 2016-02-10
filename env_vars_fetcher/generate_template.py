@@ -11,7 +11,7 @@ J2_ENV = Environment(loader=FileSystemLoader(directory))
 with open(join(directory, 'extracted_values.yml')) as f:
     template_variables = yaml.load(f)
 
-rendered_template = J2_ENV.get_template('templates/settings.yml.j2').render(template_variables)
+for template_file in J2_ENV.list_templates(extensions='j2'):
+    template = J2_ENV.get_template(template_file)
+    open(join(directory, os.path.splitext(os.path.basename(template.filename.__str__()))[0]), 'w').write(template.render(template_variables))
 
-with open(join(directory, 'settings.yml'), 'w') as f:
-    f.write(rendered_template)

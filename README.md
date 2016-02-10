@@ -21,8 +21,8 @@ As a result of this operation you will see hostname of your machine. Now open ``
 
 ## Usage
 ### Env vars fetcher script configuration
-1. Fill the fetcher_config.yml file before running script.
-1. Change values in ```templates/template_variables.yml``` for fields which are not filled automatically by ```env_vars_fetcher/app.py``` script.
+1. Fill the fetcher_config.yml file.
+1. Fill/Change values in ```templates/template_variables.yml``` file in the section named "VARIABLES FOR MANUAL CHANGE".
 
 ### Running the script - first way
 1. Run ```python env_vars_fetcher/app.py``` in order to generate settings.yml file.

@@ -1,9 +1,11 @@
 settings.yml
+auth-gateway.yml
 extracted_values.yml
 .tox
 .idea
 .cache
 .coverage
+.swp
 *.pyc
 *.pem
 *.dat

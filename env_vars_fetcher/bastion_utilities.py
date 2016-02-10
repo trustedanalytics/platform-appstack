@@ -16,7 +16,7 @@ class CFConfExtractor(object):
         self._key_filename = config['machines']['cf-bastion']['key_filename']
         self._key = os.path.expanduser(self._key_filename)
         self._key_password = config['machines']['cf-bastion']['key_password']
-        self._is_openstack = config['is_openstack_env']
+        self._is_openstack = config['openstack_env']
         self._path_to_cf_tiny_yml = config['machines']['cf-bastion']['path_to_cf_tiny_yml']
         self._path_to_docker_vpc_yml = config['machines']['cf-bastion']['path_to_docker_vpc_yml']
 

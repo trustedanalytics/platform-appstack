@@ -1,73 +1,3 @@
-########################## VARIABLES FILLED AUTOMATICALLY BY THE SCRIPT ############################
-
-# password of the Cloud Foundry admin
-cf_admin_password: 
-
-# client password of the Cloud Foundry UAA admin
-cf_admin_client_password: 
-
-# hostname of any Arcadia worker node, provide this value if other than cdh-worker-0
-arcadia_node:
-
-# hostname of Hue worker node
-hue_node:
-
-# apps domain of the Cloud Foundry deployment, can be checked in the bosh deployment YAML file
-apps_domain: 
-
-# hostname of the CDH Manager host
-cloudera_manager_internal_host: 
-
-# password for the developer-console client
-developer_console_password: 
-
-# e-mail address that will be used to send invitations
-email_address: 
-
-# output of the import_hadoop_conf.sh tool (https://github.com/trustedanalytics/hadoop-admin-tools) for three machines;
-# those will be JSON documents, they need to be in single quotes, e.g. '{"some_key": "some_value"}'
-import_hadoop_conf_hbase:
-import_hadoop_conf_hdfs: 
-import_hadoop_conf_yarn: 
-
-# *** set only for Kerberos-enabled deployment ***
-# hostname of the Kerberos Key Distribution Center, should be the same as CDH Manager machine
-kerberos_host: ''
-
-# hostnames of the CDH master nodes running zookeeper and kafka
-master_node_host_1: 
-master_node_host_2: 
-master_node_host_3:
-
-# hostname of the host serving as the HDFS namenode
-namenode_internal_host: 
-
-# ip address of the nats machine. can be checked with `bosh vms`
-nats_ip: 
-
-# run domain of the Cloud Foundry deployment, can be checked in the bosh deployment YAML file
-run_domain: 
-
-# SMTPAuth password (e.g. for Amazon SES service).
-# To disable authentication set value to 'null' (single or double quotation are necessary).
-# For non empty value, it should be inside single and double quotation marks: '"example_password"'.
-smtp_pass:
-
-# SMTPAuth username (e.g. for Amazon SES service).
-# Rules for setting the field are the same as for smtp_pass.
-smtp_user:
-
-# SMTPAuth port (e.g. 465)
-smtp_port:
-
-# SMTPAuth host (e.g. email-smtp.us-west-2.amazonaws.com)
-smtp_host:
-
-# SMTPAuth protocol (smtp or smtps),
-# fill this value if your smtp protocol is other than standard (25, 465, 587, 2525)
-smtp_protocol:
-
-
 ############################## VARIABLES FOR MANUAL CHANGE ##################################
 
 # Maximum timeout for pushing app to cloud foundry in seconds, (0-180)
@@ -75,8 +5,8 @@ timeout: 180
 
 # HTTP proxy in form of JVM parameters
 # If HTTP(s) proxy will not be use you MUST leave this value in form of empty string ('')
-# IMPORTANT: it is essential to set http.nonProxyHosts variable to domain 
-# which applications and services reside in. More information on proxy syntax can be 
+# IMPORTANT: it is essential to set http.nonProxyHosts variable to domain
+# which applications and services reside in. More information on proxy syntax can be
 # found at: http://docs.oracle.com/javase/6/docs/technotes/guides/net/proxies.html
 # example:
 # java_http_proxy: '-Dhttp.proxyHost=proxy.example.com -Dhttp.proxyPort=8080 -Dhttps.proxyHost=proxy.example.com -Dhttps.proxyPort=8080 -Dhttp.nonProxyHosts=localhost|127.*|[::1]|*.apps.example.com'
@@ -186,10 +116,10 @@ hdfs_broker_user: user
 hdfs_broker_user_pass: calmed-jumps-jerk-apologies
 
 # hdfs super user name - used by hdfs-auth-gateway in auth-gateway
-hdfs_super_user: authgateway/sys
+hdfs_super_user: authgateway
 
 # hgm super user name - used by group-mapping-auth-gateway in auth-gateway
-hgm_principal: hgm/sys
+hgm_principal: hgm
 
 # username that the Kafka broker will use
 kafka_broker_user: admin
@@ -197,12 +127,14 @@ kafka_broker_user: admin
 # password that the Kafka broker will use
 kafka_broker_user_pass: admin
 
+authgateway_principals_suffix: /sys
+
 # service principal name defined for Sentry service
 sentry_principal: sentry
 
 # principal name on whose behalf Sentry provider connects to Sentry service
-sentry_superuser: hive/sys
-        
+sentry_superuser: hive
+
 # username that the SMTP broker will use
 smtp_broker_user: admin
 
@@ -238,3 +170,71 @@ external_tool_gearpump: "false"
 external_tool_h2o: "false"
 #############################################
 
+########################## VARIABLES FILLED AUTOMATICALLY BY THE SCRIPT ############################
+
+# password of the Cloud Foundry admin
+cf_admin_password:
+
+# client password of the Cloud Foundry UAA admin
+cf_admin_client_password:
+
+# hostname of any Arcadia worker node, provide this value if other than cdh-worker-0
+arcadia_node:
+
+# hostname of Hue worker node
+hue_node:
+
+# apps domain of the Cloud Foundry deployment, can be checked in the bosh deployment YAML file
+apps_domain:
+
+# hostname of the CDH Manager host
+cloudera_manager_internal_host:
+
+# password for the developer-console client
+developer_console_password:
+
+# e-mail address that will be used to send invitations
+email_address:
+
+# output of the import_hadoop_conf.sh tool (https://github.com/trustedanalytics/hadoop-admin-tools) for three machines;
+# those will be JSON documents, they need to be in single quotes, e.g. '{"some_key": "some_value"}'
+import_hadoop_conf_hbase:
+import_hadoop_conf_hdfs:
+import_hadoop_conf_yarn:
+
+# *** set only for Kerberos-enabled deployment ***
+# hostname of the Kerberos Key Distribution Center, should be the same as CDH Manager machine
+kerberos_host: ''
+
+# hostnames of the CDH master nodes running zookeeper and kafka
+master_node_host_1:
+master_node_host_2:
+master_node_host_3:
+
+# hostname of the host serving as the HDFS namenode
+namenode_internal_host:
+
+# ip address of the nats machine. can be checked with `bosh vms`
+nats_ip:
+
+# run domain of the Cloud Foundry deployment, can be checked in the bosh deployment YAML file
+run_domain:
+
+# SMTPAuth password (e.g. for Amazon SES service).
+# To disable authentication set value to 'null' (single or double quotation are necessary).
+# For non empty value, it should be inside single and double quotation marks: '"example_password"'.
+smtp_pass:
+
+# SMTPAuth username (e.g. for Amazon SES service).
+# Rules for setting the field are the same as for smtp_pass.
+smtp_user:
+
+# SMTPAuth port (e.g. 465)
+smtp_port:
+
+# SMTPAuth host (e.g. email-smtp.us-west-2.amazonaws.com)
+smtp_host:
+
+# SMTPAuth protocol (smtp or smtps),
+# fill this value if your smtp protocol is other than standard (25, 465, 587, 2525)
+smtp_protocol:

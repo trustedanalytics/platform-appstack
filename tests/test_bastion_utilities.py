@@ -8,8 +8,8 @@ class TestSSHConnectionToBastion:
     def setup_class(cls):
         cls.default_config_name = 'fetcher_config.yml'
         cls.json_config = {
-            'is_openstack_env': True,
-            'is_kerberos': True,
+            'openstack_env': True,
+            'kerberos_used': True,
             'machines': {
                 'cf-bastion': {
                     'hostname': '10.10.10.10',
