@@ -27,8 +27,8 @@ class CdhConfExtractor(object):
         self._key_filename = config['machines']['cdh-launcher']['key_filename']
         self._key = os.path.expanduser(self._key_filename)
         self._key_password = config['machines']['cdh-launcher']['key_password']
-        self._is_openstack = config['is_openstack_env']
-        self._is_kerberos = config['is_kerberos']
+        self._is_openstack = config['openstack_env']
+        self._is_kerberos = config['kerberos_used']
         self._cdh_manager_ip = config['machines']['cdh-manager']['ip']
         self._cdh_manager_user = config['machines']['cdh-manager']['user']
         self._cdh_manager_sshtunnel_required = config['machines']['cdh-manager']['sshtunnel_required']
@@ -180,12 +180,26 @@ class CdhConfExtractor(object):
                                                     auth=(self._cdh_manager_user, self._cdh_manager_password)).content)
         result['cloudera_manager_internal_host'] = self.extract_cdh_manager_details(deployments_settings)['hostname']
 
+        helper = CdhApiHelper(ApiResource(self._local_bind_address, username=self._cdh_manager_user, password=self._cdh_manager_password, version=9))
         if self._is_kerberos:
             result['kerberos_host'] = result['cloudera_manager_internal_host']
             result['hdfs_keytab_value'] = self.generate_keytab('hdfs')
+            result['auth_gateway_keytab_value'] = self.generate_keytab('authgateway/sys')
+            result['hgm_keytab_value'] = self.generate_keytab('hgm/sys')
             result['vcap_keytab_value'] = self.generate_keytab('vcap')
             result['krb5_base64'] = self.generate_base64_for_file('/etc/krb5.conf', self._cdh_manager_ip)
             result['kerberos_cacert'] = self.generate_base64_for_file('/var/krb5kdc/cacert.pem', self._cdh_manager_ip)
+
+            #sentry_service = helper.get_service_from_cdh('SENTRY')
+            result['sentry_port'] = "''" #helper.get_entry(sentry_service, 'port')
+            result['sentry_address'] = "''" #helper.get_host(sentry_service)
+            result['sentry_keytab_value'] = "''" #self.generate_keytab('hive/sys')
+            result['auth_gateway_profile'] = 'cloud,zookeeper-auth-gateway,hdfs-auth-gateway,kerberos-hgm-auth-gateway'
+            hgm_service = helper.get_service_from_cdh('HADOOPGROUPSMAPPING')
+            result['hgm_adress'] = 'http://' + helper.get_host(hgm_service, 'HADOOPGROUPSMAPPING-HADOOPGROUPSMAPPING_RESTSERVER') + ':' \
+                                   + helper.get_entry_from_group(hgm_service, 'rest_port', 'HADOOPGROUPSMAPPING-HADOOPGROUPSMAPPING_RESTSERVER-BASE')
+            result['hgm_password'] = helper.get_entry_from_group(hgm_service, 'basic_auth_pass', 'HADOOPGROUPSMAPPING-HADOOPGROUPSMAPPING_RESTSERVER-BASE')
+            result['hgm_username'] = helper.get_entry_from_group(hgm_service, 'basic_auth_user', 'HADOOPGROUPSMAPPING-HADOOPGROUPSMAPPING_RESTSERVER-BASE')
         else:
             result['sentry_port'] = "''"
             result['sentry_address'] = "''"
@@ -196,6 +210,12 @@ class CdhConfExtractor(object):
             result['hgm_keytab_value'] = '""'
             result['krb5_base64'] = '""'
             result['kerberos_cacert'] = '""'
+            result['auth_gateway_profile'] = 'cloud,zookeeper-auth-gateway,hdfs-auth-gateway,https-hgm-auth-gateway'
+            hgm_service = helper.get_service_from_cdh('HADOOPGROUPSMAPPING')
+            result['hgm_adress'] = 'https://' + helper.get_host(hgm_service, 'HADOOPGROUPSMAPPING-HADOOPGROUPSMAPPING_RESTSERVER') + ':'\
+                                   + helper.get_entry_from_group(hgm_service, 'rest_port', 'HADOOPGROUPSMAPPING-HADOOPGROUPSMAPPING_RESTSERVER-BASE')
+            result['hgm_password'] = helper.get_entry_from_group(hgm_service, 'basic_auth_pass', 'HADOOPGROUPSMAPPING-HADOOPGROUPSMAPPING_RESTSERVER-BASE')
+            result['hgm_username'] = helper.get_entry_from_group(hgm_service, 'basic_auth_user', 'HADOOPGROUPSMAPPING-HADOOPGROUPSMAPPING_RESTSERVER-BASE')
 
         master_nodes = self.extract_nodes_info('cdh-master', deployments_settings)
         for i, node in enumerate(master_nodes):
@@ -237,21 +257,25 @@ class CdhApiHelper(object):
         except StopIteration:
             raise NoCdhServiceError('No {} in CDH services.'.format(name))
 
-    def get_host(self, service):
-        id = service.get_all_roles()[0].hostRef.hostId
+    # get host ip for service or specified service role
+    def get_host(self, service, role = None):
+	if role is None:
+            id = service.get_all_roles()[0].hostRef.hostId
+        else:
+            id = service.get_role(role).hostRef.hostId
         return self.cdhApi.get_host(id).hostname
 
     def get_entry(self, service, name):
         sentry_config = service.get_all_roles()[0].get_config('full')
         for config_entry in sentry_config:
-            if name in config_entry:
+            if name == config_entry:
                 entry = sentry_config[config_entry].value or sentry_config[config_entry].default
         return entry
 
     def get_entry_from_group(self, service, name, group):
         sentry_config = service.get_role_config_group(group).get_config('full')
         for config_entry in sentry_config:
-            if name in config_entry:
+            if name == config_entry:
                 entry = sentry_config[config_entry].value or sentry_config[config_entry].default
         return entry
 

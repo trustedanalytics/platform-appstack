@@ -9,7 +9,7 @@ TMP=$(tmp_file)
 CMD=$(
 {
   PRINC=$@
-  echo "xst -norandkey -k $TMP $PRINC"
+  echo "xst -k $TMP $PRINC"
 })
 sudo kadmin.local -q "$CMD" 2&> /dev/null
 sudo base64 $TMP
