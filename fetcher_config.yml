@@ -21,11 +21,11 @@ machines:
 
  # access information for cf-bastion
  cf-bastion:
-   # ip address or hostname
+   # ip address for hostname
    hostname:
    # port for ssh connection (default: 22)
    hostport: 22
-   # username fo ssh connection (default: ubuntu)
+   # username for ssh connection (default: ubuntu)
    username: ubuntu
    # path to ssh key
    key_filename: ~/.ssh/id_rsa

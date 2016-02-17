@@ -72,7 +72,7 @@ class CFConfExtractor(object):
         result['cf_admin_password'] = cf_tiny_yml['meta']['admin_secret']
         result['cf_admin_client_password'] = cf_tiny_yml['meta']['secret']
         result['apps_domain'] = cf_tiny_yml['meta']['app_domains']
-        result['developer_console_password'] = cf_tiny_yml['meta']['secret']
+        result['tap_console_password'] = cf_tiny_yml['meta']['secret']
         result['email_address'] = cf_tiny_yml['meta']['login_smtp']['senderEmail']
         result['run_domain'] = cf_tiny_yml['meta']['domain']
         result['smtp_pass'] = '"{0}"'.format(cf_tiny_yml['meta']['login_smtp']['password'])

@@ -97,7 +97,7 @@ applications:
   env:
     CF_API: http://api.{{ run_domain }}
     CLIENT_ID: tap_console
-    CLIENT_SECRET: {{ developer_console_password }}
+    CLIENT_SECRET: {{ tap_console_password }}
     TOKEN_URL: http://uaa.{{ run_domain }}/oauth/token
     AUTH_USER: {{ application_broker_user }}
     AUTH_PASS: {{ application_broker_pass }}
@@ -123,7 +123,7 @@ user_provided_service_instances:
     authorizationUri: http://login.{{ run_domain }}/oauth/authorize
     checkTokenUri: http://uaa.{{ run_domain }}/check_token
     clientId: tap_console
-    clientSecret: {{ developer_console_password }}
+    clientSecret: {{ tap_console_password }}
     logoutUri: http://login.{{ run_domain }}/logout.do
     tokenKey: http://uaa.{{ run_domain }}/token_key
     tokenUri: http://uaa.{{ run_domain }}/oauth/token

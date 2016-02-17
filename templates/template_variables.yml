@@ -15,6 +15,10 @@ java_http_proxy: ''
 # Kerberos realm name (the default deployment value is 'CLOUDERA')
 kerberos_realm: 'CLOUDERA'
 
+# add if tap_console's client_pass is different than the uaac_admin_client_secret
+# (by default client_pass will automatically be set same as uaac_admin_client_secret)
+tap_console_password:
+
 # name of the Cloudera CDH cluster
 CDH_cluster_name: CDH-cluster
 
@@ -189,9 +193,6 @@ apps_domain:
 
 # hostname of the CDH Manager host
 cloudera_manager_internal_host:
-
-# password for the developer-console client
-developer_console_password:
 
 # e-mail address that will be used to send invitations
 email_address:
