@@ -9,7 +9,6 @@ applications:
   env:
     SPRING_PROFILES_ACTIVE: cloud
     USER_PASSWORD: {{ gearpump_broker_user_pass }}
-    IMAGE_URL: {{ generic_broker_icon }}
     GEARPUMP_UI_ORG: {{ core_org_name }}
     GEARPUMP_UI_SPACE: {{ core_space_name }}
     GEARPUMP_UI_NAME: {{ gearpump_ui_name }}
@@ -120,7 +119,7 @@ applications:
   env:
     username: username
     password: password
-    GEARPUMP_MASTERS: localhost
+    GEARPUMP_MASTERS: localhost:9999
 user_provided_service_instances:
 - name: sso
   credentials:
@@ -223,6 +222,11 @@ user_provided_service_instances:
     krealm: "{{ kerberos_realm if kerberos_host != '' }}"
     kuser: "{{ kerberos_username }}"
     kcacert: {{ kerberos_cacert }}
+- name: marketplace-register-service
+  credentials:
+    username: {{ application_broker_user }}
+    password: {{ application_broker_pass }}
+    applicationBrokerUrl: http://application-broker.{{ apps_domain }}
 ### TO REMOVE after DPNG-2306 ###############
 - name: external-tools
   credentials:
@@ -242,6 +246,10 @@ user_provided_service_instances:
       available: "{{ external_tool_gearpump }}"
 #############################################
 service_brokers:
+- name: application-broker
+  broker_url: http://application-broker.{{ run_domain }}
+  auth_username: {{ application_broker_user }}
+  auth_password: {{ application_broker_pass }}
 - name: docker
   broker_url: http://cf-containers-broker.{{ run_domain }}
   auth_username: {{ docker_broker_user }}
