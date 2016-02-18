@@ -34,7 +34,7 @@ For running the Env vars fetcher script you can install project requirements wit
 sudo -E pip install tox
 tox -r
 ```
-1. After installation dependencies run script using:
+1. After installing the dependencies run the script using:
 ```
 .tox/py27/bin/python env_vars_fetcher/app.py
 ```
