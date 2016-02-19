@@ -95,7 +95,7 @@ gearpump_broker_user_pass: randompassword
 gearpump_ui_name: "gearpump-dashboard"
 
 # TODO
-gearpump_broker_znode_in_zookeeper: /org/intel/gearpumpbroker/metadata
+gearpump_broker_znode_in_zookeeper: /broker/gearpump/metadata
 
 # username that the HBASE broker will use
 hbase_broker_user: user
@@ -104,7 +104,7 @@ hbase_broker_user: user
 hbase_broker_user_pass: democrats-midst-writing-tender
 
 # TODO
-hbase_broker_znode_in_zookeeper: /org/intel/hbasebroker/metadata
+hbase_broker_znode_in_zookeeper: /broker/hbase/metadata
 
 # directory in the HDFS tree that the HDFS broker will use
 hdfs_broker_folder_on_hdfs: /org/intel/hdfsbroker
@@ -148,10 +148,10 @@ yarm_broker_user: user
 yarn_broker_user_pass: little-gold-bubbles-heavenly
 
 # TODO
-yarn_broker_znode_in_zookeeper: /org/intel/yarnbroker/metadata
+yarn_broker_znode_in_zookeeper: /broker/yarn/metadata
 
 # TODO
-zookeeper_broker_metadata: /org/intel/zookeeperbroker/metadata
+zookeeper_broker_metadata: /broker/yarn/zookeeper/metadata
 
 # username that the Zookeeper broker will use
 zookeeper_broker_user: user

@@ -172,7 +172,7 @@ service_instances:
       broker: hbase
 - name: yarn-for-atk
   service_plan:
-    name: shared
+    name: bare
     service:
       label: yarn
       broker: yarn
@@ -320,6 +320,18 @@ service_instances:
     service:
       label: zookeeper
       broker: zookeeper
+- name: zookeeper-for-hbase
+  service_plan:
+    name: shared
+    service:
+      label: zookeeper
+      broker: zookeeper
+- name: zookeeper-for-hdfs
+  service_plan:
+    name: shared
+    service:
+      label: zookeeper
+      broker: zookeeper
 - name: smtp
   service_plan:
     name: shared
@@ -376,7 +388,7 @@ service_instances:
       broker: hdfs
 - name: yarn-gearpump
   service_plan:
-    name: shared
+    name: bare
     service:
       label: yarn
       broker: yarn
