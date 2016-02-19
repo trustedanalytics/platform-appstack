@@ -180,12 +180,6 @@ class CdhConfExtractor(object):
                                                     auth=(self._cdh_manager_user, self._cdh_manager_password)).content)
         result['cloudera_manager_internal_host'] = self.extract_cdh_manager_details(deployments_settings)['hostname']
 
-        helper = CdhApiHelper(ApiResource(self._local_bind_address, username=self._cdh_manager_user, password=self._cdh_manager_password, version=9))
-        hgm_service = helper.get_service_from_cdh('HADOOPGROUPSMAPPING')
-        result['hgm_adress'] = 'http://' + helper.get_host(hgm_service, 'HADOOPGROUPSMAPPING-HADOOPGROUPSMAPPING_RESTSERVER') + ':' \
-                               + helper.get_entry_from_group(hgm_service, 'rest_port', 'HADOOPGROUPSMAPPING-HADOOPGROUPSMAPPING_RESTSERVER-BASE')
-        result['hgm_password'] = helper.get_entry_from_group(hgm_service, 'basic_auth_pass', 'HADOOPGROUPSMAPPING-HADOOPGROUPSMAPPING_RESTSERVER-BASE')
-        result['hgm_username'] = helper.get_entry_from_group(hgm_service, 'basic_auth_user', 'HADOOPGROUPSMAPPING-HADOOPGROUPSMAPPING_RESTSERVER-BASE')
         if self._is_kerberos:
             result['kerberos_host'] = result['cloudera_manager_internal_host']
             result['hdfs_keytab_value'] = self.generate_keytab('hdfs')
@@ -194,6 +188,13 @@ class CdhConfExtractor(object):
             result['vcap_keytab_value'] = self.generate_keytab('vcap')
             result['krb5_base64'] = self.generate_base64_for_file('/etc/krb5.conf', self._cdh_manager_ip)
             result['kerberos_cacert'] = self.generate_base64_for_file('/var/krb5kdc/cacert.pem', self._cdh_manager_ip)
+
+            helper = CdhApiHelper(ApiResource(self._local_bind_address, username=self._cdh_manager_user, password=self._cdh_manager_password, version=9))
+            hgm_service = helper.get_service_from_cdh('HADOOPGROUPSMAPPING')
+            result['hgm_adress'] = 'http://' + helper.get_host(hgm_service, 'HADOOPGROUPSMAPPING-HADOOPGROUPSMAPPING_RESTSERVER') + ':' \
+                                   + helper.get_entry_from_group(hgm_service, 'rest_port', 'HADOOPGROUPSMAPPING-HADOOPGROUPSMAPPING_RESTSERVER-BASE')
+            result['hgm_password'] = helper.get_entry_from_group(hgm_service, 'basic_auth_pass', 'HADOOPGROUPSMAPPING-HADOOPGROUPSMAPPING_RESTSERVER-BASE')
+            result['hgm_username'] = helper.get_entry_from_group(hgm_service, 'basic_auth_user', 'HADOOPGROUPSMAPPING-HADOOPGROUPSMAPPING_RESTSERVER-BASE')
 
             sentry_service = helper.get_service_from_cdh('SENTRY')
             result['sentry_port'] = helper.get_entry(sentry_service, 'sentry_service_server_rpc_port')
@@ -211,6 +212,14 @@ class CdhConfExtractor(object):
             result['krb5_base64'] = '""'
             result['kerberos_cacert'] = '""'
             result['auth_gateway_profile'] = 'cloud,zookeeper-auth-gateway,hdfs-auth-gateway,https-hgm-auth-gateway'
+
+            helper = CdhApiHelper(ApiResource(self._local_bind_address, username=self._cdh_manager_user, password=self._cdh_manager_password, version=9))
+            hgm_service = helper.get_service_from_cdh('HADOOPGROUPSMAPPING')
+            result['hgm_adress'] = 'https://' + helper.get_host(hgm_service, 'HADOOPGROUPSMAPPING-HADOOPGROUPSMAPPING_RESTSERVER') + ':' \
+                                   + helper.get_entry_from_group(hgm_service, 'rest_port', 'HADOOPGROUPSMAPPING-HADOOPGROUPSMAPPING_RESTSERVER-BASE')
+            result['hgm_password'] = helper.get_entry_from_group(hgm_service, 'basic_auth_pass', 'HADOOPGROUPSMAPPING-HADOOPGROUPSMAPPING_RESTSERVER-BASE')
+            result['hgm_username'] = helper.get_entry_from_group(hgm_service, 'basic_auth_user', 'HADOOPGROUPSMAPPING-HADOOPGROUPSMAPPING_RESTSERVER-BASE')
+
 
         master_nodes = self.extract_nodes_info('cdh-master', deployments_settings)
         for i, node in enumerate(master_nodes):
