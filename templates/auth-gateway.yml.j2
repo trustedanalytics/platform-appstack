@@ -23,3 +23,6 @@ applications:
     KRB_USER: "{{ kerberos_username }}"
     HADOOP_PROVIDED_ZIP: '{{ import_hadoop_conf_hdfs }}'
     ZK_CLUSTER_URL: {{ master_node_host_1 }}:2181,{{ master_node_host_2 }}:2181,{{ master_node_host_3 }}:2181
+- name: auth-proxy
+  env:
+    NODE_TLS_REJECT_UNAUTHORIZED: 0
