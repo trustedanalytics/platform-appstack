@@ -182,6 +182,9 @@ cf_admin_password:
 # client password of the Cloud Foundry UAA admin
 cf_admin_client_password:
 
+# hostname of any h2o worker node, provide this value if other than cdh-worker-0
+h2o_node:
+
 # hostname of any Arcadia worker node, provide this value if other than cdh-worker-0
 arcadia_node:
 

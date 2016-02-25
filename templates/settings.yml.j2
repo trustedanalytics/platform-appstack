@@ -238,6 +238,8 @@ user_provided_service_instances:
       available: "{{ external_tool_rstudio }}"
     h2o:
       available: "{{ external_tool_h2o }}"
+      url: "https://h2o.{{ apps_domain }}/"
+      internal_host: "{{ h2o_node }}:54321"
     gearpump:
       available: "{{ external_tool_gearpump }}"
 #############################################
