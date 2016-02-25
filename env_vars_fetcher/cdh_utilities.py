@@ -226,6 +226,7 @@ class CdhConfExtractor(object):
             result['master_node_host_' + str(i+1)] = node['hostname']
         result['namenode_internal_host'] = self.extract_service_namenode('HDFS', 'HDFS-NAMENODE', deployments_settings)
         result['hue_node'] = self.extract_service_namenode('HUE', 'HUE-HUE_SERVER', deployments_settings)
+        result['h2o_node'] = self.extract_nodes_info('cdh-worker-0', deployments_settings)[0]['hostname']
         result['arcadia_node'] = self.extract_nodes_info('cdh-worker-0', deployments_settings)[0]['hostname']
         result['import_hadoop_conf_hdfs'] = self.get_client_config_for_service('HDFS')
         result['import_hadoop_conf_hbase'] = self.get_client_config_for_service('HBASE')
