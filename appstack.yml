@@ -264,6 +264,12 @@ service_instances:
     service:
       label: rethinkdb
       broker: docker
+- name: cassandra-example
+  service_plan:
+    name: v3.3
+    service:
+      label: cassandra
+      broker: docker
 - name: zookeeper
   service_plan:
     name: shared
