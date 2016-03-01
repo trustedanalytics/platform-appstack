@@ -1,6 +1,7 @@
+import os
 import paramiko
 import yaml
-import os
+
 import logger
 
 
@@ -59,16 +60,18 @@ class CFConfExtractor(object):
             docker_vpc_yml = yaml.load(self.ssh_call_command('cat {0}'.format(self._path_to_docker_vpc_yml)))
             cf_tiny_yml = yaml.load(self.ssh_call_command('cat {0}'.format(self._path_to_cf_tiny_yml)))
         elif self._is_openstack:
-            docker_vpc_yml = yaml.load(self.ssh_call_command('cat ~/workspace/deployments/docker-services-boshworkspace/deployments/docker-openstack.yml'))
+            docker_vpc_yml = yaml.load(self.ssh_call_command('cat ~/workspace/deployments/docker-services-boshworkspace/.deployments/docker-openstack.yml'))
             cf_tiny_yml = yaml.load(self.ssh_call_command('cat ~/workspace/deployments/cf-boshworkspace/deployments/cf-openstack-tiny.yml'))
         else:
-            docker_vpc_yml = yaml.load(self.ssh_call_command('cat ~/workspace/deployments/docker-services-boshworkspace/deployments/docker-aws-vpc.yml'))
+            docker_vpc_yml = yaml.load(self.ssh_call_command('cat ~/workspace/deployments/docker-services-boshworkspace/.deployments/docker-aws-vpc.yml'))
             cf_tiny_yml = yaml.load(self.ssh_call_command('cat ~/workspace/deployments/cf-boshworkspace/deployments/cf-aws-tiny.yml'))
 
         if docker_vpc_yml is None or cf_tiny_yml is None:
             raise IOError("Cannot find configuration files on the cf-bastion machine.")
 
-        result['nats_ip'] = docker_vpc_yml['meta']['nats']['machines'][0]
+        result['nats_ip'] = docker_vpc_yml['properties']['nats']['machines'][0]
+        result['h2o_provisioner_host'] = docker_vpc_yml['jobs'][0]['networks'][0]['static_ips'][0]
+        result['h2o_provisioner_port'] = '9876'
         result['cf_admin_password'] = cf_tiny_yml['meta']['admin_secret']
         result['cf_admin_client_password'] = cf_tiny_yml['meta']['secret']
         result['apps_domain'] = cf_tiny_yml['meta']['app_domains']

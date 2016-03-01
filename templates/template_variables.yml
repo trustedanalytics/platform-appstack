@@ -101,6 +101,12 @@ gearpump_ui_name: "gearpump-dashboard"
 # TODO
 gearpump_broker_znode_in_zookeeper: /broker/gearpump/metadata
 
+# username that the H2O broker will use
+h2o_broker_user: user
+
+# password that the H2O broker will use
+h2o_broker_user_pass: organized-widely-football-dance
+
 # username that the HBASE broker will use
 hbase_broker_user: user
 
@@ -211,6 +217,10 @@ cloudera_manager_internal_host:
 
 # e-mail address that will be used to send invitations
 email_address:
+
+# h2o provisioner url (will be consumed by h2o broker)
+h2o_provisioner_host:
+h2o_provisioner_port:
 
 # output of the import_hadoop_conf.sh tool (https://github.com/trustedanalytics/hadoop-admin-tools) for three machines;
 # those will be JSON documents, they need to be in single quotes, e.g. '{"some_key": "some_value"}'

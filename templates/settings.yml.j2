@@ -12,6 +12,9 @@ applications:
     GEARPUMP_UI_ORG: {{ core_org_name }}
     GEARPUMP_UI_SPACE: {{ core_space_name }}
     GEARPUMP_UI_NAME: {{ gearpump_ui_name }}
+- name: h2o-broker
+  env:
+    USER_PASSWORD: {{ h2o_broker_user_pass }}
 - name: hdfs-broker
   env:
     USER_PASSWORD: {{ hdfs_broker_user_pass }}
@@ -183,6 +186,9 @@ user_provided_service_instances:
 - name: model-catalog
   credentials:
     host: http://model-catalog.{{ apps_domain }}
+- name: h2o-provisioner
+  credentials:
+    url: http://{{ h2o_provisioner_host }}:{{ h2o_provisioner_port }}
 #- name: hue
 #  credentials:
 #    hueUrl: http://hue.{{ apps_domain }}/metastore/table
@@ -269,6 +275,10 @@ service_brokers:
   broker_url: http://cf-containers-broker.{{ run_domain }}
   auth_username: {{ docker_broker_user }}
   auth_password: {{ docker_broker_user_pass }}
+- name: h2o
+  broker_url: https://h2o-broker.{{ apps_domain }}
+  auth_username: {{ h2o_broker_user }}
+  auth_password: {{ h2o_broker_user_pass }}
 - name: hdfs
   broker_url: https://hdfs-broker.{{ apps_domain }}
   auth_username: {{ hdfs_broker_user }}
