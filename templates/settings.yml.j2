@@ -15,13 +15,15 @@ applications:
 - name: hdfs-broker
   env:
     USER_PASSWORD: {{ hdfs_broker_user_pass }}
+    SYSTEM_USER: "{{ broker_system_user }}"
+    SYSTEM_USER_PASSWORD: "{{ broker_system_user_password }}"
     HADOOP_PROVIDED_ZIP: '{{ import_hadoop_conf_hdfs }}'
     SPRING_PROFILES_ACTIVE: cloud,{{ 'secure' if kerberos_host != '' else 'insecure' }}
     HDFS_KEYTAB: {{ hdfs_keytab_value }}
 - name: kafka-broker
   memory: 128M
   env:
-    CREDENTIALS: '{"uri": "{{ master_node_host_1 }}:9092,{{ master_node_host_2 }}:9092,{{ master_node_host_3 }}:9092"}'
+    CREDENTIALS: '{"uri": "{{ master_node_host_1 }}:9092,{{ master_node_host_2 }}:9092,{{ master_node_host_3 }}:9092", "zookeeperUri": "{{ master_node_host_1 }}:2181,{{ master_node_host_2 }}:2181,{{ master_node_host_3 }}:2181/kafka"}'
     IMAGE_URL: {{ generic_broker_icon }}
     VERSION: {{ wssb_version }}
 - name: metrics-provider
@@ -49,6 +51,10 @@ applications:
   env:
     CREDENTIALS: '{"uri": "{{ master_node_host_1 }}:2181,{{ master_node_host_2 }}:2181,{{ master_node_host_3 }}:2181"}'
     VERSION: {{ wssb_version }}
+- name: kerberos-broker
+  env:
+    CREDENTIALS: '{"kdc": "{{ kerberos_host }}", "krealm": "{{ kerberos_realm if kerberos_host != '' }}", "cacert": {{ kerberos_cacert }}, "enabled": {{ 'true' if kerberos_host != '' else 'false'}} }'
+    VERSION: {{ wssb_version }}
 - name: smtp-broker
   memory: 128M
   env:
@@ -61,12 +67,16 @@ applications:
 - name: hbase-broker
   env:
     USER_PASSWORD: {{ hbase_broker_user_pass }}
+    SYSTEM_USER: "{{ broker_system_user }}"
+    SYSTEM_USER_PASSWORD: "{{ broker_system_user_password }}"
     KRB_KDC_HOST: "{{ kerberos_host }}"
     KRB_REALM: "{{ kerberos_realm if kerberos_host != '' }}"
     HADOOP_PROVIDED_ZIP: '{{ import_hadoop_conf_hbase }}'
 - name: zookeeper-broker
   env:
     USER_PASSWORD: {{ zookeeper_broker_user_pass }}
+    SYSTEM_USER: "{{ broker_system_user }}"
+    SYSTEM_USER_PASSWORD: "{{ broker_system_user_password }}"
     KRB_KDC_HOST: "{{ kerberos_host }}"
     KRB_REALM: "{{ kerberos_realm if kerberos_host != '' }}"
     ZK_CLUSTER_URL: {{ master_node_host_1 }}:2181,{{ master_node_host_2 }}:2181,{{ master_node_host_3 }}:2181
@@ -74,6 +84,8 @@ applications:
 - name: yarn-broker
   env:
     USER_PASSWORD: {{ yarn_broker_user_pass }}
+    SYSTEM_USER: "{{ broker_system_user }}"
+    SYSTEM_USER_PASSWORD: "{{ broker_system_user_password }}"
     KRB_KDC_HOST: "{{ kerberos_host }}"
     KRB_REALM: "{{ kerberos_realm if kerberos_host != '' }}"
     HADOOP_PROVIDED_ZIP: '{{ import_hadoop_conf_yarn }}'
@@ -288,3 +300,7 @@ service_brokers:
   broker_url: http://yarn-broker.{{ apps_domain }}
   auth_username: {{ yarm_broker_user }}
   auth_password: {{ yarn_broker_user_pass }}
+- name: kerberos
+  broker_url: http://kerberos-broker.{{ apps_domain }}
+  auth_username: {{ kerberos_broker_user }}
+  auth_password: {{ kerberos_broker_user_pass }}

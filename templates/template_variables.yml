@@ -151,6 +151,12 @@ yarm_broker_user: user
 # password that the YARN broker will use
 yarn_broker_user_pass: little-gold-bubbles-heavenly
 
+# username that the KERBEROS broker will use
+kerberos_broker_user: admin
+
+# password that the KERBEROS broker will use
+kerberos_broker_user_pass: little-silver-bubbles-heavenly
+
 # TODO
 yarn_broker_znode_in_zookeeper: /broker/yarn/metadata
 
@@ -165,6 +171,12 @@ zookeeper_broker_user_pass: bother-collar-thumb-shut
 
 # TODO
 zookeeper_broker_userspace: /org/intel/zookeeperbroker/userspace
+
+# user that the all broker will use to create broker store
+broker_system_user: cf
+
+# password that the all broker will use to login
+broker_system_user_password: cf1
 
 ### TO REMOVE after DPNG-2306 ###############
 external_tool_arcadia: "false"

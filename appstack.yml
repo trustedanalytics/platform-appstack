@@ -87,6 +87,17 @@ applications:
     artifact_name: wssb
   hosts:
   - zookeeper-wssb-broker
+- name: kerberos-broker
+  buildpack: go_buildpack
+  env:
+    BASE_GUID: d47a4b46-b1cd-423c-a8e8-25842ece5a5a
+    SERVICE_NAME: kerberos
+    SERVICE_PLAN_NAME: shared
+    TAGS: kerberos
+    service_broker_names: kerberos
+    artifact_name: wssb
+  hosts:
+  - kerberos-broker
 - name: smtp-broker
   buildpack: go_buildpack
   env:
@@ -200,7 +211,7 @@ service_instances:
       broker: docker
 - name: hdfs-instance
   service_plan:
-    name: template
+    name: multitenant
     service:
       label: hdfs
       broker: hdfs
@@ -264,12 +275,12 @@ service_instances:
     service:
       label: rethinkdb
       broker: docker
-- name: cassandra-example
-  service_plan:
-    name: v3.3
-    service:
-      label: cassandra
-      broker: docker
+#- name: cassandra-example
+#  service_plan:
+#    name: v3.3
+#    service:
+#      label: cassandra
+#      broker: docker
 - name: zookeeper
   service_plan:
     name: shared
@@ -414,6 +425,12 @@ service_instances:
     service:
       label: hdfs
       broker: hdfs
+- name: kerberos-instance
+  service_plan:
+    name: shared
+    service:
+      label: kerberos
+      broker: kerberos
 user_provided_service_instances:
 - name: sso
 - name: nats-provider
@@ -452,4 +469,5 @@ service_brokers:
 - name: hbase
 - name: zookeeper
 - name: yarn
+- name: kerberos
 #application-broker creates broker for its own on first register call
