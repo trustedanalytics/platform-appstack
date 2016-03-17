@@ -209,6 +209,12 @@ service_instances:
     service:
       label: redis28
       broker: docker
+- name: service-instances-metadata
+  service_plan:
+    name: free
+    service:
+      label: redis28
+      broker: docker
 - name: hdfs-instance
   service_plan:
     name: multitenant
