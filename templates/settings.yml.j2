@@ -22,6 +22,7 @@ applications:
     HDFS_KEYTAB: {{ hdfs_keytab_value }}
 - name: kafka-broker
   memory: 128M
+  disk_quota: 64M
   env:
     CREDENTIALS: '{"uri": "{{ master_node_host_1 }}:9092,{{ master_node_host_2 }}:9092,{{ master_node_host_3 }}:9092", "zookeeperUri": "{{ master_node_host_1 }}:2181,{{ master_node_host_2 }}:2181,{{ master_node_host_3 }}:2181/kafka"}'
     IMAGE_URL: {{ generic_broker_icon }}
@@ -43,15 +44,19 @@ applications:
     CF_CLI_VERSION: {{ cf_cli_version }}
 - name: cdh-broker
   memory: 128M
+  disk_quota: 64M
   env:
     CREDENTIALS: '{"hdfs_root": "hdfs://{{ hdfs_nameservice_for_cdh_broker }}/user/atkuser", "zk_host": "{{ master_node_host_1 }}", "zk_port": "2181", "spark_max_memory": "2163212288", "resource_manager" : "http://{{ namenode_internal_host }}:8088", "yarn_config": "http://{{ cloudera_manager_internal_host }}:7180/api/v9/clusters/{{ CDH_cluster_name }}/services/YARN/clientConfig", "hdfs_config": "http://{{ cloudera_manager_internal_host }}:7180/api/v9/clusters/{{ CDH_cluster_name }}/services/HDFS/clientConfig", "hbase_config": "http://{{ cloudera_manager_internal_host }}:7180/api/v9/clusters/{{ CDH_cluster_name }}/services/HBASE/clientConfig"}'
     VERSION: {{ wssb_version }}
 - name: zookeeper-wssb-broker
   memory: 128M
+  disk_quota: 64M
   env:
     CREDENTIALS: '{"uri": "{{ master_node_host_1 }}:2181,{{ master_node_host_2 }}:2181,{{ master_node_host_3 }}:2181"}'
     VERSION: {{ wssb_version }}
 - name: kerberos-broker
+  memory: 128M
+  disk_quota: 64M
   env:
     CREDENTIALS: '{"kdc": "{{ kerberos_host }}", "krealm": "{{ kerberos_realm if kerberos_host != '' }}", "cacert": {{ kerberos_cacert }}, "enabled": {{ 'true' if kerberos_host != '' else 'false'}} }'
     VERSION: {{ wssb_version }}
