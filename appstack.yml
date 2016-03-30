@@ -162,6 +162,9 @@ applications:
     push_argument: --no-start
     description: Dashboard for managing GearPump service
     display_name: GearPump Dashboard
+- name: h2o-scoring-engine-publisher
+  env:
+    workaround_value: DPNG-2310
 #- name: auth-gateway
 service_instances:
 - name: postgres-for-atk
