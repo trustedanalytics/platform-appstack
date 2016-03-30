@@ -1,5 +1,7 @@
 platform-appstack
 =================
+**Obsolete** as of 2016-03-30. All new deployments will be done with [Apployer] (https://github.com/trustedanalytics/apployer) tool.
+---
 
 Cloud Foundry platform definition files to be used with https://github.com/trustedanalytics/cloudfoundry-mkappstack.
 
