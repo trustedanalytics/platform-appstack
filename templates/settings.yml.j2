@@ -61,7 +61,7 @@ applications:
   memory: 128M
   disk_quota: 64M
   env:
-    CREDENTIALS: '{"kdc": "{{ kerberos_host }}", "krealm": "{{ kerberos_realm if kerberos_host != '' }}", "cacert": {{ kerberos_cacert }}, "enabled": {{ 'true' if kerberos_host != '' else 'false'}} }'
+    CREDENTIALS: '{"kdc": "{{ kerberos_host }}", "krealm": "{{ kerberos_realm if kerberos_host != '' }}", "kcacert": {{ kerberos_cacert }}, "enabled": {{ 'true' if kerberos_host != '' else 'false'}} }'
     VERSION: {{ wssb_version }}
 - name: smtp-broker
   memory: 128M
