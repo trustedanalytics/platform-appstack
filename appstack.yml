@@ -127,9 +127,9 @@ applications:
   env:
     upsi_names: router-metrics-provider
 - name: das
-  memory: 512m
+  memory: 640m
   env:
-    JBP_CONFIG_OPEN_JDK_JRE: "[memory_sizes: {metaspace: 70m}, memory_heuristics: {heap: 45, native: 45, stack: 0.05}]"
+    JBP_CONFIG_OPEN_JDK_JRE: "[memory_sizes: {metaspace: 128m}, memory_heuristics: {heap: 45, native: 45, stack: 0.05}]"
     upsi_names: dataaquisitionservice
     artifact_name: data-acquisition
 - name: hbase-broker
