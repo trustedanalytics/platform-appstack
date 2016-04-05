@@ -47,6 +47,7 @@ applications:
 - name: console
 - name: service-catalog
 - name: service-exposer
+  memory: 640M
 - name: app-launcher-helper
   env:
     API_URL: http://api.{{ run_domain }}
@@ -111,6 +112,7 @@ applications:
     KERBEROS_USER: "{{ kerberos_username if kerberos_host != '' }}"
     KERBEROS_PASS: "{{ kerberos_password if kerberos_host != '' }}"
 - name: metadataparser
+  memory: 640M
   env:
     HDFS_USER: {{ hdfs_username }}
     KERBEROS_USER: "{{ kerberos_username if kerberos_host != '' }}"
