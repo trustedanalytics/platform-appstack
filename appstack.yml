@@ -455,12 +455,13 @@ service_instances:
     service:
       label: kerberos
       broker: kerberos
-- name: h2o-instance
-  service_plan:
-    name: shared
-    service:
-      label: h2o
-      broker: h2o
+#To be uncommented after finishing: DPNG-4038
+#- name: h2o-instance
+#  service_plan:
+#    name: shared
+#    service:
+#      label: h2o
+#      broker: h2o
 user_provided_service_instances:
 - name: sso
 - name: nats-provider
